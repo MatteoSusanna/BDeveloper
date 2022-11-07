@@ -8,6 +8,28 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+
+    public function specialization(){
+        return $this->belongsToMany('App\Specialization');
+    }
+
+    public function data(){
+        return $this->hasOne('App\Data');
+    }
+
+    public function sponsorization(){
+        return $this->belongsToMany('App\Sponsorization')->withPivot('start_date');
+    }
+
+    public function message(){
+        return $this->hasMany('App\Message');
+    }
+
+    public function review(){
+        return $this->hasMany('App\Review');
+    }
+
+
     use Notifiable;
 
     /**
@@ -15,9 +37,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $fillable = ['name', 'email', 'password', 'lastname', 'address'];
 
     /**
      * The attributes that should be hidden for arrays.
