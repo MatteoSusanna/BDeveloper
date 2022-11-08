@@ -8,9 +8,15 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Specialization;
 
 class RegisterController extends Controller
 {
+    public function showRegistrationForm()
+    {
+        $specializations = Specialization::whereIn('name', ['BackEnd', 'FrontEnd', 'FullStack'])->get();
+        return view("auth.register", compact("specializations"));
+    } 
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -21,9 +27,9 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+    
     use RegistersUsers;
-
+    
     /**
      * Where to redirect users after registration.
      *

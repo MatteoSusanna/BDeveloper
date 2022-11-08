@@ -16,7 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-
+        return view('admin.profile.index');
     }
 
     /**
@@ -26,7 +26,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.profile.create');
     }
 
     /**
@@ -37,7 +37,14 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dati = $request->all();
+
+        $data = new Data();
+
+        $data->fill($dati);
+        $data->save();
+
+        return redirect()->route('admin.profile.index');
     }
 
     /**
@@ -48,8 +55,7 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-        $data = Data::all();
-        return view('admin.profile.show', compact('user', 'data'));
+        
         
     }
 

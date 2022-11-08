@@ -36,7 +36,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            {{-- <a class="nav-link" href="{{route('admin.profile.show', $user->id)}}">Visualizza Profilo</a> --}}
+                            <a class="nav-link" href="{{route('admin.profile.index')}}">Visualizza Profilo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.profile.create')}}">Crea Profilo</a>
                         </li>
 
                     </ul>

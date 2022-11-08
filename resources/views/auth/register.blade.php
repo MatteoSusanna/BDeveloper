@@ -7,10 +7,10 @@
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
-                @php
+                {{-- @php
                     use App\Specialization;
                     $specializations = Specialization::whereIn('name', ['BackEnd', 'FrontEnd', 'FullStack'])->get();
-                @endphp
+                @endphp --}}
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
