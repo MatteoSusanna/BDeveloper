@@ -44,16 +44,6 @@
                             </div>
                         </div>
 
-                        {{-- <div class="d-flex">
-                            @foreach ($specializations as $specialization)
-                                <div class="form-group form-check mr-4">
-                                    <input type="checkbox" class="form-check-input" id="specialization_{{$specialization->id}}" name="specializations[]" value="{{$specialization->id}}">
-                                    <label class="form-check-label" for="specialization_{{$specialization->id}}" >{{$specialization->name}}</label>
-                                </div>
-                            @endforeach
-                        </div> --}}
-
-
                         <div class="form-group row">
                                 <label for="specialization" class="col-md-4 col-form-label text-md-right">Specializations</label>
 
