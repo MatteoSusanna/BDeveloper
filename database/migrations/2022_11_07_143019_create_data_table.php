@@ -19,7 +19,7 @@ class CreateDataTable extends Migration
             $table->string('curriculum')->nullable();
             $table->tinyInteger('phone')->nullable();
             $table->string('cover')->nullable();
-            $table->double('hourly_wage', 3, 2)->nullable();
+            $table->decimal('hourly_wage', 5, 2)->nullable();
             $table->string('slug', 255)->unique()->default('1');
 
 
