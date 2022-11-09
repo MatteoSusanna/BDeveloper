@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Data;
 use App\User;
+use App\Specialization;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -16,7 +18,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('admin.profile.index');
+        $developer = User::where('id', Auth::user()->id)->first();
+
+        $specialization = Specialization::where('id', Auth::user()->id)->get();
+
+        return view('admin.index', compact('developer', 'specialization'));
     }
 
     /**
@@ -26,7 +32,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('admin.profile.create');
+        //
     }
 
     /**
@@ -37,14 +43,7 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        $dati = $request->all();
-
-        $data = new Data();
-
-        $data->fill($dati);
-        $data->save();
-
-        return redirect()->route('admin.profile.index');
+        //
     }
 
     /**
@@ -65,9 +64,10 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $developer = User::where('id', Auth::user()->id)->first();
+        return view('admin.edit', compact('developer'));
     }
 
     /**
@@ -77,9 +77,17 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $developer = User::where('id', Auth::user()->id)->first();
+
+        $data = $request->all();
+
+        $developer->update($data);
+        $developer->save();
+
+        return redirect()->route('admin.profile.index');
+
     }
 
     /**

@@ -25,9 +25,7 @@
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <a class="navbar-brand" href="/admin">BDeveloper</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,12 +34,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.profile.index')}}">Visualizza Profilo</a>
+                            <a class="nav-link" href="{{route('admin.profile.index')}}">Visualizza profilo</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.profile.create')}}">Crea Profilo</a>
-                        </li>
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -13,10 +13,6 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Specialization');
     }
 
-    public function data(){
-        return $this->hasOne('App\Data');
-    }
-
     public function sponsorization(){
         return $this->belongsToMany('App\Sponsorization')->withPivot('start_date');
     }
@@ -37,7 +33,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'lastname', 'address'];
+    protected $fillable = ['name', 'email', 'password', 'lastname', 'address', 'curriculum', 'phone', 'cover', 'slug', 'hourly_wage'];
 
     /**
      * The attributes that should be hidden for arrays.
