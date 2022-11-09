@@ -14,8 +14,7 @@
           <p class="card-text">{{$developer->address}}</p>
           <p class="card-text">{{$developer->email}}</p>
         </div>
-    </div>
-    {{$developer}}    
+    </div> 
 </div>
 
 @endsection
