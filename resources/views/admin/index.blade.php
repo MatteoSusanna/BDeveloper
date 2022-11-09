@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container">
-    <a href="{{route('admin.profile.edit', $developer->id)}}" class="btn btn-warning">Crea Profilo</a>
+    <a href="{{route('admin.profile.edit', $developer->id)}}" class="btn btn-warning mb-4">Crea Profilo</a>
  
     <div class="card" style="width: 18rem;">
         {{-- <img src="..." class="card-img-top" alt="..."> --}}
@@ -15,8 +15,7 @@
           <p class="card-text">{{$developer->email}}</p>
         </div>
     </div>
-    {{$developer}}
-    
+    {{$developer}}    
 </div>
 
 @endsection
