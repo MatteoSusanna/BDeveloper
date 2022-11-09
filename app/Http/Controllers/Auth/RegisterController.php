@@ -61,7 +61,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-
             'lastname' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
         ]);
@@ -83,13 +82,31 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
         ]);
-
-
-
+            
+        $user['slug'] = $this->getSlug($data['name'], $data['lastname']);
         
+        $user->save();
 
         $user->specialization()->sync($data['specializations']);
 
         return $user;
+    }
+
+    protected function getSlug($name, $lastname) {
+
+        $slug = Str::slug($name . '-' . $lastname, '-');
+
+        $checkUser = User::where('slug', $slug)->first();
+
+        $counter = 1;
+
+        while($checkUser) {
+            $slug = Str::slug($name . '-' . $lastname . $counter, '-');
+            $counter++;
+            $checkUser = User::where('slug', $slug)->first();
+        }
+
+        return $slug;
+
     }
 }
