@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Data;
+
 use App\User;
 use App\Specialization;
 use App\Http\Controllers\Controller;
@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+
 
 class ProfileController extends Controller
 {
@@ -93,12 +94,44 @@ class ProfileController extends Controller
                                 'lastname' => 'required|min:3|max:50',
                                 'address' => 'required|min:3|max:200',
                                 'curriculum' => 'nullable|mimes:pdf|max:10000',
-                                'phone' => 'nullable|digits_between:10,12|numeric',
+                                'phone' => 'nullable|numeric|digits_between:10,12',
                                 'cover' => 'nullable|image|max:10000',
-                                'hourly_wage' => 'nullable|max:999.99|min:1|numeric',
+                                'hourly_wage' => 'nullable|numeric|max:999.99|min:1',
                                 'specialization_id' => 'nullable|exists:specializations,id',
                                 'skills' => 'exists:skills,id'
-                            ]
+        ],
+        [
+            'name.required' => 'La complilazione del nome è obligatoria',
+            'name.min' => 'Il nome deve avere almeno 3 caratteri',
+            'name.max' => 'Il nome deve avere meno di 50 caratteri',
+
+            'lastname.min' => 'Il cognome deve avere almeno 3 caratteri',
+            'lastname.required' => 'La complilazione del nome è obligatoria',
+            'lastname.max' => 'Il cognome deve avere meno di 50 caratteri',
+
+            'address.min' => "L'indirizzo deve avere almeno 3 caratteri",
+            'address.required' => "La compilazione dell'indirizzo è obligatoria",
+            'address.max' => "L'indirizzo deve avere meno di 200 caratteri",
+
+            'curriculum.mimes' => "Il file selezionato deve essere in formato PDF",
+            'curriculum.max' => "Il file selezionato deve avere una dimensione massima di 10Mb",
+
+            'cover.image' => "Il file selezionato deve essere un'immagine",
+            'cover.max' => "L'immagine selezionata deve avere una dimensione massima di 10Mb",
+
+            'phone.digits_between' => 'Il numero di telefono può contenere tra 10 e 12 cifre',
+            'phone.numeric' => 'Il campo può contenere solo valori numerici',
+
+            'hourly_wage.min' => 'La cifra inserita deve essere compresa tra 1 e 999,99',
+            'hourly_wage.numeric' => 'Il campo può contenere solo valori numerici',
+            'hourly_wage.max' => 'La cifra inserita deve essere compresa tra 1 e 999,99',
+
+            'specialization_id.exists' => "L'ID inserito non è valido",
+
+            'skills.exists' => "L'ID inserito non è valido",
+            
+
+        ]
         );
         
 

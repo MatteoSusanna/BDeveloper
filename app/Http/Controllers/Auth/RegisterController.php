@@ -58,13 +58,42 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'alpha', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'specializations' => ['required'],
-            'lastname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'alpha', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-        ]);
+        ],
+        [
+            'name.required' => 'La complilazione del nome è obligatoria',
+            'name.alpha' => 'Il nome non può contenere numeri o caratteri speciali',
+            'name.max' => 'Il nome deve avere meno di 250 caratteri',
+
+            'email.required' => 'La complilazione della email è obligatoria',
+            'email.string' => "La email deve essere una stringa di testo",
+            'email.email' => "Il campo email deve essere un'indirizzo valido",
+            'email.max' => 'Il campo email deve avere un massimo di 255 caratteri',
+            'email.unique' => 'La email inserita è gia presente nel database',
+
+            'password.required' => 'La complilazione della password è obligatoria',
+            'password.string' => "La password deve essere una stringa di testo",
+            'password.min' => 'Il campo password deve avere almeno 8 caratteri',
+            'password.confirmed' => 'La password non corrisponde',
+
+            'specializations.required' => 'Seleziona una specializzazione',
+
+            'lastname.required' => 'La complilazione dell cognome è obligatoria',
+            'lastname.alpha' => 'Il cognome non può contenere numeri o caratteri speciali',
+            'lastname.max' => 'Il cognome deve avere un massimo di 255 caratterie',
+
+            'address.required' => 'La complilazione dell cognome è obligatoria',
+            'address.string' => "L'indirizzo deve essere una stringa di testo",
+            'address.max' => "L'indirizzo deve avere un massimo di 255 caratterie",
+
+
+        ]
+    );
     }
 
     /**
