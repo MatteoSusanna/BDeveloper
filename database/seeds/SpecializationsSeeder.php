@@ -13,7 +13,7 @@ class SpecializationsSeeder extends Seeder
      */
     public function run()
     {
-        $specializations = ['BackEnd', 'FrontEnd', 'FullStack', 'Html', 'Css', 'JavaScript', 'PHP', 'Java', 'MySql', 'Laravel', 'Symfony', 'Vue', 'React', 'Angular', 'C#'];
+        $specializations = ['BackEnd', 'FrontEnd', 'FullStack'];
 
         foreach($specializations as $specialization){
                 $newSpecialization = new Specialization();

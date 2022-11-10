@@ -45,18 +45,18 @@
                         </div>
 
                         <div class="form-group row">
-                                <label for="specialization" class="col-md-4 col-form-label text-md-right">Specializations</label>
+                                <label for="specializations" class="col-md-4 col-form-label text-md-right">Specializations</label>
 
                                 <div class="col-md-6">
-                                    <select name="specializations" id="specialization" class="form-control @error('specialization')is-invalid @enderror" >
-                                        <option value="">Select</option>
+                                    <select name="specializations" id="specializations" class="form-control @error('specializations')is-invalid @enderror" >
+                                        <option value="" disabled selected>Select</option>
 
                                         @foreach ($specializations as $specialization)
                                             <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                                         @endforeach
                                     </select>
                                 
-                                    @error('specialization')
+                                    @error('specializations')
                                         <div class="invalid-feedback">{{$message}}</div>
                                     @enderror
                                 </div>

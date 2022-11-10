@@ -13,6 +13,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Specialization');
     }
 
+    public function skill(){
+        return $this->belongsToMany('App\Skill');
+    }
+
     public function sponsorization(){
         return $this->belongsToMany('App\Sponsorization')->withPivot('start_date');
     }

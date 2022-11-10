@@ -5,16 +5,14 @@
 @section('content')
 
 <div class="container">
-    <form action="{{route('admin.profile.update', $developer->id)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('admin.profile.update', $developer->slug)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
         {{--input cover--}}
-        <div class="card" style="width: 18rem;">
+        <div>
             @if ($developer->cover)
-                <img src="{{asset('storage/' . $developer->cover)}}">
-            @else
-                <h6>immagine non è presente</h6>
+                <img style="width: 15rem;" src="{{asset('storage/' . $developer->cover)}}">
             @endif
         </div>
 
@@ -22,20 +20,18 @@
             <label for="cover" class="form-label">Immagine</label>
             <input type="file" id="cover" name="image" class="form-control-file @error('image')is-invalid @enderror">
 
+
             @error('image')
                   <div class="invalid-feedback">{{$message}}</div>
             @enderror
         </div>
 
         {{--input curriculum--}}
-        <div class="card" style="width: 5rem;">
+        <div>
             @if ($developer->curriculum)
-                <a href="{{asset('storage/' . $developer->curriculum)}}" target="_blank">
+                <a style="width: 5rem;" href="{{asset('storage/' . $developer->curriculum)}}" target="_blank">
                     <img src="{{asset('img/pdf.png')}}" class="img-fluid">
                 </a>
-            @else
-                
-                <h6>Curriculum non è presente</h6>
             @endif
         </div>
 
@@ -66,6 +62,21 @@
           @error('lastname')
                   <div class="invalid-feedback">{{$message}}</div>
             @enderror
+        </div>
+
+        {{--input specializzazioni--}}
+        <div class="mb-3">
+            <label for="specializations" class="form-label">Specializzazioni</label>
+
+            <select name="specializations" id="specializations" class="form-control @error('specializations')is-invalid @enderror" >
+                @foreach ($specializations as $specialization)
+                    <option specialization {{(old('specializations', $developer->specialization_id)==$specialization->id)?'selected':''}} value="{{$specialization->id}}">{{$specialization->name}}</option>
+                @endforeach
+            </select>
+          
+              @error('specializations')
+                  <div class="invalid-feedback">{{$message}}</div>
+              @enderror
         </div>
         
         {{--input indirizzo--}}

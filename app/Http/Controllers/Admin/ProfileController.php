@@ -20,6 +20,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        
         $developer = User::where('id', Auth::user()->id)->first();
 
         $specialization = Specialization::where('id', Auth::user()->id)->get();
@@ -68,8 +69,9 @@ class ProfileController extends Controller
      */
     public function edit()
     {
+        $specializations = Specialization::All();
         $developer = User::where('id', Auth::user()->id)->first();
-        return view('admin.edit', compact('developer'));
+        return view('admin.edit', compact('developer', 'specializations'));
     }
 
     /**
@@ -90,15 +92,16 @@ class ProfileController extends Controller
                                 'curriculum' => 'nullable|mimes:pdf|max:10000',
                                 'phone' => 'nullable|digits_between:10,12|numeric',
                                 'cover' => 'nullable|image|max:10000',
-                                'hourly_wage' => 'nullable|max:999.99|min:0|numeric',
+                                'hourly_wage' => 'nullable|max:999.99|min:1|numeric',
+                                'specialization_id' => 'nullable|exists:specializations,id',
                             ]
         );
 
         $data = $request->all();
 
-        //creazione slug
-        $slug = Str::slug($data['name'] . '-' . $data['lastname'] . '-' . Auth::user()->id, '-'); 
-        $data['slug'] = $slug;
+
+        //modifica slug
+        $data['slug'] = $this->getSlug($data['name'], $data['lastname']);
 
         //caricamento cover
         if(array_key_exists('image', $data)){
@@ -133,8 +136,36 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        $developer = User::where('id', Auth::user()->id)->first();
+        $developer->specialization()->sync([]);
+        Storage::delete($developer->curriculum);
+        Storage::delete($developer->cover);
+
+        $developer->delete();
+
+        return redirect('/');
+    }
+
+    
+    
+    
+    protected function getSlug($name, $lastname) {
+
+        $slug = Str::slug($name . '-' . $lastname, '-');
+
+        $checkUser = User::where('slug', $slug)->first();
+
+        $counter = 1;
+
+        while($checkUser) {
+            $slug = Str::slug($name . '-' . $lastname . $counter, '-');
+            $counter++;
+            $checkUser = User::where('slug', $slug)->first();
+        }
+
+        return $slug;
+
     }
 }
