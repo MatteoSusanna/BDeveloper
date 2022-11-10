@@ -6,6 +6,7 @@ use App\Data;
 use App\User;
 use App\Specialization;
 use App\Http\Controllers\Controller;
+use App\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -21,7 +22,7 @@ class ProfileController extends Controller
     public function index()
     {
         
-        $developer = User::where('id', Auth::user()->id)->first();
+        $developer = Auth::user();
 
         $specialization = Specialization::where('id', Auth::user()->id)->get();
 
@@ -70,8 +71,10 @@ class ProfileController extends Controller
     public function edit()
     {
         $specializations = Specialization::All();
-        $developer = User::where('id', Auth::user()->id)->first();
-        return view('admin.edit', compact('developer', 'specializations'));
+        $skills = Skill::All();
+        $developer = Auth::user();
+
+        return view('admin.edit', compact('developer', 'specializations', 'skills'));
     }
 
     /**
@@ -94,8 +97,10 @@ class ProfileController extends Controller
                                 'cover' => 'nullable|image|max:10000',
                                 'hourly_wage' => 'nullable|max:999.99|min:1|numeric',
                                 'specialization_id' => 'nullable|exists:specializations,id',
+                                'skills' => 'exists:skills,id'
                             ]
         );
+        
 
         $data = $request->all();
 
@@ -126,6 +131,13 @@ class ProfileController extends Controller
         $developer->update($data);
         $developer->save();
 
+        //gestione competenze
+        if(array_key_exists('skills', $data)){
+            $developer->skill()->sync($data['skills']);
+        }else{
+            $developer->skill()->sync([]);
+        }
+
         return redirect()->route('admin.profile.index');
 
     }
@@ -142,6 +154,7 @@ class ProfileController extends Controller
         $developer->specialization()->sync([]);
         Storage::delete($developer->curriculum);
         Storage::delete($developer->cover);
+        $developer->skill()->sync([]);
 
         $developer->delete();
 

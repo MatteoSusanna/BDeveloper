@@ -47,7 +47,7 @@
         {{--input nome--}}
         <div class="form-group">
           <label for="name">Nome</label>
-          <input type="text" class="form-control @error('name')is-invalid @enderror" id="name" name="name" value="{{old('name', $developer->name)}}">
+          <input type="text" class="form-control @error('name')is-invalid @enderror" id="name" name="name" value="{{old('name', $developer->name)}}" required>
 
             @error('name')
                   <div class="invalid-feedback">{{$message}}</div>
@@ -57,7 +57,7 @@
         {{--input cognome--}}
         <div class="form-group">
           <label for="lastname">Cognome</label>
-          <input type="text" class="form-control @error('lastname')is-invalid @enderror" id="lastname" name="lastname" value="{{old('lastname', $developer->lastname)}}">
+          <input type="text" class="form-control @error('lastname')is-invalid @enderror" id="lastname" name="lastname" value="{{old('lastname', $developer->lastname)}}" required>
 
           @error('lastname')
                   <div class="invalid-feedback">{{$message}}</div>
@@ -78,11 +78,33 @@
                   <div class="invalid-feedback">{{$message}}</div>
               @enderror
         </div>
+
+        {{--input competenze--}}
+        <h6>Competenze</h6>
+        <div class="d-flex">
+            @foreach ($skills as $skill)
+                @if ($errors->any())
+                    <div class="form-group form-check mr-4">
+                        <input {{(in_array($skill->id, old('skills', [])))? 'checked': ''}} type="checkbox" class="form-check-input" id="skill_{{$skill->id}}" name="skills[]" value="{{$skill->id}}">
+                        <label class="form-check-label" for="skill_{{$skill->id}}"><strong>{{$skill->name}}</strong></label>
+                    </div>
+                @else
+                    <div class="form-group form-check mr-4">
+                        <input {{($developer->skill->contains($skill))? 'checked': ''}} type="checkbox" class="form-check-input" id="skill_{{$skill->id}}" name="skills[]" value="{{$skill->id}}">
+                        <label class="form-check-label" for="skill_{{$skill->id}}"><strong>{{$skill->name}}</strong></label>
+                    </div>
+                @endif
+            @endforeach
+
+            @error('content')
+                <div class="invalid-feedback">{{$message}}</div>
+            @enderror
+        </div>
         
         {{--input indirizzo--}}
         <div class="form-group">
             <label for="address">Indirizzo</label>
-            <input type="text" class="form-control @error('address')is-invalid @enderror" id="address" name="address" value="{{old('address', $developer->address)}}">
+            <input type="text" class="form-control @error('address')is-invalid @enderror" id="address" name="address" value="{{old('address', $developer->address)}}" required>
 
             @error('address')
                   <div class="invalid-feedback">{{$message}}</div>

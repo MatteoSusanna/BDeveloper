@@ -7,7 +7,7 @@
 <div class="container">
     <a href="{{route('admin.profile.edit', $developer->slug)}}" class="btn btn-warning mb-4">Modifica Profilo</a>
 
-    <form action="{{route('admin.profile.destroy', $developer->id)}}" method="POST">
+    <form action="{{route('admin.profile.destroy', $developer->id)}}" method="POST" onsubmit="return confirm('Procedendo cancellerai il tuo profilo, sei sicuro?');">
       @csrf
       @method('DELETE')
 
