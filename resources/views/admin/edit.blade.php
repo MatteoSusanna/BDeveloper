@@ -18,7 +18,7 @@
 
         <div class="mb-3">
             <label for="cover" class="form-label">Immagine</label>
-            <input type="file" id="cover" name="image" class="form-control-file @error('image')is-invalid @enderror">
+            <input type="file" id="cover" name="image" class="form-control-file @error('image')is-invalid @enderror" accept="image/*">
 
 
             @error('image')
@@ -37,7 +37,7 @@
 
         <div class="mb-3">
             <label for="curriculum" class="form-label">Curriculum</label>
-            <input type="file" id="curriculum" name="curriculum" class="form-control-file @error('curriculum')is-invalid @enderror">
+            <input type="file" id="curriculum" name="curriculum" class="form-control-file @error('curriculum')is-invalid @enderror" accept="application/pdf">
 
             @error('curriculum')
                   <div class="invalid-feedback">{{$message}}</div>
