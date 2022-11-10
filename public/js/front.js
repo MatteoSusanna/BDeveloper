@@ -1909,7 +1909,7 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'MyAppHeader'
+  name: "MyAppHeader"
 });
 
 /***/ }),
@@ -1989,10 +1989,16 @@ var staticRenderFns = [function () {
   return _c("div", {
     staticClass: "container"
   }, [_c("h1", [_vm._v("header")]), _vm._v(" "), _c("a", {
+    staticClass: "p-3",
     attrs: {
-      href: "/admin"
+      href: "/login"
     }
-  }, [_vm._v("Log")])]);
+  }, [_vm._v("Login")]), _vm._v(" "), _c("a", {
+    staticClass: "p-3",
+    attrs: {
+      href: "/register"
+    }
+  }, [_vm._v("Registrati")])]);
 }];
 render._withStripped = true;
 
@@ -18007,7 +18013,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\INTEL\Desktop\BDeveloper\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/francescosangalli/Documents/Boolean/BDeveloper/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })

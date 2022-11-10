@@ -21,9 +21,13 @@ Route::middleware('auth')
     ->name('admin.')
     ->prefix('admin')
     ->group(function(){
-        Route::get('/', 'HomeController@index');
+        // Route::get('/', 'HomeController@index');
 
-        Route::resource('profile', 'ProfileController');
+        // Route::resource('profile', 'ProfileController');
+        Route::get("/", "ProfileController@index")->name("index");
+        Route::get("/edit", "ProfileController@edit")->name("edit");
+        Route::put("/update", "ProfileController@update")->name("update");
+        Route::delete("/destroy", "ProfileController@destroy")->name("destroy");
     });
 
 

@@ -171,7 +171,7 @@ class ProfileController extends Controller
             $developer->skill()->sync([]);
         }
 
-        return redirect()->route('admin.profile.index');
+        return redirect()->route('admin.index');
 
     }
 
