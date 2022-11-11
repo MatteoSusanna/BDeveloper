@@ -10932,3 +10932,8 @@ a.text-dark:focus {
   }
 }
 
+.cover-container,
+.cv-container {
+  width: 300px;
+}
+

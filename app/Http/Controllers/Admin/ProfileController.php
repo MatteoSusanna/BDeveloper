@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,9 +26,10 @@ class ProfileController extends Controller
         
         $developer = Auth::user();
 
-        $specialization = Specialization::where('id', Auth::user()->id)->get();
+        $specializations = Specialization::where('id', Auth::user()->id)->get();
+        $skills = Skill::all();
 
-        return view('admin.index', compact('developer', 'specialization'));
+        return view('admin.index', compact('developer', 'specializations', 'skills'));
     }
 
     /**
