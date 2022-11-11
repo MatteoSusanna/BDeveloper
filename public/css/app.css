@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css2?family=Teko:wght@400;600&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Teko:wght@400;
+
+600&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #3490dc;
@@ -27,7 +29,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: 'Teko', sans-serif;
+  --font-family-sans-serif: "Nunito", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -38,7 +40,7 @@
 }
 
 html {
-  font-family: 'Teko', sans-serif;
+  font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -59,7 +61,7 @@ section {
 
 body {
   margin: 0;
-  font-family: 'Teko', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
@@ -10925,8 +10927,74 @@ a.text-dark:focus {
   }
 }
 
-.cover-container,
-.cv-container {
-  width: 300px;
+body {
+  background-color: #95f50f;
+}
+
+body .my-container {
+  height: 100%;
+  background-color: #141913;
+}
+
+body .my-container .data-container {
+  background-color: #95f50f;
+}
+
+body .my-container h1,
+body .my-container h2,
+body .my-container h3 {
+  font-weight: 800;
+}
+
+body .my-container h1,
+body .my-container h2,
+body .my-container h3 {
+  color: #141913;
+}
+
+body .my-container h5,
+body .my-container h6 {
+  color: #8e8e8e;
+}
+
+body .my-container .cover-container,
+body .my-container .cv-container {
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+}
+
+body .my-container .my-btn {
+  width: 80px;
+  height: 80px;
+}
+
+body .my-container .my-btn .my-icon {
+  font-size: 30px;
+}
+
+body .my-container .edit-btn {
+  background-color: #95f50f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body .my-container .edit-btn .edit-icon {
+  color: #141913 !important;
+}
+
+.my-header {
+  background-color: #141913;
+  box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;
+}
+
+.logo-container,
+.logout-container {
+  max-width: 200px;
+}
+
+a {
+  color: #95f50f !important;
 }
 

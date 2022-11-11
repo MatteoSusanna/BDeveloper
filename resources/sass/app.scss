@@ -8,4 +8,18 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-@import '/resources/sass/partials/_MyProfile'
+@import '/resources/sass/partials/_MyProfile';
+
+
+.my-header {
+    background-color: #141913;
+    box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;
+}
+
+.logo-container, .logout-container {
+    max-width: 200px;
+}
+
+a {
+    color:  #95f50f !important;
+}
