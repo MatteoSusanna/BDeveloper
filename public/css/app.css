@@ -1,11 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
-
-/*!
- * Bootstrap v4.6.2 (https://getbootstrap.com/)
- * Copyright 2011-2022 The Bootstrap Authors
- * Copyright 2011-2022 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+@import url(https://fonts.googleapis.com/css2?family=Teko:wght@400;600&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #3490dc;
@@ -34,7 +27,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Nunito", sans-serif;
+  --font-family-sans-serif: 'Teko', sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -45,7 +38,7 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'Teko', sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -66,7 +59,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Teko', sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
