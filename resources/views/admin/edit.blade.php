@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container">
-    <form action="{{route('admin.update', $developer->slug)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('admin.update')}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

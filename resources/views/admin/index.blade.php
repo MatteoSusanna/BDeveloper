@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container">
-    <a href="{{route('admin.edit', $developer->slug)}}" class="btn btn-warning mb-4">Modifica Profilo</a>
+    <a href="{{route('admin.edit')}}" class="btn btn-warning mb-4">Modifica Profilo</a>
 
     <form action="{{route('admin.destroy', $developer->id)}}" method="POST" onsubmit="return confirm('Procedendo cancellerai il tuo profilo, sei sicuro?');">
       @csrf
