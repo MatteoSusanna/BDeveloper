@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="card m-3" style="width: 18rem;" v-for="(developer, index) in developers" :key="index">
+        <div class="card m-3" style="width: 18rem;">
             <div style="width: 10rem;" class="m-auto py-2">
                 <img :src="developer.cover" class="card-img-top img-fluid" >
             </div>
@@ -19,7 +19,7 @@
         </div>
         <div>
             <!-- form invio messaggio sviluppatore -->
-            <form @submit.prevent="sandMessage()">
+            <form @submit.prevent="sendMessage()">
                 <!-- Contenuto nome -->
                 <div class="form-group">
                     <label for="nome">Nome</label>
@@ -91,7 +91,7 @@ export default {
             lastname: '',
             email: '',
             text: '',
-            developers: [],
+            developer: null,
             idDev: '',
             errors: {},
             status: false,
@@ -104,13 +104,13 @@ export default {
 
             axios.get('/api/developer/' + slug)
             .then(res =>{
-                this.developers = res.data.results
-                this.idDev = res.data.results['0'].id
-                console.log(res.data.results)
+                this.developer = res.data.result
+                this.idDev = res.data.result.id
+                console.log(res.data.result)
                 
             })
         },
-        sandMessage(){
+        sendMessage(){
             this.disabledButton = true;
             axios.post('/api/message', {
                     'name': this.name,

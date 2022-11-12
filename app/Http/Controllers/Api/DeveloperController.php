@@ -48,26 +48,26 @@ class DeveloperController extends Controller
 
     public function show($slug){
 
-        $developers = User::where('slug', $slug)->with(['skill', 'specialization'])->get();
+        $developer = User::where('slug', $slug)->with(['skill', 'specialization'])->firstOrFail();
 
         //passaggio cover
-        foreach($developers as $developer){
+        
             if($developer->cover){
                 $developer->cover = asset('storage/' . $developer->cover);
             }else{
                 $developer->cover = asset('img/user_segnaposto.png');
             }
-        }
+        
         //passaggio curriculum
-        foreach($developers as $developer){
+        
             if($developer->curriculum){
                 $developer->curriculum = asset('storage/' . $developer->curriculum);
             }  
-        }
+        
 
         return response()->json([
             'status' => true,
-            'results' => $developers
+            'result' => $developer
         ]);
 
 

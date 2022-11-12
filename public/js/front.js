@@ -2031,7 +2031,7 @@ __webpack_require__.r(__webpack_exports__);
       lastname: '',
       email: '',
       text: '',
-      developers: [],
+      developer: null,
       idDev: '',
       errors: {},
       status: false,
@@ -2043,12 +2043,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       var slug = this.$route.params.slug;
       axios.get('/api/developer/' + slug).then(function (res) {
-        _this.developers = res.data.results;
-        _this.idDev = res.data.results['0'].id;
-        console.log(res.data.results);
+        _this.developer = res.data.result;
+        _this.idDev = res.data.result.id;
+        console.log(res.data.result);
       });
     },
-    sandMessage: function sandMessage() {
+    sendMessage: function sendMessage() {
       var _this2 = this;
       this.disabledButton = true;
       axios.post('/api/message', {
@@ -2309,49 +2309,46 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "container"
-  }, [_vm._l(_vm.developers, function (developer, index) {
-    return _c("div", {
+  }, [_c("div", {
+    staticClass: "card m-3",
+    staticStyle: {
+      width: "18rem"
+    }
+  }, [_c("div", {
+    staticClass: "m-auto py-2",
+    staticStyle: {
+      width: "10rem"
+    }
+  }, [_c("img", {
+    staticClass: "card-img-top img-fluid",
+    attrs: {
+      src: _vm.developer.cover
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v(_vm._s(_vm.developer.name) + " " + _vm._s(_vm.developer.lastname))]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  }, [_vm._v(_vm._s(_vm.developer.address))]), _vm._v(" "), _c("p", {
+    staticClass: "card-text"
+  }, [_vm._v(_vm._s(_vm.developer.phone))]), _vm._v(" "), _vm._l(_vm.developer.specialization, function (specialization, index) {
+    return _c("p", {
       key: index,
-      staticClass: "card m-3",
-      staticStyle: {
-        width: "18rem"
-      }
-    }, [_c("div", {
-      staticClass: "m-auto py-2",
-      staticStyle: {
-        width: "10rem"
-      }
-    }, [_c("img", {
-      staticClass: "card-img-top img-fluid",
-      attrs: {
-        src: developer.cover
-      }
-    })]), _vm._v(" "), _c("div", {
-      staticClass: "card-body"
-    }, [_c("h5", {
-      staticClass: "card-title"
-    }, [_vm._v(_vm._s(developer.name) + " " + _vm._s(developer.lastname))]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
-    }, [_vm._v(_vm._s(developer.address))]), _vm._v(" "), _c("p", {
-      staticClass: "card-text"
-    }, [_vm._v(_vm._s(developer.phone))]), _vm._v(" "), _vm._l(developer.specialization, function (specialization, index) {
-      return _c("p", {
-        key: index,
-        staticClass: "card-text"
-      }, [_vm._v(_vm._s(specialization.name))]);
-    }), _vm._v(" "), _c("div", {
-      staticClass: "d-flex"
-    }, _vm._l(developer.skill, function (skill, index) {
-      return _c("p", {
-        key: index,
-        staticClass: "badge badge-dark mr-2"
-      }, [_vm._v(_vm._s(skill.name))]);
-    }), 0)], 2)]);
-  }), _vm._v(" "), _c("div", [_c("form", {
+    }, [_vm._v(_vm._s(specialization.name))]);
+  }), _vm._v(" "), _c("div", {
+    staticClass: "d-flex"
+  }, _vm._l(_vm.developer.skill, function (skill, index) {
+    return _c("p", {
+      key: index,
+      staticClass: "badge badge-dark mr-2"
+    }, [_vm._v(_vm._s(skill.name))]);
+  }), 0)], 2)]), _vm._v(" "), _c("div", [_c("form", {
     on: {
       submit: function submit($event) {
         $event.preventDefault();
-        return _vm.sandMessage();
+        return _vm.sendMessage();
       }
     }
   }, [_c("div", {
@@ -2507,7 +2504,7 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Invia messaggio")])])])], 2);
+  }, [_vm._v("Invia messaggio")])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -2582,7 +2579,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.color_button{\r\n    background-color: black;\r\n    color: white;\n}\r\n", ""]);
+exports.push([module.i, "\n.color_button{\n    background-color: black;\n    color: white;\n}\n", ""]);
 
 // exports
 
@@ -19296,7 +19293,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\INTEL\Desktop\BDeveloper\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/francescosangalli/Documents/Boolean/BDeveloper/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
