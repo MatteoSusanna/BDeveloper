@@ -10,29 +10,11 @@
 
 @import '/resources/sass/partials/_myProfile';
 @import '/resources/sass/partials/_myEditProfile';
+@import '/resources/sass/partials/_myHeader';
 
 
 body{
     font-family: 'Teko', sans-serif;
 }
 
-.my-header {
-    background-color: #141913;
-    box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;
-}
 
-.logo-container, .logout-container {
-    max-width: 200px;
-}
-
-.header-link {
-    color:  #95f50f !important;
-}
-
-.logout-link {
-    color: #141913;
-}
-
-.logout-dropdown {
-    background-color: #95f50f;
-}

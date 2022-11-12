@@ -14,7 +14,7 @@
         @if ($developer->cover)
           <img src="{{asset('storage/' . $developer->cover)}}" class="img-fluid">
         @else
-          <img src="{{asset('img/No-Image-Placeholder.png')}}" class="img-fluid">
+          <img src="{{asset('img/user_segnaposto.png')}}" class="img-fluid">
         @endif
       </div>
   
@@ -28,7 +28,7 @@
 
         <h4 class="mt-5">COMPETENZE</h4>
         @foreach ($developer->skill as $skill)
-          <h6 class="mt-2">{{ $skill->name }}</h6>
+          <h5 class="mt-2">{{ $skill->name }}</h5>
         @endforeach
   
       </div>
@@ -36,38 +36,38 @@
     </div>
   
     <div class="p-5">
-  
-      <div class="cv-container mb-4">
-        <h4>C.V.</h4>
+
+      <h4>C.V.</h4>
+      <div class="cv-container d-flex flex-wrap align-items-center">
         @if ($developer->curriculum)
           <a href="{{asset('storage/' . $developer->curriculum)}}" target="_blank">
             <img src="{{asset('img/pdf.png')}}" class="img-fluid">
           </a>
         @else
-          <h6>curriculum non presente</h6>
+          <h3>curriculum non presente</h3>
         @endif
       </div>
       
-      <h4>EMAIL</h4>
-      <h6>{{$developer->email}}</h6>
+      <h4 class="mt-5">EMAIL</h4>
+      <h5>{{$developer->email}}</h5>
   
       <div>
   
         <h4>TELEFONO</h4>
         @if ($developer->phone)
-          <h6>{{ $developer->phone }}</h6>
+          <h5>{{ $developer->phone }}</h5>
         @else
-          <h6> - </h6>
+          <h5> - </h5>
         @endif
         
         <h4>INDIRIZZO</h4>
-        <h6 class="text-capitalize">{{$developer->address}}</h6>
+        <h5 class="text-capitalize">{{$developer->address}}</h5>
 
         <h4>PAGA ORARIA</h4>
         @if ($developer->hourly_wage)
-          <h6>€ {{ $developer->hourly_wage }}</h6>
+          <h5>€ {{ $developer->hourly_wage }}</h5>
         @else
-          <h6> - </h6>
+          <h5> - </h5>
         @endif
   
       </div> 
@@ -78,12 +78,12 @@
 
   <div class="d-flex justify-content-center mt-5 mb-4">
 
-    <a href="{{route('admin.edit')}}" class="btn edit-btn my-btn mr-4"><i class="fa-solid fa-user-pen edit-icon my-icon"></i></a>
+    <a href="{{route('admin.edit')}}" class="btn edit-btn my-btn mr-4" title='Modifica il tuo profilo'><i class="fa-solid fa-user-pen edit-icon my-icon"></i></a>
 
     <form action="{{route('admin.destroy', $developer->id)}}" method="POST" onsubmit="return confirm('Procedendo cancellerai il tuo profilo, sei sicuro?');">
       @csrf
       @method('DELETE')
-      <button type="submit" class="btn btn-danger my-btn ml-4"><i class="fa-solid fa-trash my-icon"></i></button>
+      <button type="submit" class="btn btn-danger my-btn delete-btn ml-4" title='Elimina il tuo profilo'><i class="fa-solid fa-trash my-icon"></i></button>
     </form>
 
   </div>

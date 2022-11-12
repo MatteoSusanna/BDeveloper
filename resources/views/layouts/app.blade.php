@@ -35,24 +35,13 @@
                 @if (Auth::user())
                     <div>
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link header-link" href="{{route('admin.index')}}">Profilo</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link header-link" href="{{route('admin.edit')}}">Modifica profilo</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link header-link" href="#">Messaggi</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link header-link" href="#">Recensioni</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link header-link" href="#">Sponsorizzazioni</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link header-link" href="#">Statistiche</a>
-                            </li>
+
+                            @foreach ($key['linksHeader'] as $link)
+                                <li class="nav-item">
+                                    <a class="nav-link header-link" href="{{($link['url']=='#')?'#':route($link['url'])}}">{{$link['title']}}</a>
+                                </li>
+                            @endforeach
+                            
                         </ul>
                     </div>
                 @endif
@@ -70,7 +59,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link header-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">

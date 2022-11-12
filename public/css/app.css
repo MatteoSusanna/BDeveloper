@@ -10936,14 +10936,14 @@ body .my-container {
   background-color: #141913;
 }
 
-body .my-container .data-container {
-  background-color: #95f50f;
-}
-
 body .my-container h1,
 body .my-container h2,
 body .my-container h3 {
   font-weight: 800;
+}
+
+body .my-container .data-container {
+  background-color: #95f50f;
 }
 
 body .my-container h1,
@@ -10954,14 +10954,19 @@ body .my-container h3 {
 
 body .my-container h5,
 body .my-container h6 {
-  color: #8e8e8e;
+  color: #606060;
 }
 
 body .my-container .cover-container,
 body .my-container .cv-container {
-  width: 150px;
+  width: 200px;
+  height: 200px;
   display: block;
   margin: 0 auto;
+}
+
+body .my-container .cover-container {
+  overflow: hidden;
 }
 
 body .my-container .my-btn {
@@ -10984,15 +10989,20 @@ body .my-container .edit-btn .edit-icon {
   color: #141913 !important;
 }
 
+body .my-container .edit-btn:hover {
+  background-color: #86db0e !important;
+  box-shadow: 0.15rem 0.15rem 0.25rem #e0ffc2;
+}
+
+body .my-container .delete-btn:hover {
+  box-shadow: 0.15rem 0.15rem 0.25rem #d17976;
+}
+
 .cover-container,
 .cv-container {
   width: 150px;
   display: block;
   margin: 0 auto;
-}
-
-body {
-  font-family: "Teko", sans-serif;
 }
 
 .my-header {
@@ -11007,13 +11017,23 @@ body {
 
 .header-link {
   color: #95f50f !important;
+  font-size: 20px;
+}
+
+.logout-dropdown {
+  background-color: #95f50f;
 }
 
 .logout-link {
   color: #141913;
 }
 
-.logout-dropdown {
-  background-color: #95f50f;
+.logout-link:hover {
+  background-color: #141913;
+  color: #95f50f;
+}
+
+body {
+  font-family: "Teko", sans-serif;
 }
 

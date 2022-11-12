@@ -1,0 +1,28 @@
+.my-header {
+    background-color: #141913;
+    box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;
+}
+
+.logo-container, .logout-container {
+    max-width: 200px;
+}
+
+.header-link {
+    color:  #95f50f !important;
+    font-size: 20px;
+}
+
+.logout-dropdown {
+    background-color: #95f50f;
+}
+
+.logout-link {
+    color: #141913;
+}
+
+.logout-link:hover {
+    background-color: #141913 ;
+    color: #95f50f ;
+}
+
+
