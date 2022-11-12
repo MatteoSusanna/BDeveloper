@@ -1,9 +1,9 @@
 <template>
-  <div class="container-fluid my_header">
+  <div class="container-fluid my_header mb-3">
 
     <div class="d-flex justify-content-between">
       <div style="width: 10rem;">
-        <img src="/img/logo.PNG" class="img-fluid ">
+        <img src="/img/logo.jpeg" class="img-fluid ">
       </div>
 
       <div class="d-flex align-items-center">
@@ -39,7 +39,7 @@ export default {
 
 <style>
   .my_header{
-    background-color: black;
-    color: white;
+    background-color: #141913;
+    box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;
   }
 </style>
