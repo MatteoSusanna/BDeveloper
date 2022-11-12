@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import HomePage from './pages/HomePage';
+import SingleDev from './pages/SingleDev';
 
 
 const router = new VueRouter({
@@ -13,6 +14,11 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: HomePage
+        },
+        {
+            path: '/profile-details/:slug',
+            name: 'profile-details',
+            component: SingleDev
         },
     ] 
 });

@@ -21,3 +21,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('developer', 'Api\DeveloperController@index');
 
 Route::get('specializations', 'Api\SpecializationController@index');
+
+Route::get('developer/{slug}', 'Api\DeveloperController@show');

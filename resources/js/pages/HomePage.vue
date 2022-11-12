@@ -2,13 +2,12 @@
     <div>
         <div class="d-flex align-items-center">
             <div class="input-group-prepend">
-                
+                <button type="button" class="btn btn-outline-dark m-2" :class="(activeButton = 3)? 'color_button': ''" @click="getAllDeveloper(); activeButton = 3">Tutti</button>
+
                 <button type="button" class="btn btn-outline-dark m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" 
-                        @click="filter(specialization.id); activeButton == index" :class="(activeButton == index)?'color_button':''">
+                        @click="filter(specialization.id); activeButton = index" :class="(activeButton == index)?'color_button':''">
                         {{specialization.name}}
                 </button>
-                
-                <button type="button" class="btn btn-outline-dark m-2" @click="getAllDeveloper()">Tutti</button>
             </div>
         </div>
 
@@ -28,7 +27,7 @@
                     <div class="d-flex">
                         <p class="badge badge-dark mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
                     </div>
-                    <a href="#" class="btn btn-primary">Vedi profilo</a>
+                    <router-link class="btn btn-primary" :to="{name: 'profile-details', params: {slug: developer.slug}}">Vedi Profilo</router-link>
                 </div>  
             </div>
         </div>
@@ -43,7 +42,7 @@
             return{
             developers: [],
             searchBar: null,
-            activeButton: 0,
+            activeButton: 3,
 
             SelectedSpecializations: '',
             nomeSpec: '',
