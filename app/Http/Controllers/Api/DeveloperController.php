@@ -62,7 +62,7 @@ class DeveloperController extends Controller
         foreach($developers as $developer){
             if($developer->curriculum){
                 $developer->curriculum = asset('storage/' . $developer->curriculum);
-            }  
+            }
         }
 
         return response()->json([
