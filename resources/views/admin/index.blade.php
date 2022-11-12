@@ -12,9 +12,9 @@
 
       <div class="cover-container mb-4">
         @if ($developer->cover)
-          <img src="{{asset('storage/' . $developer->cover)}}" class="card-img-top">
+          <img src="{{asset('storage/' . $developer->cover)}}" class="img-fluid">
         @else
-        <img src="{{asset('img/No-Image-Placeholder.png')}}" class="img-fluid">
+          <img src="{{asset('img/No-Image-Placeholder.png')}}" class="img-fluid">
         @endif
       </div>
   

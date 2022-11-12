@@ -31,22 +31,22 @@
                 <div>
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.edit')}}">Profilo</a>
+                            <a class="nav-link" href="{{route('admin.index')}}">Profilo</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.edit')}}">Modifica profilo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.edit')}}">Messaggi</a>
+                            <a class="nav-link" href="#">Messaggi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.edit')}}">Recensioni</a>
+                            <a class="nav-link" href="#">Recensioni</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.edit')}}">Sponsorizzazioni</a>
+                            <a class="nav-link" href="#">Sponsorizzazioni</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.edit')}}">Statistiche</a>
+                            <a class="nav-link" href="#">Statistiche</a>
                         </li>
                     </ul>
                 </div>

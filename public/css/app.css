@@ -10984,6 +10984,13 @@ body .my-container .edit-btn .edit-icon {
   color: #141913 !important;
 }
 
+.cover-container,
+.cv-container {
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+}
+
 .my-header {
   background-color: #141913;
   box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;
