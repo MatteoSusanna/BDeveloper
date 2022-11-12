@@ -2050,7 +2050,7 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "container-fluid my_header"
+    staticClass: "container-fluid my_header mb-3"
   }, [_c("div", {
     staticClass: "d-flex justify-content-between"
   }, [_c("div", {
@@ -2060,7 +2060,7 @@ var staticRenderFns = [function () {
   }, [_c("img", {
     staticClass: "img-fluid",
     attrs: {
-      src: "/img/logo.PNG"
+      src: "/img/logo.jpeg"
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center"
@@ -2235,7 +2235,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.my_header{\n  background-color: black;\n  color: white;\n}\n", ""]);
+exports.push([module.i, "\n.my_header{\n  background-color: #141913;\n  box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;\n}\n", ""]);
 
 // exports
 

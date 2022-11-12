@@ -26,7 +26,7 @@
 
         <nav class="navbar navbar-expand-md navbar-light my-header">
             <div class="container d-flex justify-content-between">
-                <a class="navbar-brand logo-container w-75" href="/"><img src="{{ asset('img/logo.jpeg') }}" alt="bdev logo"></a>
+                <a class="navbar-brand logo-container" href="/"><img class="w-75" src="{{ asset('img/logo.jpeg') }}" alt="bdev logo"></a>
 
                 <div>
                     <ul class="navbar-nav mr-auto">
