@@ -14,7 +14,7 @@
         @if ($developer->cover)
           <img src="{{asset('storage/' . $developer->cover)}}" class="img-fluid">
         @else
-          <img src="{{asset('img/user_segnaposto.png')}}" class="img-fluid">
+          <img src="{{asset('img/user-placeholder.png')}}" class="img-fluid">
         @endif
       </div>
   
@@ -44,7 +44,7 @@
             <img src="{{asset('img/pdf.png')}}" class="img-fluid">
           </a>
         @else
-          <h3>curriculum non presente</h3>
+        <img src="{{asset('img/no-file.png')}}" class="img-fluid">
         @endif
       </div>
       

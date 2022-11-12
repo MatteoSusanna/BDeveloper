@@ -1,5 +1,42 @@
-.cover-container, .cv-container {
-    width: 150px;
-    display: block;
-    margin: 0 auto;
+.edit {
+
+    .cover-container, .cv-container {
+        width: 150px;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    label, h4 {
+        font-size: 20px;
+    }
+    
+    .input {
+        width: 400px;
+    }
+    
+    .image {
+        height: 150px;
+    }
+    
+    .skills-container {
+        padding-left: 77px;
+    }
+    
+    .skills {
+        margin-right: 20px;
+    }
+    
+    .my-btn {
+        background-color: #141913;
+        color: #95f50f;
+        width: 150px;
+        height: 50px;
+    }
+    
+    .my-btn:hover {
+        background-color: #090908;
+        box-shadow: 0.15rem 0.15rem 0.25rem #31372c;
+        color: #95f50f;
+    }
+
 }

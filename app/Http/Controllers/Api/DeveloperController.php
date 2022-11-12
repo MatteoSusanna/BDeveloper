@@ -28,14 +28,16 @@ class DeveloperController extends Controller
             if($developer->cover){
                 $developer->cover = asset('storage/' . $developer->cover);
             }else{
-                $developer->cover = asset('img/user_segnaposto.png');
+                $developer->cover = asset('img/user-placeholder.png');
             }
         }
         //passaggio curriculum
         foreach($developers as $developer){
             if($developer->curriculum){
                 $developer->curriculum = asset('storage/' . $developer->curriculum);
-            }  
+            } else{
+                $developer->curriculum = asset('img/no-file.png');
+            } 
         }
 
         
@@ -54,15 +56,17 @@ class DeveloperController extends Controller
         
             if($developer->cover){
                 $developer->cover = asset('storage/' . $developer->cover);
-            }else{
-                $developer->cover = asset('img/user_segnaposto.png');
+            } else{
+                $developer->cover = asset('img/user-placeholder.png');
             }
         
         //passaggio curriculum
         
             if($developer->curriculum){
                 $developer->curriculum = asset('storage/' . $developer->curriculum);
-            }  
+            } else{
+                $developer->curriculum = asset('img/no-file.png');
+            }
         
 
         return response()->json([

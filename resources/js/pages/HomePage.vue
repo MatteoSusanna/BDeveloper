@@ -12,22 +12,23 @@
         </div>
 
         <div class="d-flex">
-            <div class="card m-3" style="width: 18rem;" v-for="(developer, index) in developers" :key="index">
-                <div style="width: 10rem;" class="m-auto py-2">
-                    <img :src="developer.cover" class="card-img-top img-fluid" >
+            <div class="p-2 card m-3" style="width: 18rem;" v-for="(developer, index) in developers" :key="index">
+                <div class="m-auto img-container rounded-circle">
+                    <img :src="developer.cover" class="img-fluid" >
                 </div>
 
                 <div class="card-body">
-                    <h5 class="card-title">{{developer.name}} {{developer.lastname}}</h5>
-                    <p class="card-text">{{developer.address}}</p>
-                    <p class="card-text">{{developer.phone}}</p>
+                    <h4 class="card-title">{{developer.name}} {{developer.lastname}}</h4>
+                    <h5 class="card-text" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}} Developer</h5>
+                    <p class="card-text">Indirizzo: {{developer.address}}</p>
+                    <p class="card-text">Telefono: {{developer.phone}}</p>
                     
-                    <p class="card-text" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}}</p>
+                    
 
                     <div class="d-flex">
                         <p class="badge badge-dark mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
                     </div>
-                    <router-link class="btn btn-primary" :to="{name: 'profile-details', params: {slug: developer.slug}}">Vedi Profilo</router-link>
+                    <router-link class="btn btn-show" :to="{name: 'profile-details', params: {slug: developer.slug}}">Vedi Profilo</router-link>
                 </div>  
             </div>
         </div>
@@ -90,9 +91,27 @@
     }
 </script>
 
-<style>
+<style lang="scss">
+
+.img-container {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+}
+
 .color_button{
-    background-color: black;
+    background-color: #141913;
     color: white;
+}
+
+.btn-show {
+    background-color: #141913;
+    color: #95f50f;
+}
+
+.btn-show:hover {
+    background-color: #090908;
+    box-shadow: 0.15rem 0.15rem 0.25rem #31372c;
+    color: #95f50f;
 }
 </style>
