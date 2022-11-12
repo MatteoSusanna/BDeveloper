@@ -2020,7 +2020,15 @@ __webpack_require__.r(__webpack_exports__);
   name: 'SingleDev',
   data: function data() {
     return {
-      developer: []
+      name: '',
+      lastname: '',
+      email: '',
+      text: '',
+      developers: [],
+      idDev: '',
+      errors: {},
+      status: false,
+      disabledButton: false
     };
   },
   methods: {
@@ -2028,8 +2036,34 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       var slug = this.$route.params.slug;
       axios.get('/api/developer/' + slug).then(function (res) {
-        _this.developer = res.data.results;
+        _this.developers = res.data.results;
+        _this.idDev = res.data.results['0'].id;
         console.log(res.data.results);
+      });
+    },
+    sandMessage: function sandMessage() {
+      var _this2 = this;
+      this.disabledButton = true;
+      axios.post('/api/message', {
+        'name': this.name,
+        'lastname': this.lastname,
+        'email': this.email,
+        'text': this.text,
+        'user_id': this.idDev
+      }).then(function (res) {
+        _this2.status = res.data.status;
+        _this2.disabledButton = false;
+        if (_this2.status) {
+          _this2.error = {};
+          _this2.name = '';
+          _this2.lastname = '';
+          _this2.email = '';
+          _this2.text = '';
+        } else {
+          _this2.errors = res.data.error;
+        }
+        console.log(_this2.errors);
+        console.log(res);
       });
     }
   },
@@ -2255,9 +2289,223 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("h1", [_vm._v("ciao")]);
+  return _c("div", {
+    staticClass: "container"
+  }, [_vm._l(_vm.developers, function (developer, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "card m-3",
+      staticStyle: {
+        width: "18rem"
+      }
+    }, [_c("div", {
+      staticClass: "m-auto py-2",
+      staticStyle: {
+        width: "10rem"
+      }
+    }, [_c("img", {
+      staticClass: "card-img-top img-fluid",
+      attrs: {
+        src: developer.cover
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "card-body"
+    }, [_c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(developer.name) + " " + _vm._s(developer.lastname))]), _vm._v(" "), _c("p", {
+      staticClass: "card-text"
+    }, [_vm._v(_vm._s(developer.address))]), _vm._v(" "), _c("p", {
+      staticClass: "card-text"
+    }, [_vm._v(_vm._s(developer.phone))]), _vm._v(" "), _vm._l(developer.specialization, function (specialization, index) {
+      return _c("p", {
+        key: index,
+        staticClass: "card-text"
+      }, [_vm._v(_vm._s(specialization.name))]);
+    }), _vm._v(" "), _c("div", {
+      staticClass: "d-flex"
+    }, _vm._l(developer.skill, function (skill, index) {
+      return _c("p", {
+        key: index,
+        staticClass: "badge badge-dark mr-2"
+      }, [_vm._v(_vm._s(skill.name))]);
+    }), 0)], 2)]);
+  }), _vm._v(" "), _c("div", [_c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.sandMessage();
+      }
+    }
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "nome"
+    }
+  }, [_vm._v("Nome")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.name,
+      expression: "name"
+    }],
+    staticClass: "form-control",
+    "class": _vm.errors.name ? "is-invalid" : "",
+    attrs: {
+      type: "text",
+      id: "nome"
+    },
+    domProps: {
+      value: _vm.name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.name = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.errors.name, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "invalid-feedback"
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  })], 2), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "cognome"
+    }
+  }, [_vm._v("Cognome")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.lastname,
+      expression: "lastname"
+    }],
+    staticClass: "form-control",
+    "class": _vm.errors.lastname ? "is-invalid" : "",
+    attrs: {
+      type: "text",
+      id: "cognome"
+    },
+    domProps: {
+      value: _vm.lastname
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.lastname = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.errors.lastname, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "invalid-feedback"
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  })], 2), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "email"
+    }
+  }, [_vm._v("Email")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.email,
+      expression: "email"
+    }],
+    staticClass: "form-control",
+    "class": _vm.errors.email ? "is-invalid" : "",
+    attrs: {
+      type: "email",
+      id: "email"
+    },
+    domProps: {
+      value: _vm.email
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.email = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.errors.email, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "invalid-feedback"
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  })], 2), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "messaggio"
+    }
+  }, [_vm._v("Messaggio")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.text,
+      expression: "text"
+    }],
+    staticClass: "form-control",
+    "class": _vm.errors.text ? "is-invalid" : "",
+    attrs: {
+      id: "messaggio",
+      rows: "6"
+    },
+    domProps: {
+      value: _vm.text
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.text = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.errors.text, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "invalid-feedback"
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  })], 2), _vm._v(" "), _c("label", {
+    attrs: {
+      "for": "messaggio"
+    }
+  }, [_vm._v("Lascia un voto da 1 a 5")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm.disabledButton ? _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "button",
+      disabled: ""
+    }
+  }, [_c("span", {
+    staticClass: "spinner-border spinner-border-sm",
+    attrs: {
+      role: "status",
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                Invio\n            ")]) : _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Invia messaggio")])])])], 2);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("i", {
+    staticClass: "fa-regular fa-star"
+  }), _vm._v(" "), _c("i", {
+    staticClass: "fa-regular fa-star"
+  }), _vm._v(" "), _c("i", {
+    staticClass: "fa-regular fa-star"
+  }), _vm._v(" "), _c("i", {
+    staticClass: "fa-regular fa-star"
+  }), _vm._v(" "), _c("i", {
+    staticClass: "fa-regular fa-star"
+  })]);
+}];
 render._withStripped = true;
 
 

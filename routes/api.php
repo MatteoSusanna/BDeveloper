@@ -18,8 +18,14 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 }); */
 
+//sviluppatori
 Route::get('developer', 'Api\DeveloperController@index');
 
+//specializazioni
 Route::get('specializations', 'Api\SpecializationController@index');
 
+//singolo sviluppatore
 Route::get('developer/{slug}', 'Api\DeveloperController@show');
+
+//messaggio
+Route::post('message', 'Api\MessageController@store');
