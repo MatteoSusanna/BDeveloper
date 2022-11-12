@@ -63,7 +63,7 @@ class DeveloperController extends Controller
             if($developer->curriculum){
                 $developer->curriculum = asset('storage/' . $developer->curriculum);
             }  
-        }
+        
 
         return response()->json([
             'status' => true,
