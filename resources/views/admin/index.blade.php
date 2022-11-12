@@ -56,6 +56,8 @@
         <h4>TELEFONO</h4>
         @if ($developer->phone)
           <h6>{{ $developer->phone }}</h6>
+        @else
+          <h6> - </h6>
         @endif
         
         <h4>INDIRIZZO</h4>
@@ -64,6 +66,8 @@
         <h4>PAGA ORARIA</h4>
         @if ($developer->hourly_wage)
           <h6>€ {{ $developer->hourly_wage }}</h6>
+        @else
+          <h6> - </h6>
         @endif
   
       </div> 

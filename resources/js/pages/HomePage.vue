@@ -3,7 +3,11 @@
         <div class="d-flex align-items-center">
             <div class="input-group-prepend">
                 
-                <button type="button" class="btn btn-outline-dark m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" @click="filter(specialization.id)">{{specialization.name}}</button>
+                <button type="button" class="btn btn-outline-dark m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" 
+                        @click="filter(specialization.id); activeButton == index" :class="(activeButton == index)?'color_button':''">
+                        {{specialization.name}}
+                </button>
+                
                 <button type="button" class="btn btn-outline-dark m-2" @click="getAllDeveloper()">Tutti</button>
             </div>
         </div>
@@ -39,6 +43,7 @@
             return{
             developers: [],
             searchBar: null,
+            activeButton: 0,
 
             SelectedSpecializations: '',
             nomeSpec: '',
@@ -87,7 +92,8 @@
 </script>
 
 <style>
-.hidden{
-    display: none;
+.color_button{
+    background-color: black;
+    color: white;
 }
 </style>

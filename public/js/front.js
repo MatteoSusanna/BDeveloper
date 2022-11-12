@@ -1961,6 +1961,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       developers: [],
       searchBar: null,
+      activeButton: 0,
       SelectedSpecializations: '',
       nomeSpec: ''
     };
@@ -2126,15 +2127,17 @@ var render = function render() {
     return _c("button", {
       key: index,
       staticClass: "btn btn-outline-dark m-2",
+      "class": _vm.activeButton == index ? "color_button" : "",
       attrs: {
         type: "button"
       },
       on: {
         click: function click($event) {
-          return _vm.filter(specialization.id);
+          _vm.filter(specialization.id);
+          _vm.activeButton == index;
         }
       }
-    }, [_vm._v(_vm._s(specialization.name))]);
+    }, [_vm._v("\n                    " + _vm._s(specialization.name) + "\n            ")]);
   }), _vm._v(" "), _c("button", {
     staticClass: "btn btn-outline-dark m-2",
     attrs: {
@@ -2251,7 +2254,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.hidden{\n    display: none;\n}\n", ""]);
+exports.push([module.i, "\n.color_button{\r\n    background-color: black;\r\n    color: white;\n}\r\n", ""]);
 
 // exports
 
@@ -18890,7 +18893,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/francescosangalli/Documents/Boolean/BDeveloper/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\INTEL\Desktop\BDeveloper\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
