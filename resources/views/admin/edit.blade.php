@@ -4,44 +4,58 @@
 
 @section('content')
 
-<div class="container">
+<div class="container mt-5 mb-5">
     <form action="{{route('admin.update')}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
-        {{--input cover--}}
-        <div>
-            @if ($developer->cover)
-                <img style="width: 15rem;" src="{{asset('storage/' . $developer->cover)}}">
-            @endif
-        </div>
+        <div class="d-flex justify-content-around mb-3">
 
-        <div class="mb-3">
-            <label for="cover" class="form-label">Immagine</label>
-            <input type="file" id="cover" name="image" class="form-control-file @error('image')is-invalid @enderror" accept="image/*">
+            {{--input cover--}}
+            <div class="">
 
+                <div class="cover-container">
+                    @if ($developer->cover)
+                        <img class="img-fluid" src="{{asset('storage/' . $developer->cover)}}">
+                    @else
+                        <img src="{{asset('img/No-Image-Placeholder.png')}}" class="img-fluid">
+                    @endif
+                </div>
+    
+                <div class="">
+                    <label for="cover" class="form-label">Immagine</label>
+                    <input type="file" id="cover" name="image" class="form-control-file @error('image')is-invalid @enderror" accept="image/*">
+    
+    
+                    @error('image')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
+                </div>
 
-            @error('image')
-                  <div class="invalid-feedback">{{$message}}</div>
-            @enderror
-        </div>
+            </div>
 
-        {{--input curriculum--}}
-        <div>
-            @if ($developer->curriculum)
-                <a style="width: 5rem;" href="{{asset('storage/' . $developer->curriculum)}}" target="_blank">
-                    <img src="{{asset('img/pdf.png')}}" class="img-fluid">
-                </a>
-            @endif
-        </div>
+            {{--input curriculum--}}
+            <div class="">
 
-        <div class="mb-3">
-            <label for="curriculum" class="form-label">Curriculum</label>
-            <input type="file" id="curriculum" name="curriculum" class="form-control-file @error('curriculum')is-invalid @enderror" accept="application/pdf">
+                <div class="cv-container mt-2">
+                    @if ($developer->curriculum)
+                        <a href="{{asset('storage/' . $developer->curriculum)}}" target="_blank">
+                            <img src="{{asset('img/pdf.png')}}" class="img-fluid">
+                        </a>
+                    @endif
+                </div>
+    
+                <div class="mt-4">
+                    <label for="curriculum" class="form-label">Curriculum</label>
+                    <input type="file" id="curriculum" name="curriculum" class="form-control-file @error('curriculum')is-invalid @enderror" accept="application/pdf">
+    
+                    @error('curriculum')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
+                </div>
 
-            @error('curriculum')
-                  <div class="invalid-feedback">{{$message}}</div>
-            @enderror
+            </div>
+
         </div>
 
         {{--input nome--}}

@@ -1,4 +1,54 @@
 
-.cover-container, .cv-container {
-    width: 300px;
+body {
+    background-color: #95f50f;
+
+    .my-container {
+        height: 100%;
+        background-color: #141913;
+
+        .data-container {
+            background-color: #95f50f;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+        }
+
+        h1, h2, h3 {
+            color: #141913;
+        }
+    
+        h5, h6 {
+            color: #8e8e8e;
+        }
+        .cover-container, .cv-container {
+            width: 150px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .my-btn {
+            width: 80px;
+            height: 80px;
+
+            .my-icon {
+                font-size: 30px;
+            }
+        }
+
+        .edit-btn {
+            background-color: #95f50f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+
+            .edit-icon{
+                color: #141913 !important;
+            }
+            
+        }
+
+    }
+    
 }

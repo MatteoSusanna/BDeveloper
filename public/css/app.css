@@ -10927,8 +10927,81 @@ a.text-dark:focus {
   }
 }
 
+body {
+  background-color: #95f50f;
+}
+
+body .my-container {
+  height: 100%;
+  background-color: #141913;
+}
+
+body .my-container .data-container {
+  background-color: #95f50f;
+}
+
+body .my-container h1,
+body .my-container h2,
+body .my-container h3 {
+  font-weight: 800;
+}
+
+body .my-container h1,
+body .my-container h2,
+body .my-container h3 {
+  color: #141913;
+}
+
+body .my-container h5,
+body .my-container h6 {
+  color: #8e8e8e;
+}
+
+body .my-container .cover-container,
+body .my-container .cv-container {
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+}
+
+body .my-container .my-btn {
+  width: 80px;
+  height: 80px;
+}
+
+body .my-container .my-btn .my-icon {
+  font-size: 30px;
+}
+
+body .my-container .edit-btn {
+  background-color: #95f50f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body .my-container .edit-btn .edit-icon {
+  color: #141913 !important;
+}
+
 .cover-container,
 .cv-container {
-  width: 300px;
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+}
+
+.my-header {
+  background-color: #141913;
+  box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;
+}
+
+.logo-container,
+.logout-container {
+  max-width: 200px;
+}
+
+a {
+  color: #95f50f !important;
 }
 
