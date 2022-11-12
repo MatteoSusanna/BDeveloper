@@ -2052,7 +2052,16 @@ var staticRenderFns = [function () {
     staticClass: "container-fluid my_header"
   }, [_c("div", {
     staticClass: "d-flex justify-content-between"
-  }, [_c("h1", [_vm._v("logo header")]), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticStyle: {
+      width: "10rem"
+    }
+  }, [_c("img", {
+    staticClass: "img-fluid",
+    attrs: {
+      src: "/img/logo.PNG"
+    }
+  })]), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center"
   }, [_c("a", {
     staticClass: "p-3",
@@ -2111,45 +2120,15 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", [_c("div", {
     staticClass: "d-flex align-items-center"
-  }, [_c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.searchBar,
-      expression: "searchBar"
-    }],
-    staticClass: "form-control my-2",
-    staticStyle: {
-      width: "20rem"
-    },
-    attrs: {
-      type: "text",
-      placeholder: "Ricerca sviluppatori"
-    },
-    domProps: {
-      value: _vm.searchBar
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.searchBar = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _c("div", {
+  }, [_c("div", {
     staticClass: "input-group-prepend"
-  }, [_c("button", {
-    staticClass: "input-group-text",
-    attrs: {
-      id: "basic-addon1"
-    },
-    on: {
-      click: function click($event) {
-        return _vm.getDeveloper();
-      }
-    }
-  }, [_vm._v("Ricerca")]), _vm._v(" "), _vm._l(_vm.SelectedSpecializations, function (specialization, index) {
+  }, [_vm._l(_vm.SelectedSpecializations, function (specialization, index) {
     return _c("button", {
       key: index,
+      staticClass: "btn btn-outline-dark m-2",
+      attrs: {
+        type: "button"
+      },
       on: {
         click: function click($event) {
           return _vm.filter(specialization.id);
@@ -2157,6 +2136,10 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(specialization.name))]);
   }), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-outline-dark m-2",
+    attrs: {
+      type: "button"
+    },
     on: {
       click: function click($event) {
         return _vm.getAllDeveloper();
@@ -2249,7 +2232,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.my_header{\n  background-color: #0f0e17;\n  color: white;\n}\n", ""]);
+exports.push([module.i, "\n.my_header{\n  background-color: black;\n  color: white;\n}\n", ""]);
 
 // exports
 

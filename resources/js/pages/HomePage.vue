@@ -1,12 +1,10 @@
 <template>
     <div>
         <div class="d-flex align-items-center">
-            <input type="text" class="form-control my-2" placeholder="Ricerca sviluppatori" style="width: 20rem;" v-model="searchBar">
             <div class="input-group-prepend">
-                <button class="input-group-text" id="basic-addon1" @click="getDeveloper()" >Ricerca</button>
                 
-                <button v-for="(specialization, index) in SelectedSpecializations" :key="index" @click="filter(specialization.id)">{{specialization.name}}</button>
-                <button @click="getAllDeveloper()">Tutti</button>
+                <button type="button" class="btn btn-outline-dark m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" @click="filter(specialization.id)">{{specialization.name}}</button>
+                <button type="button" class="btn btn-outline-dark m-2" @click="getAllDeveloper()">Tutti</button>
             </div>
         </div>
 
