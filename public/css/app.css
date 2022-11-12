@@ -11005,7 +11005,15 @@ body {
   max-width: 200px;
 }
 
-a {
+.header-link {
   color: #95f50f !important;
+}
+
+.logout-link {
+  color: #141913;
+}
+
+.logout-dropdown {
+  background-color: #95f50f;
 }
 

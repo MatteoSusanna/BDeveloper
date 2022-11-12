@@ -10,7 +10,7 @@
 
     <div class="p-5">
 
-      <div class="cover-container mb-4">
+      <div class="cover-container mb-4 rounded-circle">
         @if ($developer->cover)
           <img src="{{asset('storage/' . $developer->cover)}}" class="img-fluid">
         @else
@@ -20,7 +20,7 @@
   
       <div class="text-center">
   
-        <h1>{{$developer->name}} {{$developer->lastname}}</h1>
+        <h1 class="text-capitalize">{{$developer->name}} {{$developer->lastname}}</h1>
   
         @foreach ($specializations as $specialization)
           <h2 class="mt-3">{{ $specialization->name }} Developer</h2>
@@ -61,7 +61,7 @@
         @endif
         
         <h4>INDIRIZZO</h4>
-        <h6>{{$developer->address}}</h6>
+        <h6 class="text-capitalize">{{$developer->address}}</h6>
 
         <h4>PAGA ORARIA</h4>
         @if ($developer->hourly_wage)
