@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DeveloperController extends Controller
 {
@@ -15,7 +16,11 @@ class DeveloperController extends Controller
         if($data['inputText'] == ''){
             $developers = User::with(['skill', 'specialization'])->get();
         }else{
-            $developers = User::with(['skill', 'specialization'])->where('specialization_id', $data['specialization'])->get();
+            $developers = User::with(['skill', 'specialization'])->whereHas('specialization', function ($q){
+                $data = request()->all();
+                $q->where('specialization_id', $data['inputText']);
+            })->get();
+                        
         }
         
         //passaggio cover

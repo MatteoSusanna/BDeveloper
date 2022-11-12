@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
 
     public function specialization(){
-        return $this->belongsToMany('App\Specialization');
+        return $this->belongsToMany('App\Specialization',);
     }
 
     public function skill(){

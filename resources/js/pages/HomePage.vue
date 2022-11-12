@@ -4,12 +4,14 @@
             <input type="text" class="form-control my-2" placeholder="Ricerca sviluppatori" style="width: 20rem;" v-model="searchBar">
             <div class="input-group-prepend">
                 <button class="input-group-text" id="basic-addon1" @click="getDeveloper()" >Ricerca</button>
+                
+                <button v-for="(specialization, index) in SelectedSpecializations" :key="index" @click="filter(specialization.id)">{{specialization.name}}</button>
+                <button @click="getAllDeveloper()">Tutti</button>
             </div>
         </div>
 
         <div class="d-flex">
             <div class="card m-3" style="width: 18rem;" v-for="(developer, index) in developers" :key="index">
-
                 <div style="width: 10rem;" class="m-auto py-2">
                     <img :src="developer.cover" class="card-img-top img-fluid" >
                 </div>
@@ -38,24 +40,48 @@
         data(){
             return{
             developers: [],
-            searchBar: '',
+            searchBar: null,
+
+            SelectedSpecializations: '',
+            nomeSpec: '',
             }
         },
         methods:{
             getDeveloper(){
                 axios.get('/api/developer/', {
                     params:{
-                        inputText: this.searchBar,
+                        inputText: this.nomeSpec,
                     }
                 })
                 .then((response) =>{
                     this.developers = response.data.results
-                    console.log(response.data);
                 })  
+            },
+            getAllDeveloper(){
+                axios.get('/api/developer/', {
+                    params:{
+                        inputText: '',
+                    }
+                })
+                .then((response) =>{
+                    this.developers = response.data.results
+                })  
+            },
+            getSpecializations(){
+                axios.get('/api/specializations/')
+                .then((response) =>{
+                    this.SelectedSpecializations = response.data.results
+                    console.log(response.data.results);
+                })  
+            },
+            filter(specialization){
+                this.nomeSpec = specialization;
+                this.getDeveloper();                
             },
         },
         mounted(){
             this.getDeveloper();
+            this.getSpecializations();
         }
         
                 
@@ -63,5 +89,7 @@
 </script>
 
 <style>
-
+.hidden{
+    display: none;
+}
 </style>
