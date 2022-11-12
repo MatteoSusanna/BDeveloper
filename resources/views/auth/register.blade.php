@@ -7,11 +7,6 @@
             <div class="card">
                 <div class="card-header">{{ __('Registrati') }}</div>
 
-                {{-- @php
-                    use App\Specialization;
-                    $specializations = Specialization::whereIn('name', ['BackEnd', 'FrontEnd', 'FullStack'])->get();
-                @endphp --}}
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf

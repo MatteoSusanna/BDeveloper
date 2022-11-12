@@ -32,29 +32,31 @@
         <nav class="navbar navbar-expand-md navbar-light my-header">
             <div class="container d-flex justify-content-between">
                 <a class="navbar-brand logo-container" href="/"><img class="w-75" src="{{ asset('img/logo.jpeg') }}" alt="bdev logo"></a>
-
-                <div>
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.index')}}">Profilo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.edit')}}">Modifica profilo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Messaggi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Recensioni</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sponsorizzazioni</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Statistiche</a>
-                        </li>
-                    </ul>
-                </div>
+                @if (Auth::user())
+                    <div>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link header-link" href="{{route('admin.index')}}">Profilo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link header-link" href="{{route('admin.edit')}}">Modifica profilo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link header-link" href="#">Messaggi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link header-link" href="#">Recensioni</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link header-link" href="#">Sponsorizzazioni</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link header-link" href="#">Statistiche</a>
+                            </li>
+                        </ul>
+                    </div>
+                @endif
+                
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -72,19 +74,19 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                                    <a class="nav-link header-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-color" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle header-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                <div class="dropdown-menu dropdown-menu-right logout-dropdown text-center" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item logout-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
