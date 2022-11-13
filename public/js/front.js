@@ -2276,7 +2276,7 @@ var render = function render() {
   })], 2)]), _vm._v(" "), _vm.spinner ? _c("div", {
     staticClass: "d-flex justify-content-center"
   }, [_vm._m(0)]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "d-flex justify-content-between flex-wrap"
+    staticClass: "d-flex flex-wrap"
   }, _vm._l(_vm.developers, function (developer, index) {
     return _c("div", {
       key: index,
@@ -2828,7 +2828,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".color_button {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin-bottom: 2rem;\n  border: 1px solid #141913;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .btn-show {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card .btn-show:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
+exports.push([module.i, ".color_button {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .btn-show {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card .btn-show:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
 
 // exports
 

@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="d-flex justify-content-between flex-wrap">
+        <div class="d-flex flex-wrap">
             <div class="p-2 card profile-card bg-light" v-for="(developer, index) in developers" :key="index">
                 <div class="m-auto img-container rounded-circle">
                     <img :src="developer.cover" class="img-fluid" >
@@ -117,7 +117,7 @@
 .profile-card {
 
     width: calc(25% - 20px);
-    margin-bottom: 2rem;
+    margin: 0 10px 36px 10px;
     border: 1px solid #141913;
 
     &:hover {
