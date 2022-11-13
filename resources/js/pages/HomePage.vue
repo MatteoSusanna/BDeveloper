@@ -4,10 +4,10 @@
             <h3 class="mt-2 mr-3">Filtra per specializzazione:</h3>
             <div class="input-group-prepend">
 
-                <button type="button" class="btn btn-outline-dark m-2" :class="(activeButton == 3)? 'color_button': ''" @click="getAllDeveloper(); activeButton = 3">Tutti</button>
+                <button type="button" class="btn btn-outline-dark m-2" :class="(activeButton == 3)? 'color-btn': ''" @click="getAllDeveloper(); activeButton = 3">Tutti</button>
 
                 <button type="button" class="btn btn-outline-dark m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" 
-                        @click="filter(specialization.id); activeButton = index" :class="(activeButton == index)?'color_button':''">
+                        @click="filter(specialization.id); activeButton = index" :class="(activeButton == index)?'color-btn':''">
                         {{specialization.name}}
                 </button>
                 
@@ -21,7 +21,7 @@
         </div>
 
         <div class="d-flex flex-wrap">
-            <div class="p-2 card profile-card bg-light" v-for="(developer, index) in developers" :key="index">
+            <div class="p-3 card profile-card" v-for="(developer, index) in developers" :key="index">
                 <div class="m-auto img-container rounded-circle">
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
@@ -54,7 +54,6 @@
             searchBar: null,
             activeButton: 3,
             spinner: false,
-
             SelectedSpecializations: '',
             nomeSpec: '',
             }
@@ -110,7 +109,7 @@
 
 <style lang="scss">
 
-.color_button{
+.color-btn{
     background-color: #141913;
     color: #95f50f;
 }
@@ -119,7 +118,8 @@
 
     width: calc(25% - 20px);
     margin: 0 10px 36px 10px;
-    border: 1px solid #141913;
+    border: 3px solid #141913;
+    background-color: rgba($color: #fff, $alpha: 0);
 
     &:hover {
         transform: scale(1.1);
@@ -143,7 +143,7 @@
         font-size: 15px;
     }
 
-    .btn-show {
+    .btn-show, .color- {
         background-color: #141913;
         color: #95f50f;
 

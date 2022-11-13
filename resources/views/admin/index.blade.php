@@ -27,10 +27,12 @@
         @endforeach
 
         <h4 class="mt-5">COMPETENZE</h4>
-        @foreach ($developer->skill as $skill)
-          <h5 class="mt-2">{{ $skill->name }}</h5>
-        @endforeach
-  
+        <div class="d-flex justify-content-center">
+          @foreach ($developer->skill as $skill)
+            <h5 class="mt-2 mr-3 skill-container">{{ $skill->name }}</h5>
+          @endforeach
+        </div>
+
       </div>
   
     </div>

@@ -10969,6 +10969,17 @@ body .my-container .cover-container {
   overflow: hidden;
 }
 
+body .my-container .skill-container {
+  width: 40px;
+  height: 25px;
+  background-color: #141913;
+  border-radius: 5px;
+  color: #95f50f;
+  text-align: center;
+  line-height: 25px;
+  font-size: 15px;
+}
+
 body .my-container .my-btn {
   width: 80px;
   height: 80px;
