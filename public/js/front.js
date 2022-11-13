@@ -1975,6 +1975,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    calcolaVoto: function calcolaVoto(voti) {},
     getDeveloper: function getDeveloper() {
       var _this = this;
       this.spinner = true;
@@ -2308,6 +2309,12 @@ var render = function render() {
         key: index,
         staticClass: "badge badge-dark mr-2"
       }, [_vm._v(_vm._s(skill.name))]);
+    }), 0), _vm._v(" "), _c("div", {
+      staticClass: "d-flex"
+    }, _vm._l(developer.review, function (review, index) {
+      return _c("i", {
+        key: index
+      }, [_vm._v(_vm._s(index))]);
     }), 0), _vm._v(" "), _c("router-link", {
       staticClass: "btn btn-show mb-0",
       attrs: {
@@ -19542,7 +19549,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/francescosangalli/Documents/Boolean/BDeveloper/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\INTEL\Desktop\BDeveloper\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

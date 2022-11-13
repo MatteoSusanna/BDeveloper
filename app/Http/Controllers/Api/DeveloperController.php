@@ -42,14 +42,13 @@ class DeveloperController extends Controller
             } 
         }
 
-        //$avgVote = Review::groupBy('user_id')->get();
+        $avgVote = Review::groupBy('user_id')->sum('vote');
         
-        //\Log::info($avgVote);
+        \Log::info($avgVote);
 
         return response()->json([
             'status' => true,
             'results' => $developers,
-            //'avg' => $avgVote,
         ]);
 
     }

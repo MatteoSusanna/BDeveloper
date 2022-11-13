@@ -38,6 +38,14 @@
                         <p class="badge badge-dark mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
                     </div>
 
+                    <div class="d-flex">
+                        <!-- <i v-for="n in 5" :key="n"
+                                class="fa-star" 
+                                :class="(n>calcolaVoto())?'fa-regular':'fa-solid'">
+                        </i> -->
+                        <i v-for="(review, index) in developer.review" :key="index" >{{index}}</i>
+                    </div>
+
                     <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
 
                 </div>  
@@ -62,6 +70,9 @@
             }
         },
         methods:{
+            calcolaVoto(voti){
+                
+            },
             getDeveloper(){
                 this.spinner = true;
                 axios.get('/api/developer/', {
