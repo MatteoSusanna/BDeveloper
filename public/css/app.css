@@ -11150,7 +11150,20 @@ body .my-container .delete-btn:hover {
 }
 
 .my-table {
-  margin-top: 150px;
+  margin-top: 100px;
+  border: 1px solid #141913;
+  width: 100%;
+}
+
+.my-table .t-head {
+  background-color: #141913;
+  color: #95f50f;
+  padding-top: 30px !important;
+  padding-bottom: 10px !important;
+}
+
+.my-table {
+  margin-top: 100px;
   border: 1px solid #141913;
   width: 100%;
 }

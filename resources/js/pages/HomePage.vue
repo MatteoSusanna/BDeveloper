@@ -120,7 +120,7 @@
     width: calc(25% - 20px);
     margin: 0 10px 36px 10px;
     border: 1px solid #141913;
-    background-color: #d3d3d3;
+    background-color: rgba($color: #000000, $alpha: 0);
     position: relative;
 
     &:hover {
