@@ -11139,6 +11139,7 @@ body .my-container .delete-btn:hover {
 
 body {
   font-family: "Teko", sans-serif;
-  background: linear-gradient(180deg, rgb(45, 181, 124) 0%, rgb(149, 245, 15) 16%, rgb(31, 208, 43) 62%, rgb(56, 192, 113) 91%);
+  background: rgb(45, 181, 124);
+  background: linear-gradient(50deg, rgb(45, 181, 124) 0%, rgb(149, 245, 15) 13%, rgb(31, 208, 43) 91%, rgb(56, 192, 113) 100%);
 }
 
