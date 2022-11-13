@@ -56,6 +56,7 @@ export default {
 
     .link {
       color: #95f50f;
+      font-size: 20px;
     }
   }
 </style>

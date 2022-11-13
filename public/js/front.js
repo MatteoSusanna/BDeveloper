@@ -2205,12 +2205,14 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", [_c("div", {
-    staticClass: "d-flex align-items-center"
-  }, [_c("div", {
+    staticClass: "d-flex justify-content-center align-items-center mt-4 mb-5"
+  }, [_c("h3", {
+    staticClass: "mt-2 mr-3"
+  }, [_vm._v("Filtra per specializzazione:")]), _vm._v(" "), _c("div", {
     staticClass: "input-group-prepend"
   }, [_c("button", {
     staticClass: "btn btn-outline-dark m-2",
-    "class": (_vm.activeButton = 3) ? "color_button" : "",
+    "class": _vm.activeButton == 3 ? "color_button" : "",
     attrs: {
       type: "button"
     },
@@ -2240,7 +2242,7 @@ var render = function render() {
   }, _vm._l(_vm.developers, function (developer, index) {
     return _c("div", {
       key: index,
-      staticClass: "p-2 card m-3",
+      staticClass: "p-2 card m-3 profile-card bg-light",
       staticStyle: {
         width: "18rem"
       }
@@ -2264,7 +2266,7 @@ var render = function render() {
       staticClass: "card-text"
     }, [_vm._v("Indirizzo: " + _vm._s(developer.address))]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
-    }, [_vm._v("Telefono: " + _vm._s(developer.phone))]), _vm._v(" "), _c("div", {
+    }, [_vm._v("Telefono: " + _vm._s(developer.phone))]), _vm._v(" "), _c("h5", [_vm._v("Skills:")]), _vm._v(" "), _c("div", {
       staticClass: "d-flex"
     }, _vm._l(developer.skill, function (skill, index) {
       return _c("p", {
@@ -2279,7 +2281,8 @@ var render = function render() {
           params: {
             slug: developer.slug
           }
-        }
+        },
+        title: "Maggiori dettagli"
       }
     }, [_vm._v("Vedi Profilo")])], 2)]);
   }), 0)]);
@@ -2557,7 +2560,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".my_header {\n  background-color: #141913;\n  box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;\n}\n.my_header .link {\n  color: #95f50f;\n}", ""]);
+exports.push([module.i, ".my_header {\n  background-color: #141913;\n  box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;\n}\n.my_header .link {\n  color: #95f50f;\n  font-size: 20px;\n}", ""]);
 
 // exports
 
@@ -2576,7 +2579,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.color_button {\n  background-color: #141913;\n  color: white;\n}\n.btn-show {\n  background-color: #141913;\n  color: #95f50f;\n}\n.btn-show:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
+exports.push([module.i, ".color_button {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .btn-show {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card .btn-show:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
 
 // exports
 
