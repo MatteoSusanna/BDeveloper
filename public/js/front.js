@@ -1930,7 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
     // this.getDeveloper();
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/developer/').then(function (response) {
-      _this.developer = response.data.results;
+      _this.developer = response.data;
       console.log(response.data);
     });
   }
@@ -2206,7 +2206,9 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("div", {
+  return _c("div", {
+    staticClass: "mb-5"
+  }, [_c("div", {
     staticClass: "d-flex justify-content-center align-items-center mt-4 mb-5"
   }, [_c("h3", {
     staticClass: "mt-2 mr-3"
@@ -2242,14 +2244,11 @@ var render = function render() {
   })], 2)]), _vm._v(" "), _vm.spinner ? _c("div", {
     staticClass: "d-flex justify-content-center"
   }, [_vm._m(0)]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "d-flex"
+    staticClass: "d-flex justify-content-between flex-wrap"
   }, _vm._l(_vm.developers, function (developer, index) {
     return _c("div", {
       key: index,
-      staticClass: "p-2 card m-3 profile-card bg-light",
-      staticStyle: {
-        width: "18rem"
-      }
+      staticClass: "p-2 card profile-card bg-light"
     }, [_c("div", {
       staticClass: "m-auto img-container rounded-circle"
     }, [_c("img", {
@@ -2278,7 +2277,7 @@ var render = function render() {
         staticClass: "badge badge-dark mr-2"
       }, [_vm._v(_vm._s(skill.name))]);
     }), 0), _vm._v(" "), _c("router-link", {
-      staticClass: "btn btn-show",
+      staticClass: "btn btn-show mb-0",
       attrs: {
         to: {
           name: "profile-details",
@@ -2612,7 +2611,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".color_button {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .btn-show {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card .btn-show:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
+exports.push([module.i, ".color_button {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin-bottom: 2rem;\n  border: 1px solid #141913;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .btn-show {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card .btn-show:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
 
 // exports
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DeveloperController extends Controller
@@ -76,5 +77,14 @@ class DeveloperController extends Controller
 
 
 
+    }
+
+    public function getDeveloperLogged(){
+        $developer = Auth::user();
+
+        return response()->json([
+            'status' => true,
+            'result' => $developer
+        ]);
     }
 }
