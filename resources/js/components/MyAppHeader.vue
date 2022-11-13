@@ -42,7 +42,7 @@ export default {
   mounted(){
     // this.getDeveloper();
     axios.get('/api/developer/').then((response) =>{
-        this.developer = response.data.results
+        this.developer = response.data
         console.log(response.data);
       }) 
   }

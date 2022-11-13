@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mb-5">
         <div class="d-flex justify-content-center align-items-center mt-4 mb-5">
             <h3 class="mt-2 mr-3">Filtra per specializzazione:</h3>
             <div class="input-group-prepend">
@@ -20,8 +20,8 @@
             </div>
         </div>
 
-        <div class="d-flex">
-            <div class="p-2 card m-3 profile-card bg-light" style="width: 18rem;" v-for="(developer, index) in developers" :key="index">
+        <div class="d-flex flex-wrap">
+            <div class="p-2 card profile-card bg-light" v-for="(developer, index) in developers" :key="index">
                 <div class="m-auto img-container rounded-circle">
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
@@ -38,7 +38,7 @@
                         <p class="badge badge-dark mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
                     </div>
 
-                    <router-link class="btn btn-show" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
+                    <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
 
                 </div>  
             </div>
@@ -115,6 +115,10 @@
 }
 
 .profile-card {
+
+    width: calc(25% - 20px);
+    margin: 0 10px 36px 10px;
+    border: 1px solid #141913;
 
     &:hover {
         transform: scale(1.1);
