@@ -4,21 +4,22 @@
 
 @section('content')
 
-    <div class="container my-4">
+    <div class="container messages-container">
         @if (count($messages))        
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Nome</th>
+            <table class="my-table rounded">
+                <thead >
+                    <tr class="t-head">
+                        <th class="pl-3" scope="col">Nome</th>
                         <th scope="col">Cognome</th>
                         <th scope="col">Email</th>
                         <th scope="col">Testo</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($messages as $message)
                         <tr>
-                            <td>{{$message->name}}</td>
+                            <td class="pl-3">{{$message->name}}</td>
                             <td>{{$message->lastname}}</td>
                             <td>{{$message->email}}</td>
                             <td>{{$message->text}}</td>
