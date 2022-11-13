@@ -37,10 +37,10 @@
                                     <a class="nav-link header-link" href="{{($link['url']=='#')?'#':route($link['url'])}}">{{$link['title']}}
                                         
                                         @if (count(Auth::user()->message) && $link['notifiche'] == 1) 
-                                            <span class="badge badge-light">{{count(Auth::user()->message)}}</span>
+                                            <div class="notification-container">{{count(Auth::user()->message)}}</div>
                                         @endif
                                         @if (count(Auth::user()->review) && $link['notifiche'] == 2) 
-                                            <span class="badge badge-light">{{count(Auth::user()->review)}}</span>
+                                            <div class="notification-container">{{count(Auth::user()->review)}}</div>
                                         @endif
                                     </a>
                                 </li>
