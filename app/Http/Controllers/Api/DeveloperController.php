@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Review;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,9 @@ class DeveloperController extends Controller
         $data = request()->all();
 
         if($data['inputText'] == ''){
-            $developers = User::with(['skill', 'specialization'])->get();
+            $developers = User::with(['skill', 'specialization', 'review'])->get();
         }else{
-            $developers = User::with(['skill', 'specialization'])->whereHas('specialization', function ($q){
+            $developers = User::with(['skill', 'specialization', 'review'])->whereHas('specialization', function ($q){
                 $data = request()->all();
                 $q->where('specialization_id', $data['inputText']);
             })->get();
@@ -41,10 +42,13 @@ class DeveloperController extends Controller
             } 
         }
 
+        $avgVote = Review::groupBy('user_id')->sum('vote');
         
+        \Log::info($avgVote);
+
         return response()->json([
             'status' => true,
-            'results' => $developers
+            'results' => $developers,
         ]);
 
     }
