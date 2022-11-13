@@ -2,6 +2,8 @@
 
     .cover-container, .cv-container {
         width: 150px;
+        height: 150px;
+        overflow: hidden;
         display: block;
         margin: 0 auto;
     }
@@ -13,10 +15,6 @@
     .input {
         width: 400px;
         text-transform: capitalize;
-    }
-    
-    .image {
-        height: 150px;
     }
     
     .skills-container {

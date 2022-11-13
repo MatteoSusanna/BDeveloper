@@ -12,13 +12,13 @@
         <div class="d-flex justify-content-around mb-3">
 
             {{--input cover--}}
-            <div class="">
+            <div>
 
-                <div class="cover-container">
+                <div class=" cover-container rounded-circle">
                     @if ($developer->cover)
-                        <img class="image" src="{{asset('storage/' . $developer->cover)}}">
+                        <img class="img-fluid" src="{{asset('storage/' . $developer->cover)}}">
                     @else
-                        <img src="{{asset('img/user-placeholder.png')}}" class="image">
+                        <img src="{{asset('img/user-placeholder.png')}}" class="img-fluid">
                     @endif
                 </div>
     

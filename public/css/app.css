@@ -11012,6 +11012,8 @@ body .my-container .delete-btn:hover {
 .edit .cover-container,
 .edit .cv-container {
   width: 150px;
+  height: 150px;
+  overflow: hidden;
   display: block;
   margin: 0 auto;
 }
@@ -11024,10 +11026,6 @@ body .my-container .delete-btn:hover {
 .edit .input {
   width: 400px;
   text-transform: capitalize;
-}
-
-.edit .image {
-  height: 150px;
 }
 
 .edit .skills-container {
