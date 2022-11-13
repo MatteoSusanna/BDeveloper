@@ -11,7 +11,7 @@ return [
     ],
     [
         "title" => "Messaggi",
-        "url" => "#"
+        "url" => "admin.message"
     ],
     [
         "title" => "Recensioni",

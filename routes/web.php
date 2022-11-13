@@ -28,6 +28,10 @@ Route::middleware('auth')
         Route::get("/edit", "ProfileController@edit")->name("edit");
         Route::put("/update", "ProfileController@update")->name("update");
         Route::delete("/destroy", "ProfileController@destroy")->name("destroy");
+
+        //rotte messaggi
+        Route::get('/message', 'MessageController@index')->name('message');
+        Route::delete('/message/{message}', 'MessageController@delete')->name('message.delete');
     });
 
 
