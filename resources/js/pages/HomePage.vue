@@ -32,8 +32,8 @@
                     <h5 class="card-text" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}} Developer</h5>
     
                     <h5>Skills:</h5>
-                    <div class="d-flex">
-                        <p class="badge badge-dark mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
+                    <div class="d-flex flex-wrap">
+                        <p class="skill-container mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
                     </div>
 
                     <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
@@ -130,6 +130,17 @@
         width: 120px;
         height: 120px;
         overflow: hidden;
+    }
+
+    .skill-container {
+        width: 40px;
+        height: 25px;
+        background-color: #141913;
+        border-radius: 5px;
+        color: #95f50f;
+        text-align: center;
+        line-height: 25px;
+        font-size: 15px;
     }
 
     .btn-show {

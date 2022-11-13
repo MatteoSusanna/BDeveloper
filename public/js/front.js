@@ -2299,11 +2299,11 @@ var render = function render() {
         staticClass: "card-text"
       }, [_vm._v(_vm._s(specialization.name) + " Developer")]);
     }), _vm._v(" "), _c("h5", [_vm._v("Skills:")]), _vm._v(" "), _c("div", {
-      staticClass: "d-flex"
+      staticClass: "d-flex flex-wrap"
     }, _vm._l(developer.skill, function (skill, index) {
       return _c("p", {
         key: index,
-        staticClass: "badge badge-dark mr-2"
+        staticClass: "skill-container mr-2"
       }, [_vm._v(_vm._s(skill.name))]);
     }), 0), _vm._v(" "), _c("router-link", {
       staticClass: "btn btn-show mb-0",
@@ -2825,7 +2825,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".color_button {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .btn-show {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card .btn-show:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
+exports.push([module.i, ".color_button {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .skill-container {\n  width: 40px;\n  height: 25px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 25px;\n  font-size: 15px;\n}\n.profile-card .btn-show {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card .btn-show:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
 
 // exports
 
