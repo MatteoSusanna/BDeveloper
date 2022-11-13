@@ -10927,10 +10927,6 @@ a.text-dark:focus {
   }
 }
 
-body {
-  background-color: #95f50f;
-}
-
 body .my-container {
   height: 100%;
   background-color: #141913;
@@ -10943,7 +10939,7 @@ body .my-container h3 {
 }
 
 body .my-container .data-container {
-  background-color: #95f50f;
+  background-color: #6ed433;
 }
 
 body .my-container h1,
@@ -10997,7 +10993,7 @@ body .my-container .edit-btn {
 }
 
 body .my-container .edit-btn:hover {
-  background-color: #86db0e;
+  background-color: #6ed433;
   box-shadow: 0.15rem 0.15rem 0.25rem #e0ffc2;
 }
 
@@ -11143,5 +11139,6 @@ body .my-container .delete-btn:hover {
 
 body {
   font-family: "Teko", sans-serif;
+  background: linear-gradient(180deg, rgb(45, 181, 124) 0%, rgb(149, 245, 15) 16%, rgb(31, 208, 43) 62%, rgb(56, 192, 113) 91%);
 }
 

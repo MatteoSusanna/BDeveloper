@@ -1,6 +1,5 @@
 
 body {
-    background-color: #95f50f;
 
     .my-container {
         height: 100%;
@@ -11,7 +10,7 @@ body {
         }
 
         .data-container {
-            background-color: #95f50f;
+            background-color: #6ed433;
         }
 
         h1, h2, h3 {
@@ -59,7 +58,7 @@ body {
             justify-content: center;
 
             &:hover {
-                background-color: #86db0e;
+                background-color: #6ed433;
                 box-shadow: 0.15rem 0.15rem 0.25rem #e0ffc2;
             }
 
