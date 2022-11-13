@@ -32,6 +32,9 @@ Route::middleware('auth')
         //rotte messaggi
         Route::get('/message', 'MessageController@index')->name('message');
         Route::delete('/message/{message}', 'MessageController@delete')->name('message.delete');
+
+        //rotta recensione
+        Route::get('/review', 'ReviewController@index')->name('review');
     });
 
 

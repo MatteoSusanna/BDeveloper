@@ -2032,15 +2032,22 @@ __webpack_require__.r(__webpack_exports__);
   name: 'SingleDev',
   data: function data() {
     return {
+      //messaggio
       name: '',
       lastname: '',
       email: '',
       text: '',
+      //recensione
+      nome: '',
+      cognome: '',
+      messaggio: '',
+      voto: '',
       developer: null,
       idDev: '',
       errors: {},
       status: false,
-      disabledButton: false
+      disabledButton: false,
+      disabledButtonRew: false
     };
   },
   methods: {
@@ -2052,6 +2059,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.idDev = res.data.result.id;
       });
     },
+    //invia messaggio
     sendMessage: function sendMessage() {
       var _this2 = this;
       this.disabledButton = true;
@@ -2072,6 +2080,30 @@ __webpack_require__.r(__webpack_exports__);
           _this2.text = '';
         } else {
           _this2.errors = res.data.error;
+        }
+      });
+    },
+    //invia recensione
+    sendReview: function sendReview() {
+      var _this3 = this;
+      this.disabledButtonRew = true;
+      axios.post('/api/review', {
+        'nome': this.nome,
+        'cognome': this.cognome,
+        'messaggio': this.messaggio,
+        'voto': this.voto,
+        'user_id': this.idDev
+      }).then(function (res) {
+        _this3.status = res.data.status;
+        _this3.disabledButtonRew = false;
+        if (_this3.status) {
+          _this3.error = {};
+          _this3.nome = '';
+          _this3.cognome = '';
+          _this3.messaggio = '';
+          _this3.voto = '';
+        } else {
+          _this3.errors = res.data.error;
         }
       });
     }
@@ -2358,7 +2390,7 @@ var render = function render() {
       key: index,
       staticClass: "badge badge-dark mr-2"
     }, [_vm._v(_vm._s(skill.name))]);
-  }), 0)], 2)]), _vm._v(" "), _c("div", [_vm.status ? _c("div", {
+  }), 0)], 2)]), _vm._v(" "), _c("div", [_c("h3", [_vm._v("Invia un messaggio allo sviluppatore")]), _vm._v(" "), _vm.status ? _c("div", {
     staticClass: "alert alert-success",
     attrs: {
       role: "alert"
@@ -2510,11 +2542,7 @@ var render = function render() {
       key: index,
       staticClass: "invalid-feedback"
     }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
-  })], 2), _vm._v(" "), _c("label", {
-    attrs: {
-      "for": "messaggio"
-    }
-  }, [_vm._v("Lascia un voto da 1 a 5")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm.disabledButton ? _c("button", {
+  })], 2), _vm._v(" "), _vm.disabledButton ? _c("button", {
     staticClass: "btn btn-primary my-3",
     attrs: {
       type: "button",
@@ -2536,23 +2564,212 @@ var render = function render() {
     attrs: {
       href: "/"
     }
+  }, [_vm._v("Indietro")])])]), _vm._v(" "), _c("div", [_c("h3", [_vm._v("Invia una recensione allo sviluppatore")]), _vm._v(" "), _vm.status ? _c("div", {
+    staticClass: "alert alert-success",
+    attrs: {
+      role: "alert"
+    }
+  }, [_vm._v("\n            Recensione inviato con successo!!\n        ")]) : _vm._e(), _vm._v(" "), _c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.sendReview();
+      }
+    }
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "nome"
+    }
+  }, [_vm._v("Nome")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.nome,
+      expression: "nome"
+    }],
+    staticClass: "form-control",
+    "class": _vm.errors.nome ? "is-invalid" : "",
+    attrs: {
+      type: "text",
+      id: "nome",
+      required: "",
+      placeholder: "Scrivi il tuo nome"
+    },
+    domProps: {
+      value: _vm.nome
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.nome = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.errors.nome, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "invalid-feedback"
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  })], 2), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "cognome"
+    }
+  }, [_vm._v("Cognome")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.cognome,
+      expression: "cognome"
+    }],
+    staticClass: "form-control",
+    "class": _vm.errors.cognome ? "is-invalid" : "",
+    attrs: {
+      type: "text",
+      id: "cognome",
+      required: "",
+      placeholder: "Scrivi il tuo cognome"
+    },
+    domProps: {
+      value: _vm.cognome
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.cognome = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.errors.cognome, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "invalid-feedback"
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  })], 2), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "messaggio"
+    }
+  }, [_vm._v("Messaggio")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.messaggio,
+      expression: "messaggio"
+    }],
+    staticClass: "form-control",
+    "class": _vm.errors.messaggio ? "is-invalid" : "",
+    attrs: {
+      id: "messaggio",
+      rows: "6",
+      required: "",
+      placeholder: "Scrivi la recensione per lo sviluppatore"
+    },
+    domProps: {
+      value: _vm.messaggio
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.messaggio = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm._l(_vm.errors.messaggio, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "invalid-feedback"
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  })], 2), _vm._v(" "), _c("div", {
+    staticClass: "form-group col-md-4"
+  }, [_c("label", {
+    attrs: {
+      "for": "inputState"
+    }
+  }, [_vm._v("Voto da 1 a 5")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.voto,
+      expression: "voto"
+    }],
+    staticClass: "form-control",
+    "class": _vm.errors.voto ? "is-invalid" : "",
+    attrs: {
+      id: "inputState"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.voto = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Scegli il tuo voto da 1 a 5")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "1",
+      required: ""
+    }
+  }, [_vm._v("1")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "2",
+      required: ""
+    }
+  }, [_vm._v("2")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "3",
+      required: ""
+    }
+  }, [_vm._v("3")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "4",
+      required: ""
+    }
+  }, [_vm._v("4")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "5",
+      required: ""
+    }
+  }, [_vm._v("5")])]), _vm._v(" "), _vm._l(_vm.errors.voto, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "invalid-feedback"
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  })], 2), _vm._v(" "), _vm.disabledButtonRew ? _c("button", {
+    staticClass: "btn btn-primary my-3",
+    attrs: {
+      type: "button",
+      disabled: ""
+    }
+  }, [_c("span", {
+    staticClass: "spinner-border spinner-border-sm",
+    attrs: {
+      role: "status",
+      "aria-hidden": "true"
+    }
+  }), _vm._v("\n                Invio\n            ")]) : _c("button", {
+    staticClass: "btn btn-dark my-3",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Invia Recensione")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-dark my-3",
+    attrs: {
+      href: "/"
+    }
   }, [_vm._v("Indietro")])])])]);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("i", {
-    staticClass: "fa-regular fa-star"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "fa-regular fa-star"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "fa-regular fa-star"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "fa-regular fa-star"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "fa-regular fa-star"
-  })]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
