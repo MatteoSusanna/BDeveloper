@@ -30,15 +30,13 @@
 
                     <h4 class="card-title">{{developer.name}} {{developer.lastname}}</h4>
                     <h5 class="card-text" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}} Developer</h5>
-                    <p class="card-text">Indirizzo: {{developer.address}}</p>
-                    <p class="card-text">Telefono: {{developer.phone}}</p>
     
                     <h5>Skills:</h5>
                     <div class="d-flex">
                         <p class="badge badge-dark mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
                     </div>
 
-                    <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
+                    <router-link class="btn btn-show" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
 
                 </div>  
             </div>

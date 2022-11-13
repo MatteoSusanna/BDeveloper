@@ -1,86 +1,94 @@
 <template>
-    <div class="container">
+    <div class="container container-single-dev">
 
-        <div class="card m-3" style="width: 18rem;">
-            <div style="width: 10rem;" class="m-auto py-2">
-                <img :src="developer.cover" class="card-img-top img-fluid" >
-            </div>
+        <div class="d-flex justify-content-between">
 
-            <div class="card-body">
-                <h5 class="card-title">{{developer.name}} {{developer.lastname}}</h5>
-                <p class="card-text">{{developer.address}}</p>
-                <p class="card-text">{{developer.phone}}</p>
+            <div class="d-flex align-self-center">
+                <div class="img-container rounded-circle overflow-hidden mt-4">
+                    <img :src="developer.cover" class="img-fluid" >
+                </div>
+
+                <div class="ml-5 info-container">
+                    <h1>{{developer.name}} {{developer.lastname}}</h1>
+                    <h2 v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}} Developer</h2>
+                    <div class="d-flex">
+                        <div class="mr-2 skill-container" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</div>
+                    </div>
+                    <div class="mt-4">
+                        <h4>Email: {{developer.email}}</h4>
+                        <h4> Tel: {{developer.phone}}</h4>
+                        <h4>Indirizzo: {{developer.address}}</h4>
+                    </div>
                     
-                <p class="card-text" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}}</p>
-
-                <div class="d-flex">
-                    <p class="badge badge-dark mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
-                </div>
-            </div>  
-        </div>
-        <div>
-            <h3>Invia un messaggio allo sviluppatore</h3>
-            <!-- In caso messaggio inviato con successo -->
-            <div class="alert alert-success" role="alert" v-if="status">
-                Messaggio inviato con successo!!
+                </div>  
             </div>
 
-            <!-- form invio messaggio sviluppatore -->
-            <form @submit.prevent="sendMessage()">
-                <!-- Contenuto nome -->
-                <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" :class="(errors.name)?'is-invalid':''" id="nome" v-model="name" required placeholder="Scrivi il tuo nome">
 
-                    <div class="invalid-feedback" v-for="(error, index) in errors.name" :key="index">
-                        {{error}}
-                    </div>
+
+            <div class="message-container p-5">
+                <h2>Contattami</h2>
+                <!-- In caso messaggio inviato con successo -->
+                <div class="alert alert-success" role="alert" v-if="status">
+                    Messaggio inviato con successo!!
                 </div>
 
-                <!-- Contenuto cognome -->
-                <div class="form-group">
-                    <label for="cognome">Cognome</label>
-                    <input type="text" class="form-control" :class="(errors.lastname)?'is-invalid':''" id="cognome" v-model="lastname" required placeholder="Scrivi il tuo cognome">
+                <!-- form invio messaggio sviluppatore -->
+                <form @submit.prevent="sendMessage()">
+                    <!-- Contenuto nome -->
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control input" :class="(errors.name)?'is-invalid':''" id="nome" v-model="name" required placeholder="Scrivi il tuo nome">
 
-                    <div class="invalid-feedback" v-for="(error, index) in errors.lastname" :key="index">
-                        {{error}}
+                        <div class="invalid-feedback" v-for="(error, index) in errors.name" :key="index">
+                            {{error}}
+                        </div>
                     </div>
-                </div>
 
-                <!-- Contenuto email -->
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" :class="(errors.email)?'is-invalid':''" id="email" v-model="email" required placeholder="Scrivi la tua email">
+                    <!-- Contenuto cognome -->
+                    <div class="form-group">
+                        <label for="cognome">Cognome</label>
+                        <input type="text" class="form-control input" :class="(errors.lastname)?'is-invalid':''" id="cognome" v-model="lastname" required placeholder="Scrivi il tuo cognome">
 
-                    <div class="invalid-feedback" v-for="(error, index) in errors.email" :key="index">
-                        {{error}}
+                        <div class="invalid-feedback" v-for="(error, index) in errors.lastname" :key="index">
+                            {{error}}
+                        </div>
                     </div>
-                </div>
 
-                <!-- Contenuto Messaggio -->
-                <div class="form-group">
-                    <label for="messaggio">Messaggio</label>
-                    <textarea class="form-control" :class="(errors.text)?'is-invalid':''" id="messaggio" rows="6" v-model="text" required placeholder="Scrivi il tuo messaggio per lo sviluppatore"></textarea>
+                    <!-- Contenuto email -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control input" :class="(errors.email)?'is-invalid':''" id="email" v-model="email" required placeholder="Scrivi la tua email">
 
-                    <div class="invalid-feedback" v-for="(error, index) in errors.text" :key="index">
-                        {{error}}
+                        <div class="invalid-feedback" v-for="(error, index) in errors.email" :key="index">
+                            {{error}}
+                        </div>
                     </div>
-                </div>
 
-                <!-- Bottone invio messaggio -->
-                <button class="btn btn-primary my-3" type="button" disabled v-if="(disabledButton)">
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Invio
-                </button>
-                
-                <button v-else type="submit" class="btn btn-dark my-3">Invia messaggio</button>
-                <a href="/" class="btn btn-dark my-3">Indietro</a>
-            </form>
+                    <!-- Contenuto Messaggio -->
+                    <div class="form-group">
+                        <label for="messaggio">Messaggio</label>
+                        <textarea class="form-control input" :class="(errors.text)?'is-invalid':''" id="messaggio" rows="6" v-model="text" required placeholder="Scrivi il tuo messaggio per lo sviluppatore"></textarea>
+
+                        <div class="invalid-feedback" v-for="(error, index) in errors.text" :key="index">
+                            {{error}}
+                        </div>
+                    </div>
+
+                    <!-- Bottone invio messaggio -->
+                    <button class="btn btn-primary my-3" type="button" disabled v-if="(disabledButton)">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Invio
+                    </button>
+                    
+                    <button v-else type="submit" class="btn btn-single-dev my-3">Invia messaggio</button>
+                </form>
+            </div>
+
         </div>
 
 
-        <div>
-            <h3>Invia una recensione allo sviluppatore</h3>
+        <div class="review-container p-5 mb-5">
+            <h2 class="mb-5">Lascia una recensione</h2>
             <!-- In caso recensione inviato con successo -->
             <div class="alert alert-success" role="alert" v-if="status">
                 Recensione inviato con successo!!
@@ -88,23 +96,26 @@
 
             <!-- form invio recensione sviluppatore -->
             <form @submit.prevent="sendReview()">
-                <!-- Contenuto nome -->
-                <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" :class="(errors.nome)?'is-invalid':''" id="nome" v-model="nome" required placeholder="Scrivi il tuo nome">
+                
+                <div class="d-flex">
+                    <!-- Contenuto nome -->
+                    <div class="form-group mr-5">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control input" :class="(errors.nome)?'is-invalid':''" id="nome" v-model="nome" required placeholder="Scrivi il tuo nome">
 
-                    <div class="invalid-feedback" v-for="(error, index) in errors.nome" :key="index">
-                        {{error}}
+                        <div class="invalid-feedback" v-for="(error, index) in errors.nome" :key="index">
+                            {{error}}
+                        </div>
                     </div>
-                </div>
 
-                <!-- Contenuto cognome -->
-                <div class="form-group">
-                    <label for="cognome">Cognome</label>
-                    <input type="text" class="form-control" :class="(errors.cognome)?'is-invalid':''" id="cognome" v-model="cognome" required placeholder="Scrivi il tuo cognome">
+                    <!-- Contenuto cognome -->
+                    <div class="form-group">
+                        <label for="cognome">Cognome</label>
+                        <input type="text" class="form-control input" :class="(errors.cognome)?'is-invalid':''" id="cognome" v-model="cognome" required placeholder="Scrivi il tuo cognome">
 
-                    <div class="invalid-feedback" v-for="(error, index) in errors.cognome" :key="index">
-                        {{error}}
+                        <div class="invalid-feedback" v-for="(error, index) in errors.cognome" :key="index">
+                            {{error}}
+                        </div>
                     </div>
                 </div>
 
@@ -119,9 +130,9 @@
                 </div>
 
                 <!-- Voto Recensione -->
-                <div class="form-group col-md-4">
+                <div class="form-group">
                     <label for="inputState">Voto da 1 a 5</label>
-                    <select id="inputState" class="form-control" v-model="voto" :class="(errors.voto)?'is-invalid':''">
+                    <select id="inputState" class="form-control input" v-model="voto" :class="(errors.voto)?'is-invalid':''">
                         <option selected disabled>Scegli il tuo voto da 1 a 5</option>
                         <option value="1" required>1</option>
                         <option value="2" required>2</option>
@@ -141,9 +152,11 @@
                     Invio
                 </button>
                 
-                <button v-else type="submit" class="btn btn-dark my-3">Invia Recensione</button>
-                <a href="/" class="btn btn-dark my-3">Indietro</a>
+                <button v-else type="submit" class="btn btn-single-dev my-3">Invia Recensione</button>
             </form>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="/" class="btn btn-single-dev my-3">Torna alla Home</a>
         </div>
     </div>
 </template>
@@ -239,6 +252,62 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.container-single-dev {
+    margin-top: 80px;
+    margin-bottom: 80px;
+
+    .img-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .skill-container {
+        width: 50px;
+        height: 40px;
+        background-color: #141913;
+        border-radius: 5px;
+        color: #95f50f;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+    }
+
+    .message-container {
+        border: 2px solid #141913;
+        border-radius: 10px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .btn-single-dev {
+        background-color: #141913;
+        color: #95f50f;
+        font-size: 20px;
+
+        &:hover {
+            background-color: #090908;
+            box-shadow: 0.15rem 0.15rem 0.25rem #31372c;
+            color: #95f50f;
+        }
+
+    }
+
+    .input {
+        width: 300px;
+    }
+
+    label {
+        font-size: 20px;
+    }
+
+    .review-container {
+        margin-top: 60px;
+        border: 2px solid #141913;
+        border-radius: 10px;
+    }
+
+}
+
 
 </style>
