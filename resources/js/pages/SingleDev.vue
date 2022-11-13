@@ -29,7 +29,7 @@
                 <h2>Contattami</h2>
                 <!-- In caso messaggio inviato con successo -->
                 <div class="alert alert-success" role="alert" v-if="status">
-                    Messaggio inviato con successo!!
+                    Messaggio inviato con successo!
                 </div>
 
                 <!-- form invio messaggio sviluppatore -->
@@ -37,7 +37,7 @@
                     <!-- Contenuto nome -->
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input type="text" class="form-control input" :class="(errors.name)?'is-invalid':''" id="nome" v-model="name" required placeholder="Scrivi il tuo nome">
+                        <input type="text" class="form-control input input-text" :class="(errors.name)?'is-invalid':''" id="nome" v-model="name" required placeholder="Scrivi il tuo nome">
 
                         <div class="invalid-feedback" v-for="(error, index) in errors.name" :key="index">
                             {{error}}
@@ -47,7 +47,7 @@
                     <!-- Contenuto cognome -->
                     <div class="form-group">
                         <label for="cognome">Cognome</label>
-                        <input type="text" class="form-control input" :class="(errors.lastname)?'is-invalid':''" id="cognome" v-model="lastname" required placeholder="Scrivi il tuo cognome">
+                        <input type="text" class="form-control input input-text" :class="(errors.lastname)?'is-invalid':''" id="cognome" v-model="lastname" required placeholder="Scrivi il tuo cognome">
 
                         <div class="invalid-feedback" v-for="(error, index) in errors.lastname" :key="index">
                             {{error}}
@@ -91,7 +91,7 @@
             <h2 class="mb-5">Lascia una recensione</h2>
             <!-- In caso recensione inviato con successo -->
             <div class="alert alert-success" role="alert" v-if="status">
-                Recensione inviato con successo!!
+                Recensione inviato con successo!
             </div>
 
             <!-- form invio recensione sviluppatore -->
@@ -101,7 +101,7 @@
                     <!-- Contenuto nome -->
                     <div class="form-group mr-5">
                         <label for="nome">Nome</label>
-                        <input type="text" class="form-control input" :class="(errors.nome)?'is-invalid':''" id="nome" v-model="nome" required placeholder="Scrivi il tuo nome">
+                        <input type="text" class="form-control input input-text" :class="(errors.nome)?'is-invalid':''" id="nome" v-model="nome" required placeholder="Scrivi il tuo nome">
 
                         <div class="invalid-feedback" v-for="(error, index) in errors.nome" :key="index">
                             {{error}}
@@ -111,7 +111,7 @@
                     <!-- Contenuto cognome -->
                     <div class="form-group">
                         <label for="cognome">Cognome</label>
-                        <input type="text" class="form-control input" :class="(errors.cognome)?'is-invalid':''" id="cognome" v-model="cognome" required placeholder="Scrivi il tuo cognome">
+                        <input type="text" class="form-control input input-text" :class="(errors.cognome)?'is-invalid':''" id="cognome" v-model="cognome" required placeholder="Scrivi il tuo cognome">
 
                         <div class="invalid-feedback" v-for="(error, index) in errors.cognome" :key="index">
                             {{error}}
@@ -295,6 +295,10 @@ export default {
 
     .input {
         width: 300px;
+    }
+
+    .input-text {
+        text-transform: capitalize;
     }
 
     label {

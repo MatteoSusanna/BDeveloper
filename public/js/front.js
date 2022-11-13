@@ -2385,7 +2385,7 @@ var render = function render() {
     attrs: {
       role: "alert"
     }
-  }, [_vm._v("\n                Messaggio inviato con successo!!\n            ")]) : _vm._e(), _vm._v(" "), _c("form", {
+  }, [_vm._v("\n                Messaggio inviato con successo!\n            ")]) : _vm._e(), _vm._v(" "), _c("form", {
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -2405,7 +2405,7 @@ var render = function render() {
       value: _vm.name,
       expression: "name"
     }],
-    staticClass: "form-control input",
+    staticClass: "form-control input input-text",
     "class": _vm.errors.name ? "is-invalid" : "",
     attrs: {
       type: "text",
@@ -2440,7 +2440,7 @@ var render = function render() {
       value: _vm.lastname,
       expression: "lastname"
     }],
-    staticClass: "form-control input",
+    staticClass: "form-control input input-text",
     "class": _vm.errors.lastname ? "is-invalid" : "",
     attrs: {
       type: "text",
@@ -2558,7 +2558,7 @@ var render = function render() {
     attrs: {
       role: "alert"
     }
-  }, [_vm._v("\n            Recensione inviato con successo!!\n        ")]) : _vm._e(), _vm._v(" "), _c("form", {
+  }, [_vm._v("\n            Recensione inviato con successo!\n        ")]) : _vm._e(), _vm._v(" "), _c("form", {
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -2580,7 +2580,7 @@ var render = function render() {
       value: _vm.nome,
       expression: "nome"
     }],
-    staticClass: "form-control input",
+    staticClass: "form-control input input-text",
     "class": _vm.errors.nome ? "is-invalid" : "",
     attrs: {
       type: "text",
@@ -2615,7 +2615,7 @@ var render = function render() {
       value: _vm.cognome,
       expression: "cognome"
     }],
-    staticClass: "form-control input",
+    staticClass: "form-control input input-text",
     "class": _vm.errors.cognome ? "is-invalid" : "",
     attrs: {
       type: "text",
@@ -2844,7 +2844,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container-single-dev {\n  margin-top: 80px;\n  margin-bottom: 80px;\n}\n.container-single-dev .img-container {\n  width: 200px;\n  height: 200px;\n}\n.container-single-dev .skill-container {\n  width: 50px;\n  height: 40px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 40px;\n  font-size: 20px;\n}\n.container-single-dev .message-container {\n  border: 2px solid #141913;\n  border-radius: 10px;\n  padding-top: 40px;\n  padding-bottom: 40px;\n}\n.container-single-dev .btn-single-dev {\n  background-color: #141913;\n  color: #95f50f;\n  font-size: 20px;\n}\n.container-single-dev .btn-single-dev:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}\n.container-single-dev .input {\n  width: 300px;\n}\n.container-single-dev label {\n  font-size: 20px;\n}\n.container-single-dev .review-container {\n  margin-top: 60px;\n  border: 2px solid #141913;\n  border-radius: 10px;\n}", ""]);
+exports.push([module.i, ".container-single-dev {\n  margin-top: 80px;\n  margin-bottom: 80px;\n}\n.container-single-dev .img-container {\n  width: 200px;\n  height: 200px;\n}\n.container-single-dev .skill-container {\n  width: 50px;\n  height: 40px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 40px;\n  font-size: 20px;\n}\n.container-single-dev .message-container {\n  border: 2px solid #141913;\n  border-radius: 10px;\n  padding-top: 40px;\n  padding-bottom: 40px;\n}\n.container-single-dev .btn-single-dev {\n  background-color: #141913;\n  color: #95f50f;\n  font-size: 20px;\n}\n.container-single-dev .btn-single-dev:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}\n.container-single-dev .input {\n  width: 300px;\n}\n.container-single-dev .input-text {\n  text-transform: capitalize;\n}\n.container-single-dev label {\n  font-size: 20px;\n}\n.container-single-dev .review-container {\n  margin-top: 60px;\n  border: 2px solid #141913;\n  border-radius: 10px;\n}", ""]);
 
 // exports
 
