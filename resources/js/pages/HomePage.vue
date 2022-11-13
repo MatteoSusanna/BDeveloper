@@ -118,8 +118,8 @@
 
     width: calc(25% - 20px);
     margin: 0 10px 36px 10px;
-    border: 3px solid #141913;
-    background-color: rgba($color: #fff, $alpha: 0);
+    border: 1px solid #141913;
+    background-color: #d3d3d3;
 
     &:hover {
         transform: scale(1.1);
