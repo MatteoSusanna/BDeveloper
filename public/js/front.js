@@ -2046,23 +2046,16 @@ __webpack_require__.r(__webpack_exports__);
       developer: null,
       idDev: '',
       errors: {},
-      status: false,
+      statusMessage: false,
+      statusReview: false,
       disabledButton: false,
       disabledButtonRew: false
     };
   },
   methods: {
-    getDeveloper: function getDeveloper() {
-      var _this = this;
-      var slug = this.$route.params.slug;
-      axios.get('/api/developer/' + slug).then(function (res) {
-        _this.developer = res.data.result;
-        _this.idDev = res.data.result.id;
-      });
-    },
     //invia messaggio
     sendMessage: function sendMessage() {
-      var _this2 = this;
+      var _this = this;
       this.disabledButton = true;
       axios.post('/api/message', {
         'name': this.name,
@@ -2071,22 +2064,22 @@ __webpack_require__.r(__webpack_exports__);
         'text': this.text,
         'user_id': this.idDev
       }).then(function (res) {
-        _this2.status = res.data.status;
-        _this2.disabledButton = false;
-        if (_this2.status) {
-          _this2.error = {};
-          _this2.name = '';
-          _this2.lastname = '';
-          _this2.email = '';
-          _this2.text = '';
+        _this.statusMessage = res.data.status;
+        _this.disabledButton = false;
+        if (_this.statusMessage) {
+          _this.error = {};
+          _this.name = '';
+          _this.lastname = '';
+          _this.email = '';
+          _this.text = '';
         } else {
-          _this2.errors = res.data.error;
+          _this.errors = res.data.error;
         }
       });
     },
     //invia recensione
     sendReview: function sendReview() {
-      var _this3 = this;
+      var _this2 = this;
       this.disabledButtonRew = true;
       axios.post('/api/review', {
         'nome': this.nome,
@@ -2095,22 +2088,27 @@ __webpack_require__.r(__webpack_exports__);
         'voto': this.voto,
         'user_id': this.idDev
       }).then(function (res) {
-        _this3.status = res.data.status;
-        _this3.disabledButtonRew = false;
-        if (_this3.status) {
-          _this3.error = {};
-          _this3.nome = '';
-          _this3.cognome = '';
-          _this3.messaggio = '';
-          _this3.voto = '';
+        _this2.statusReview = res.data.status;
+        _this2.disabledButtonRew = false;
+        if (_this2.statusReview) {
+          _this2.error = {};
+          _this2.nome = '';
+          _this2.cognome = '';
+          _this2.messaggio = '';
+          _this2.voto = '';
         } else {
-          _this3.errors = res.data.error;
+          _this2.errors = res.data.error;
         }
       });
     }
   },
   mounted: function mounted() {
-    this.getDeveloper();
+    var _this3 = this;
+    var slug = this.$route.params.slug;
+    axios.get('/api/developer/' + slug).then(function (res) {
+      _this3.developer = res.data.result;
+      _this3.idDev = res.data.result.id;
+    });
   }
 });
 
@@ -2380,7 +2378,7 @@ var render = function render() {
     staticClass: "mt-4"
   }, [_c("h4", [_vm._v("Email: " + _vm._s(_vm.developer.email))]), _vm._v(" "), _c("h4", [_vm._v(" Tel: " + _vm._s(_vm.developer.phone))]), _vm._v(" "), _c("h4", [_vm._v("Indirizzo: " + _vm._s(_vm.developer.address))])])], 2)]), _vm._v(" "), _c("div", {
     staticClass: "message-container p-5"
-  }, [_c("h2", [_vm._v("Contattami")]), _vm._v(" "), _vm.status ? _c("div", {
+  }, [_c("h2", [_vm._v("Contattami")]), _vm._v(" "), _vm.statusMessage ? _c("div", {
     staticClass: "alert alert-success",
     attrs: {
       role: "alert"
@@ -2553,12 +2551,12 @@ var render = function render() {
     staticClass: "review-container p-5 mb-5"
   }, [_c("h2", {
     staticClass: "mb-5"
-  }, [_vm._v("Lascia una recensione")]), _vm._v(" "), _vm.status ? _c("div", {
+  }, [_vm._v("Lascia una recensione")]), _vm._v(" "), _vm.statusReview ? _c("div", {
     staticClass: "alert alert-success",
     attrs: {
       role: "alert"
     }
-  }, [_vm._v("\n            Recensione inviato con successo!\n        ")]) : _vm._e(), _vm._v(" "), _c("form", {
+  }, [_vm._v("\n            Recensione inviata con successo!\n        ")]) : _vm._e(), _vm._v(" "), _c("form", {
     on: {
       submit: function submit($event) {
         $event.preventDefault();

@@ -28,7 +28,7 @@
             <div class="message-container p-5">
                 <h2>Contattami</h2>
                 <!-- In caso messaggio inviato con successo -->
-                <div class="alert alert-success" role="alert" v-if="status">
+                <div class="alert alert-success" role="alert" v-if="statusMessage">
                     Messaggio inviato con successo!
                 </div>
 
@@ -89,9 +89,9 @@
 
         <div class="review-container p-5 mb-5">
             <h2 class="mb-5">Lascia una recensione</h2>
-            <!-- In caso recensione inviato con successo -->
-            <div class="alert alert-success" role="alert" v-if="status">
-                Recensione inviato con successo!
+            <!-- In caso recensione inviata con successo -->
+            <div class="alert alert-success" role="alert" v-if="statusReview">
+                Recensione inviata con successo!
             </div>
 
             <!-- form invio recensione sviluppatore -->
@@ -180,21 +180,13 @@ export default {
             developer: null,
             idDev: '',
             errors: {},
-            status: false,
+            statusMessage: false,
+            statusReview: false,
             disabledButton: false,
             disabledButtonRew: false,
         }
     },
     methods:{
-        getDeveloper(){
-            let slug = this.$route.params.slug;
-            
-            axios.get('/api/developer/' + slug)
-            .then(res =>{
-                this.developer = res.data.result
-                this.idDev = res.data.result.id             
-            })
-        },
         //invia messaggio
         sendMessage(){
             this.disabledButton = true;
@@ -205,10 +197,10 @@ export default {
                     'text': this.text,
                     'user_id': this.idDev,
                 }).then(res =>{
-                    this.status = res.data.status;
+                    this.statusMessage = res.data.status;
                     this.disabledButton = false;
 
-                    if(this.status){
+                    if(this.statusMessage){
                         this.error = {};
                         this.name = '';
                         this.lastname = '';
@@ -230,10 +222,10 @@ export default {
                     'voto': this.voto,
                     'user_id': this.idDev,
                 }).then(res =>{
-                    this.status = res.data.status;
+                    this.statusReview = res.data.status;
                     this.disabledButtonRew = false;
 
-                    if(this.status){
+                    if(this.statusReview){
                         this.error = {};
                         this.nome = '';
                         this.cognome = '';
@@ -247,7 +239,14 @@ export default {
         }
     },
     mounted(){
-        this.getDeveloper();
+        let slug = this.$route.params.slug;
+            
+            axios.get('/api/developer/' + slug)
+            .then(res =>{
+                this.developer = res.data.result
+                this.idDev = res.data.result.id             
+            })
+
     }
 }
 </script>
