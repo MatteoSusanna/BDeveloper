@@ -1985,6 +1985,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this.spinner = false;
         _this.developers = response.data.results;
+        console.log(response.data);
       });
     },
     getAllDeveloper: function getAllDeveloper() {
@@ -2003,7 +2004,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
       axios.get('/api/specializations/').then(function (response) {
         _this3.SelectedSpecializations = response.data.results;
-        console.log(response.data.results);
       });
     },
     filter: function filter(specialization) {

@@ -72,6 +72,7 @@
                 .then((response) =>{
                     this.spinner = false;
                     this.developers = response.data.results
+                    console.log(response.data)
                 })  
             },
             getAllDeveloper(){
@@ -90,7 +91,6 @@
                 axios.get('/api/specializations/')
                 .then((response) =>{
                     this.SelectedSpecializations = response.data.results
-                    console.log(response.data.results);
                 })  
             },
             filter(specialization){
