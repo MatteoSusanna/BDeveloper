@@ -26,7 +26,7 @@
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
 
-                <div class="card-body">
+                <div class="card-body mb-5">
 
                     <h4 class="card-title">{{developer.name}} {{developer.lastname}}</h4>
                     <h5 class="card-text" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}} Developer</h5>
@@ -36,9 +36,10 @@
                         <p class="skill-container mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
                     </div>
 
-                    <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
+                </div>
 
-                </div>  
+                <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
+
             </div>
         </div>
     </div>
@@ -120,6 +121,7 @@
     margin: 0 10px 36px 10px;
     border: 1px solid #141913;
     background-color: #d3d3d3;
+    position: relative;
 
     &:hover {
         transform: scale(1.1);
@@ -146,6 +148,10 @@
     .btn-show, .color- {
         background-color: #141913;
         color: #95f50f;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        bottom: 10px;
 
         &:hover {
             background-color: #090908;
