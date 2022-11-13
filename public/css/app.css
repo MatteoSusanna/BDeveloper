@@ -11006,6 +11006,12 @@ body .my-container .delete-btn:hover {
   box-shadow: 0.15rem 0.15rem 0.25rem #d17976;
 }
 
+.edit {
+  border: 2px solid #141913;
+  border-radius: 10px;
+  padding: 20px;
+}
+
 .edit .cover-container,
 .edit .cv-container {
   width: 150px;
