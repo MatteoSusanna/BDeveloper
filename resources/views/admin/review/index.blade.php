@@ -15,7 +15,7 @@
                         <th scope="col">Voto</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="t-body">
                     @foreach ($reviews as $review)
                         <tr>
                             <td class="pl-3">{{$review->name}}</td>

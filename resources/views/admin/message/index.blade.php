@@ -16,7 +16,7 @@
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="t-body">
                     @foreach ($messages as $message)
                         <tr>
                             <td class="pl-3">{{$message->name}}</td>

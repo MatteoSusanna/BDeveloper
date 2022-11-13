@@ -11160,6 +11160,11 @@ body .my-container .delete-btn:hover {
   color: #95f50f;
   padding-top: 30px !important;
   padding-bottom: 10px !important;
+  font-size: 20px;
+}
+
+.my-table .t-body {
+  font-size: 18px;
 }
 
 .my-table {
@@ -11173,6 +11178,11 @@ body .my-container .delete-btn:hover {
   color: #95f50f;
   padding-top: 30px !important;
   padding-bottom: 10px !important;
+  font-size: 20px;
+}
+
+.my-table .t-body {
+  font-size: 18px;
 }
 
 body {
