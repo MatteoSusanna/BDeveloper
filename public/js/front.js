@@ -2246,7 +2246,7 @@ var render = function render() {
   }, [_vm._v("Filtra per specializzazione:")]), _vm._v(" "), _c("div", {
     staticClass: "input-group-prepend"
   }, [_c("button", {
-    staticClass: "btn btn-outline-dark m-2",
+    staticClass: "btn search-btn m-2",
     "class": _vm.activeButton == 3 ? "color-btn" : "",
     attrs: {
       type: "button"
@@ -2260,7 +2260,7 @@ var render = function render() {
   }, [_vm._v("Tutti")]), _vm._v(" "), _vm._l(_vm.SelectedSpecializations, function (specialization, index) {
     return _c("button", {
       key: index,
-      staticClass: "btn btn-outline-dark m-2",
+      staticClass: "btn search-btn m-2",
       "class": _vm.activeButton == index ? "color-btn" : "",
       attrs: {
         type: "button"
@@ -2823,7 +2823,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".color-btn {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n  background-color: rgba(0, 0, 0, 0);\n  position: relative;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .skill-container {\n  width: 40px;\n  height: 25px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 25px;\n  font-size: 15px;\n}\n.profile-card .btn-show, .profile-card .color- {\n  background-color: #141913;\n  color: #95f50f;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  bottom: 10px;\n}\n.profile-card .btn-show:hover, .profile-card .color-:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
+exports.push([module.i, ".search-btn {\n  border: 1px solid #141913;\n}\n.search-btn:hover {\n  background-color: #141913;\n  color: #95f50f;\n}\n.color-btn {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n  background-color: rgba(0, 0, 0, 0);\n  position: relative;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .skill-container {\n  width: 40px;\n  height: 25px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 25px;\n  font-size: 15px;\n}\n.profile-card .btn-show, .profile-card .color- {\n  background-color: #141913;\n  color: #95f50f;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  bottom: 10px;\n}\n.profile-card .btn-show:hover, .profile-card .color-:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
 
 // exports
 

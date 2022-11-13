@@ -4,9 +4,9 @@
             <h3 class="mt-2 mr-3">Filtra per specializzazione:</h3>
             <div class="input-group-prepend">
 
-                <button type="button" class="btn btn-outline-dark m-2" :class="(activeButton == 3)? 'color-btn': ''" @click="getAllDeveloper(); activeButton = 3">Tutti</button>
+                <button type="button" class="btn search-btn m-2" :class="(activeButton == 3)? 'color-btn': ''" @click="getAllDeveloper(); activeButton = 3">Tutti</button>
 
-                <button type="button" class="btn btn-outline-dark m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" 
+                <button type="button" class="btn search-btn m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" 
                         @click="filter(specialization.id); activeButton = index" :class="(activeButton == index)?'color-btn':''">
                         {{specialization.name}}
                 </button>
@@ -109,6 +109,16 @@
 </script>
 
 <style lang="scss">
+
+
+.search-btn {
+    border: 1px solid #141913;
+
+    &:hover {
+    background-color: #141913;
+    color: #95f50f;
+    }
+}
 
 .color-btn{
     background-color: #141913;
