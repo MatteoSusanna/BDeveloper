@@ -2046,7 +2046,8 @@ __webpack_require__.r(__webpack_exports__);
       idDev: '',
       errors: {},
       status: false,
-      disabledButton: false
+      disabledButton: false,
+      disabledButtonRew: false
     };
   },
   methods: {
@@ -2085,7 +2086,7 @@ __webpack_require__.r(__webpack_exports__);
     //invia recensione
     sendReview: function sendReview() {
       var _this3 = this;
-      this.disabledButton = true;
+      this.disabledButtonRew = true;
       axios.post('/api/review', {
         'nome': this.nome,
         'cognome': this.cognome,
@@ -2094,7 +2095,7 @@ __webpack_require__.r(__webpack_exports__);
         'user_id': this.idDev
       }).then(function (res) {
         _this3.status = res.data.status;
-        _this3.disabledButton = false;
+        _this3.disabledButtonRew = false;
         if (_this3.status) {
           _this3.error = {};
           _this3.nome = '';
@@ -2739,7 +2740,7 @@ var render = function render() {
       value: "5",
       required: ""
     }
-  }, [_vm._v("5")])])]), _vm._v(" "), _vm.disabledButton ? _c("button", {
+  }, [_vm._v("5")])])]), _vm._v(" "), _vm.disabledButtonRew ? _c("button", {
     staticClass: "btn btn-primary my-3",
     attrs: {
       type: "button",

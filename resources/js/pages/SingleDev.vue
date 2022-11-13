@@ -132,7 +132,7 @@
                 </div>
 
                 <!-- Bottone invio recensione -->
-                <button class="btn btn-primary my-3" type="button" disabled v-if="(disabledButton)">
+                <button class="btn btn-primary my-3" type="button" disabled v-if="(disabledButtonRew)">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Invio
                 </button>
@@ -165,6 +165,7 @@ export default {
             errors: {},
             status: false,
             disabledButton: false,
+            disabledButtonRew: false,
         }
     },
     methods:{
@@ -204,7 +205,7 @@ export default {
         },
         //invia recensione
         sendReview(){
-            this.disabledButton = true;
+            this.disabledButtonRew = true;
             axios.post('/api/review', {
                     'nome': this.nome,
                     'cognome': this.cognome,
@@ -213,7 +214,7 @@ export default {
                     'user_id': this.idDev,
                 }).then(res =>{
                     this.status = res.data.status;
-                    this.disabledButton = false;
+                    this.disabledButtonRew = false;
 
                     if(this.status){
                         this.error = {};
