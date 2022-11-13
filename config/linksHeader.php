@@ -15,7 +15,7 @@ return [
     ],
     [
         "title" => "Recensioni",
-        "url" => "#"
+        "url" => "admin.review"
     ],
     [
         "title" => "Sponsorizzazioni",
