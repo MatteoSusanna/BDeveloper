@@ -15,11 +15,25 @@ class ReviewController extends Controller
 
         //Validazioni campi in data
         $validator = Validator::make($dati, [
-            'nome' => 'required|string|max:50',
-            'cognome' => 'required|string|max:50',
+            'nome' => 'required|string|max:50|min:2',
+            'cognome' => 'required|string|max:50|min:2',
             'messaggio' => 'required|string|max:65000',
             'voto' => 'required',
             "user_id" => "required"
+        ],
+        [
+            'nome.required' => 'La complilazione del nome è obligatoria',
+            'nome.max' => 'Il nome deve essere compreso tra 2 e 50 caratteri',
+            'nome.min' => 'Il nome deve essere compreso tra 2 e 50 caratteri',
+
+            'cognome.required' => 'La complilazione del nome è obligatoria',
+            'cognome.max' => 'Il cognome deve essere compreso tra 2 e 50 caratteri',
+            'cognome.min' => 'Il cognome deve essere compreso tra 2 e 50 caratteri',
+
+            'messaggio.required' => 'La compilazione dell messaggio è obligatoria',
+            'messaggio.max' => 'Il messaggio deve avere un massimo di 65000 caratteri',
+
+            'voto.required' => 'La compilazione del voto deve essere obligatoria',
         ]);
 
         //Se la validazione è fallita ritorna indietro errori

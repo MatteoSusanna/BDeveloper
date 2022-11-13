@@ -120,8 +120,8 @@
 
                 <!-- Voto Recensione -->
                 <div class="form-group col-md-4">
-                    <label for="inputState">Voto</label>
-                    <select id="inputState" class="form-control" v-model="voto">
+                    <label for="inputState">Voto da 1 a 5</label>
+                    <select id="inputState" class="form-control" v-model="voto" :class="(errors.voto)?'is-invalid':''">
                         <option selected disabled>Scegli il tuo voto da 1 a 5</option>
                         <option value="1" required>1</option>
                         <option value="2" required>2</option>
@@ -129,6 +129,10 @@
                         <option value="4" required>4</option>
                         <option value="5" required>5</option>
                     </select>
+
+                    <div class="invalid-feedback" v-for="(error, index) in errors.voto" :key="index">
+                        {{error}}
+                    </div>
                 </div>
 
                 <!-- Bottone invio recensione -->

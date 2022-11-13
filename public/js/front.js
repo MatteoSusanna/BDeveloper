@@ -2688,7 +2688,7 @@ var render = function render() {
     attrs: {
       "for": "inputState"
     }
-  }, [_vm._v("Voto")]), _vm._v(" "), _c("select", {
+  }, [_vm._v("Voto da 1 a 5")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2696,6 +2696,7 @@ var render = function render() {
       expression: "voto"
     }],
     staticClass: "form-control",
+    "class": _vm.errors.voto ? "is-invalid" : "",
     attrs: {
       id: "inputState"
     },
@@ -2740,7 +2741,12 @@ var render = function render() {
       value: "5",
       required: ""
     }
-  }, [_vm._v("5")])])]), _vm._v(" "), _vm.disabledButtonRew ? _c("button", {
+  }, [_vm._v("5")])]), _vm._v(" "), _vm._l(_vm.errors.voto, function (error, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "invalid-feedback"
+    }, [_vm._v("\n                    " + _vm._s(error) + "\n                ")]);
+  })], 2), _vm._v(" "), _vm.disabledButtonRew ? _c("button", {
     staticClass: "btn btn-primary my-3",
     attrs: {
       type: "button",
