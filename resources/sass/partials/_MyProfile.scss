@@ -47,14 +47,15 @@ body {
             align-items: center;
             justify-content: center;
 
+            &:hover {
+                background-color: #86db0e;
+                box-shadow: 0.15rem 0.15rem 0.25rem #e0ffc2;
+            }
+
             .edit-icon{
                 color: #141913 !important;
             }
             
-        }
-        .edit-btn:hover {
-            background-color: #86db0e;
-            box-shadow: 0.15rem 0.15rem 0.25rem #e0ffc2;
         }
 
         .delete-btn:hover {
