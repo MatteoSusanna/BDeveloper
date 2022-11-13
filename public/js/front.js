@@ -1969,6 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
       developers: [],
       searchBar: null,
       activeButton: 3,
+      spinner: false,
       SelectedSpecializations: '',
       nomeSpec: ''
     };
@@ -1976,21 +1977,25 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getDeveloper: function getDeveloper() {
       var _this = this;
+      this.spinner = true;
       axios.get('/api/developer/', {
         params: {
           inputText: this.nomeSpec
         }
       }).then(function (response) {
+        _this.spinner = false;
         _this.developers = response.data.results;
       });
     },
     getAllDeveloper: function getAllDeveloper() {
       var _this2 = this;
+      this.spinner = true;
       axios.get('/api/developer/', {
         params: {
           inputText: ''
         }
       }).then(function (response) {
+        _this2.spinner = false;
         _this2.developers = response.data.results;
       });
     },
@@ -2045,7 +2050,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/developer/' + slug).then(function (res) {
         _this.developer = res.data.result;
         _this.idDev = res.data.result.id;
-        console.log(res.data.result);
       });
     },
     sendMessage: function sendMessage() {
@@ -2069,8 +2073,6 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           _this2.errors = res.data.error;
         }
-        console.log(_this2.errors);
-        console.log(res);
       });
     }
   },
@@ -2237,7 +2239,9 @@ var render = function render() {
         }
       }
     }, [_vm._v("\n                    " + _vm._s(specialization.name) + "\n            ")]);
-  })], 2)]), _vm._v(" "), _c("div", {
+  })], 2)]), _vm._v(" "), _vm.spinner ? _c("div", {
+    staticClass: "d-flex justify-content-center"
+  }, [_vm._m(0)]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "d-flex"
   }, _vm._l(_vm.developers, function (developer, index) {
     return _c("div", {
@@ -2287,7 +2291,18 @@ var render = function render() {
     }, [_vm._v("Vedi Profilo")])], 2)]);
   }), 0)]);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "spinner-border text-secondary",
+    attrs: {
+      role: "status"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  })]);
+}];
 render._withStripped = true;
 
 
@@ -2344,7 +2359,12 @@ var render = function render() {
       key: index,
       staticClass: "badge badge-dark mr-2"
     }, [_vm._v(_vm._s(skill.name))]);
-  }), 0)], 2)]), _vm._v(" "), _c("div", [_c("form", {
+  }), 0)], 2)]), _vm._v(" "), _c("div", [_vm.status ? _c("div", {
+    staticClass: "alert alert-success",
+    attrs: {
+      role: "alert"
+    }
+  }, [_vm._v("\n            Messaggio inviato con successo!!\n        ")]) : _vm._e(), _vm._v(" "), _c("form", {
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -2368,7 +2388,9 @@ var render = function render() {
     "class": _vm.errors.name ? "is-invalid" : "",
     attrs: {
       type: "text",
-      id: "nome"
+      id: "nome",
+      required: "",
+      placeholder: "Scrivi il tuo nome"
     },
     domProps: {
       value: _vm.name
@@ -2401,7 +2423,9 @@ var render = function render() {
     "class": _vm.errors.lastname ? "is-invalid" : "",
     attrs: {
       type: "text",
-      id: "cognome"
+      id: "cognome",
+      required: "",
+      placeholder: "Scrivi il tuo cognome"
     },
     domProps: {
       value: _vm.lastname
@@ -2434,7 +2458,9 @@ var render = function render() {
     "class": _vm.errors.email ? "is-invalid" : "",
     attrs: {
       type: "email",
-      id: "email"
+      id: "email",
+      required: "",
+      placeholder: "Scrivi la tua email"
     },
     domProps: {
       value: _vm.email
@@ -2467,7 +2493,9 @@ var render = function render() {
     "class": _vm.errors.text ? "is-invalid" : "",
     attrs: {
       id: "messaggio",
-      rows: "6"
+      rows: "6",
+      required: "",
+      placeholder: "Scrivi il tuo messaggio per lo sviluppatore"
     },
     domProps: {
       value: _vm.text
@@ -2488,7 +2516,7 @@ var render = function render() {
       "for": "messaggio"
     }
   }, [_vm._v("Lascia un voto da 1 a 5")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm.disabledButton ? _c("button", {
-    staticClass: "btn btn-primary",
+    staticClass: "btn btn-primary my-3",
     attrs: {
       type: "button",
       disabled: ""
@@ -2500,11 +2528,16 @@ var render = function render() {
       "aria-hidden": "true"
     }
   }), _vm._v("\n                Invio\n            ")]) : _c("button", {
-    staticClass: "btn btn-primary",
+    staticClass: "btn btn-dark my-3",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Invia messaggio")])])])]);
+  }, [_vm._v("Invia messaggio")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-dark my-3",
+    attrs: {
+      href: "/"
+    }
+  }, [_vm._v("Indietro")])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

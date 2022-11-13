@@ -13,6 +13,12 @@
                 
             </div>
         </div>
+        <!--Spinner di caricamento post-->
+        <div class="d-flex justify-content-center" v-if="spinner">
+            <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
 
         <div class="d-flex">
             <div class="p-2 card m-3 profile-card bg-light" style="width: 18rem;" v-for="(developer, index) in developers" :key="index">
@@ -26,6 +32,7 @@
                     <h5 class="card-text" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}} Developer</h5>
                     <p class="card-text">Indirizzo: {{developer.address}}</p>
                     <p class="card-text">Telefono: {{developer.phone}}</p>
+    
                     <h5>Skills:</h5>
                     <div class="d-flex">
                         <p class="badge badge-dark mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
@@ -48,6 +55,7 @@
             developers: [],
             searchBar: null,
             activeButton: 3,
+            spinner: false,
 
             SelectedSpecializations: '',
             nomeSpec: '',
@@ -55,22 +63,26 @@
         },
         methods:{
             getDeveloper(){
+                this.spinner = true;
                 axios.get('/api/developer/', {
                     params:{
                         inputText: this.nomeSpec,
                     }
                 })
                 .then((response) =>{
+                    this.spinner = false;
                     this.developers = response.data.results
                 })  
             },
             getAllDeveloper(){
+                this.spinner = true;
                 axios.get('/api/developer/', {
                     params:{
                         inputText: '',
                     }
                 })
                 .then((response) =>{
+                    this.spinner = false;
                     this.developers = response.data.results
                 })  
             },

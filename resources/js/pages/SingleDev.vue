@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+
         <div class="card m-3" style="width: 18rem;">
             <div style="width: 10rem;" class="m-auto py-2">
                 <img :src="developer.cover" class="card-img-top img-fluid" >
@@ -18,12 +19,18 @@
             </div>  
         </div>
         <div>
+
+            <!-- In caso messaggio inviato con successo -->
+            <div class="alert alert-success" role="alert" v-if="status">
+                Messaggio inviato con successo!!
+            </div>
+
             <!-- form invio messaggio sviluppatore -->
             <form @submit.prevent="sendMessage()">
                 <!-- Contenuto nome -->
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" :class="(errors.name)?'is-invalid':''" id="nome" v-model="name">
+                    <input type="text" class="form-control" :class="(errors.name)?'is-invalid':''" id="nome" v-model="name" required placeholder="Scrivi il tuo nome">
 
                     <div class="invalid-feedback" v-for="(error, index) in errors.name" :key="index">
                         {{error}}
@@ -33,7 +40,7 @@
                 <!-- Contenuto cognome -->
                 <div class="form-group">
                     <label for="cognome">Cognome</label>
-                    <input type="text" class="form-control" :class="(errors.lastname)?'is-invalid':''" id="cognome" v-model="lastname">
+                    <input type="text" class="form-control" :class="(errors.lastname)?'is-invalid':''" id="cognome" v-model="lastname" required placeholder="Scrivi il tuo cognome">
 
                     <div class="invalid-feedback" v-for="(error, index) in errors.lastname" :key="index">
                         {{error}}
@@ -43,7 +50,7 @@
                 <!-- Contenuto email -->
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" :class="(errors.email)?'is-invalid':''" id="email" v-model="email">
+                    <input type="email" class="form-control" :class="(errors.email)?'is-invalid':''" id="email" v-model="email" required placeholder="Scrivi la tua email">
 
                     <div class="invalid-feedback" v-for="(error, index) in errors.email" :key="index">
                         {{error}}
@@ -53,7 +60,7 @@
                 <!-- Contenuto Messaggio -->
                 <div class="form-group">
                     <label for="messaggio">Messaggio</label>
-                    <textarea class="form-control" :class="(errors.text)?'is-invalid':''" id="messaggio" rows="6" v-model="text"></textarea>
+                    <textarea class="form-control" :class="(errors.text)?'is-invalid':''" id="messaggio" rows="6" v-model="text" required placeholder="Scrivi il tuo messaggio per lo sviluppatore"></textarea>
 
                     <div class="invalid-feedback" v-for="(error, index) in errors.text" :key="index">
                         {{error}}
@@ -71,12 +78,13 @@
                 </div>
 
                 <!-- Bottone invio messaggio -->
-                <button class="btn btn-primary" type="button" disabled v-if="(disabledButton)">
+                <button class="btn btn-primary my-3" type="button" disabled v-if="(disabledButton)">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Invio
                 </button>
                 
-                <button v-else type="submit" class="btn btn-primary">Invia messaggio</button>
+                <button v-else type="submit" class="btn btn-dark my-3">Invia messaggio</button>
+                <a href="/" class="btn btn-dark my-3">Indietro</a>
             </form>
         </div>
     </div>
@@ -101,13 +109,11 @@ export default {
     methods:{
         getDeveloper(){
             let slug = this.$route.params.slug;
-
+            
             axios.get('/api/developer/' + slug)
             .then(res =>{
                 this.developer = res.data.result
-                this.idDev = res.data.result.id
-                console.log(res.data.result)
-                
+                this.idDev = res.data.result.id             
             })
         },
         sendMessage(){
@@ -131,8 +137,6 @@ export default {
                     }else{
                         this.errors = res.data.error;
                     }
-                    console.log(this.errors)
-                    console.log(res)
 
                 });                
         }

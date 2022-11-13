@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class MessageController extends Controller
 {
     public function index(){
-        $messages = Message::where('user_id', Auth::user()->id)->get();
+        $messages = Message::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
 
         return view('admin.message.index', compact('messages'));
     }
