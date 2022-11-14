@@ -145,8 +145,8 @@
     }
 
     .skill-container {
-        width: 40px;
-        height: 25px;
+        min-width: 40px;
+        min-height: 25px;
         background-color: #141913;
         border-radius: 5px;
         color: #95f50f;

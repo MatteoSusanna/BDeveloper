@@ -262,8 +262,8 @@ export default {
     }
 
     .skill-container {
-        width: 50px;
-        height: 40px;
+        min-width: 50px;
+        min-height: 40px;
         background-color: #141913;
         border-radius: 5px;
         color: #95f50f;
