@@ -36,6 +36,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link header-link" href="{{($link['url']=='#')?'#':route($link['url'])}}">{{$link['title']}}
                                         
+                                        {{-- sezione notifiche messaggi e recensioni --}}
                                         @if (count(Auth::user()->message) && $link['notifiche'] == 1) 
                                             <span class="badge badge-light">{{count(Auth::user()->message)}}</span>
                                         @endif
