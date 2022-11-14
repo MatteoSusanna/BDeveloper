@@ -270,6 +270,7 @@ export default {
         text-align: center;
         line-height: 40px;
         font-size: 20px;
+        padding: 0 4px 0 4px;
     }
 
     .message-container {

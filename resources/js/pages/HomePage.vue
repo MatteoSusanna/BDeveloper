@@ -153,6 +153,7 @@
         text-align: center;
         line-height: 25px;
         font-size: 15px;
+        padding: 0 4px 0 4px;
     }
 
     .btn-show, .color- {
