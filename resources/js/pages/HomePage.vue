@@ -4,9 +4,9 @@
             <h3 class="mt-2 mr-3">Filtra per specializzazione:</h3>
             <div class="input-group-prepend">
 
-                <button type="button" class="btn btn-outline-dark m-2" :class="(activeButton == 3)? 'color-btn': ''" @click="getAllDeveloper(); activeButton = 3">Tutti</button>
+                <button type="button" class="btn search-btn m-2" :class="(activeButton == 3)? 'color-btn': ''" @click="getAllDeveloper(); activeButton = 3">Tutti</button>
 
-                <button type="button" class="btn btn-outline-dark m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" 
+                <button type="button" class="btn search-btn m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" 
                         @click="filter(specialization.id); activeButton = index" :class="(activeButton == index)?'color-btn':''">
                         {{specialization.name}}
                 </button>
@@ -26,7 +26,7 @@
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
 
-                <div class="card-body">
+                <div class="card-body mb-5">
 
                     <h4 class="card-title">{{developer.name}} {{developer.lastname}}</h4>
                     <h5 class="card-text" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}} Developer</h5>
@@ -36,9 +36,10 @@
                         <p class="skill-container mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
                     </div>
 
-                    <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
+                </div>
 
-                </div>  
+                <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
+
             </div>
         </div>
     </div>
@@ -109,6 +110,16 @@
 
 <style lang="scss">
 
+
+.search-btn {
+    border: 1px solid #141913;
+
+    &:hover {
+    background-color: #141913;
+    color: #95f50f;
+    }
+}
+
 .color-btn{
     background-color: #141913;
     color: #95f50f;
@@ -118,8 +129,9 @@
 
     width: calc(25% - 20px);
     margin: 0 10px 36px 10px;
-    border: 3px solid #141913;
-    background-color: rgba($color: #fff, $alpha: 0);
+    border: 1px solid #141913;
+    background-color: rgba($color: #000000, $alpha: 0);
+    position: relative;
 
     &:hover {
         transform: scale(1.1);
@@ -146,6 +158,10 @@
     .btn-show, .color- {
         background-color: #141913;
         color: #95f50f;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        bottom: 10px;
 
         &:hover {
             background-color: #090908;

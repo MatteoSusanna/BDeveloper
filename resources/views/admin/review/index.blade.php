@@ -6,19 +6,19 @@
 
     <div class="container my-4">
         @if (count($reviews))        
-            <table class="table table-dark">
-                <thead>
+            <table class="my-table">
+                <thead class="t-head">
                     <tr>
-                        <th scope="col">Nome</th>
+                        <th class="pl-3" scope="col">Nome</th>
                         <th scope="col">Cognome</th>
                         <th scope="col">Testo</th>
                         <th scope="col">Voto</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="t-body">
                     @foreach ($reviews as $review)
                         <tr>
-                            <td>{{$review->name}}</td>
+                            <td class="pl-3">{{$review->name}}</td>
                             <td>{{$review->lastname}}</td>
                             <td>{{$review->text}}</td>
                             <td>{{$review->vote}}</td>

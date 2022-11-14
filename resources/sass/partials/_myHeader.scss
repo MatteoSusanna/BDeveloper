@@ -10,6 +10,18 @@
 .header-link {
     color:  #95f50f !important;
     font-size: 20px;
+    margin-right: 20px;
+}
+
+.notification-container {
+    min-width: 20px;
+    min-height: 20px;
+    background-color: #95f50f;
+    border-radius: 5px;
+    color: #141913;
+    text-align: center;
+    line-height: 20px;
+    font-size: 20px;
 }
 
 .logout-dropdown {

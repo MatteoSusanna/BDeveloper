@@ -1,0 +1,17 @@
+.my-table {
+    margin-top: 100px;
+    border: 1px solid #141913;
+    width: 100%;
+
+    .t-head {
+        background-color: #141913;
+        color: #95f50f;
+        padding-top: 30px!important;
+        padding-bottom: 10px!important;
+        font-size: 20px;
+    }
+
+    .t-body {
+        font-size: 18px;
+    }
+}
