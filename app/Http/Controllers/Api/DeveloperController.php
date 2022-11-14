@@ -84,7 +84,7 @@ class DeveloperController extends Controller
     }
 
     public function getDeveloperLogged(){
-        $developer = Auth::user();
+        $developer = Auth::check();
 
         return response()->json([
             'status' => true,
