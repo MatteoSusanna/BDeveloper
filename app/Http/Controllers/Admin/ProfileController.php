@@ -162,9 +162,11 @@ class ProfileController extends Controller
             $cv_path = Storage::put('curriculum', $data['curriculum']);
             $data['curriculum'] = $cv_path;
         }
-
+        
         $developer->update($data);
         $developer->save();
+        
+        $developer->specialization()->sync($data['specializations']);
 
         //gestione competenze
         if(array_key_exists('skills', $data)){

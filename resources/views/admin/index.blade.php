@@ -25,6 +25,7 @@
         @foreach ($specializations as $specialization)
           <h2 class="mt-3">{{ $specialization->name }} Developer</h2>
         @endforeach
+        
 
         <h4 class="mt-5">COMPETENZE</h4>
         <div class="d-flex justify-content-center">
