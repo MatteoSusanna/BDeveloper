@@ -166,6 +166,8 @@ class ProfileController extends Controller
         $developer->update($data);
         $developer->save();
 
+        $developer->specialization()->sync($data['specializations']); 
+
         //gestione competenze
         if(array_key_exists('skills', $data)){
             $developer->skill()->sync($data['skills']);
