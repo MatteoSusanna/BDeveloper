@@ -29,6 +29,8 @@ class ProfileController extends Controller
         $specializations = Specialization::where('id', Auth::user()->id)->get();
         $skills = Skill::all();
 
+        //\Log::info($specializations);
+
         return view('admin.index', compact('developer', 'specializations', 'skills'));
     }
 
@@ -166,9 +168,13 @@ class ProfileController extends Controller
         $developer->update($data);
         $developer->save();
         
-        $developer->specialization()->sync($data['specializations']);
+        //gestione specialization
+        if(array_key_exists('specializations', $data)){
+            $developer->specialization()->sync($data['specializations']);
+        }else{
+            $developer->specialization()->sync([]);
+        }
 
-        $developer->specialization()->sync($data['specializations']); 
 
         //gestione competenze
         if(array_key_exists('skills', $data)){

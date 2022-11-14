@@ -22,7 +22,7 @@
   
         <h1 class="text-capitalize">{{$developer->name}} {{$developer->lastname}}</h1>
   
-        @foreach ($specializations as $specialization)
+        @foreach ($developer->specialization as $specialization)
           <h2 class="mt-3">{{ $specialization->name }} Developer</h2>
         @endforeach
         

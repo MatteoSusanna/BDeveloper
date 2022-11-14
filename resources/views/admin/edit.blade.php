@@ -87,13 +87,26 @@
 
             {{--input specializzazioni--}}
             <div class="mb-3">
-                <label for="specializations" class="form-label">Specializzazioni</label>
+                <div class="d-flex">
+                @foreach ($specializations as $specialization)
+                        @if ($errors->any())
+                            <div class="form-group form-check">
+                                <input {{(in_array($specialization->id, old('specializations', [])))? 'checked': ''}} type="checkbox" class="form-check-input" id="specialization_{{$specialization->id}}" name="specializations[]" value="{{$specialization->id}}">
+                                <label class="form-check-label" for="specialization_{{$specialization->id}}"><strong>{{$specialization->name}}</strong></label>
+                            </div>
+                        @else
+                            <div class="form-group form-check">
+                                <input {{($developer->specialization->contains($specialization))? 'checked': ''}} type="checkbox" class="form-check-input" id="specialization_{{$specialization->id}}" name="specializations[]" value="{{$specialization->id}}">
+                                <label class="form-check-label" for="specialization_{{$specialization->id}}"><strong>{{$specialization->name}}</strong></label>
+                            </div>
+                        @endif
+                @endforeach
 
-                <select name="specializations" id="specializations" class="form-control input @error('specializations')is-invalid @enderror" >
+                {{-- <select name="specializations" id="specializations" class="form-control input @error('specializations')is-invalid @enderror" >
                     @foreach ($specializations as $specialization)
                         <option specialization {{(old('specializations', $developer->specialization_id)==$specialization->id)?'selected':''}} value="{{$specialization->id}}">{{$specialization->name}}</option>
                     @endforeach
-                </select>
+                </select> --}}
 
                 @error('specializations')
                     <div class="invalid-feedback">{{$message}}</div>
