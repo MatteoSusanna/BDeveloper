@@ -1986,17 +1986,18 @@ __webpack_require__.r(__webpack_exports__);
       activeButton: 3,
       spinner: false,
       SelectedSpecializations: '',
-      nomeSpec: ''
+      nomeSpec: '',
+      vote: ''
     };
   },
   methods: {
-    calcolaVoto: function calcolaVoto(voti) {},
     getDeveloper: function getDeveloper() {
       var _this = this;
       this.spinner = true;
       axios.get('/api/developer/', {
         params: {
-          inputText: this.nomeSpec
+          inputText: this.nomeSpec,
+          inputVote: this.vote
         }
       }).then(function (response) {
         _this.spinner = false;
@@ -2025,6 +2026,10 @@ __webpack_require__.r(__webpack_exports__);
     filter: function filter(specialization) {
       this.nomeSpec = specialization;
       this.getDeveloper();
+    },
+    filterVote: function filterVote(n) {
+      this.vote = n;
+      //this.getDeveloper();
     }
   },
   mounted: function mounted() {
@@ -2320,9 +2325,37 @@ var render = function render() {
         }
       }
     }, [_vm._v("\n                    " + _vm._s(specialization.name) + "\n            ")]);
-  })], 2)]), _vm._v(" "), _vm.spinner ? _c("div", {
+  })], 2), _vm._v(" "), _c("h3", {
+    staticClass: "mt-2 mr-3"
+  }, [_vm._v("Filtra per voto:")]), _vm._v(" "), _c("div", {
+    staticClass: "input-group-prepend"
+  }, [_c("select", {
+    staticClass: "custom-select",
+    attrs: {
+      id: "inputGroupSelect03"
+    }
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Seleziona voto")]), _vm._v(" "), _vm._l(5, function (n) {
+    return _c("option", {
+      key: n,
+      domProps: {
+        value: n
+      },
+      on: {
+        click: function click($event) {
+          return _vm.filterVote(n);
+        }
+      }
+    }, [_vm._v(_vm._s(n))]);
+  })], 2)]), _vm._v(" "), _c("h3", {
+    staticClass: "mt-2 mr-3"
+  }, [_vm._v("Numero recensioni:")]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm.spinner ? _c("div", {
     staticClass: "d-flex justify-content-center"
-  }, [_vm._m(0)]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_vm._m(1)]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "d-flex flex-wrap"
   }, _vm._l(_vm.developers, function (developer, index) {
     return _c("div", {
@@ -2370,6 +2403,38 @@ var render = function render() {
   }), 0)]);
 };
 var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "input-group-prepend"
+  }, [_c("select", {
+    staticClass: "custom-select",
+    attrs: {
+      id: "inputGroupSelect04"
+    }
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Selezione per numero recensioni")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "5"
+    }
+  }, [_vm._v("Maggiore di 5")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "20"
+    }
+  }, [_vm._v("Maggiore di 20")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "50"
+    }
+  }, [_vm._v("Maggiore di 50")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "100"
+    }
+  }, [_vm._v("Maggiore di 100")])])]);
+}, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -19731,7 +19796,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/francescosangalli/Documents/Boolean/BDeveloper/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\INTEL\Desktop\BDeveloper\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
