@@ -21,8 +21,7 @@ class DeveloperController extends Controller
             $developers = User::with(['skill', 'specialization', 'review'])->whereHas('specialization', function ($q){
                 $data = request()->all();
                 $q->where('specialization_id', $data['inputText']);
-            })->get();
-                        
+            })->get();       
         }
         
         //passaggio cover
