@@ -12,6 +12,28 @@
                 </button>
                 
             </div>
+
+            <h3 class="mt-2 mr-3">Filtra per voto:</h3>
+
+            <div class="input-group-prepend">
+                <select class="custom-select" id="inputGroupSelect03">
+                    <option selected disabled>Seleziona voto</option>
+                    <option v-for="n in 5" :key="n" :value="n" @click="filterVote(n)">{{n}}</option>
+                </select>
+            </div>
+
+            <h3 class="mt-2 mr-3">Numero recensioni:</h3>
+            
+            <div class="input-group-prepend">
+                <select class="custom-select" id="inputGroupSelect04">
+                    <option selected disabled>Selezione per numero recensioni</option>
+                    <option value="5">Maggiore di 5</option>
+                    <option value="20">Maggiore di 20</option>
+                    <option value="50">Maggiore di 50</option>
+                    <option value="100">Maggiore di 100</option>
+                </select>
+            </div>
+
         </div>
         <!--Spinner di caricamento post-->
         <div class="d-flex justify-content-center" v-if="spinner">
@@ -57,17 +79,16 @@
             spinner: false,
             SelectedSpecializations: '',
             nomeSpec: '',
+            vote: '',
             }
         },
         methods:{
-            calcolaVoto(voti){
-                
-            },
             getDeveloper(){
                 this.spinner = true;
                 axios.get('/api/developer/', {
                     params:{
                         inputText: this.nomeSpec,
+                        inputVote: this.vote,
                     }
                 })
                 .then((response) =>{
@@ -98,6 +119,10 @@
                 this.nomeSpec = specialization;
                 this.getDeveloper();                
             },
+            filterVote(n){
+                this.vote = n
+                //this.getDeveloper();
+            }
         },
         mounted(){
             this.getDeveloper();
