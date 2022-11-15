@@ -10937,16 +10937,12 @@ body .my-container h1,
 body .my-container h2,
 body .my-container h3 {
   font-weight: 800;
+  color: #141913;
 }
 
 body .my-container .data-container {
-  background-color: #6ed433;
-}
-
-body .my-container h1,
-body .my-container h2,
-body .my-container h3 {
-  color: #141913;
+  background: rgb(45, 181, 124);
+  background-image: linear-gradient(50deg, rgb(45, 181, 124) 0%, rgb(149, 245, 15) 13%, rgb(31, 208, 43) 91%, rgb(56, 192, 113) 100%);
 }
 
 body .my-container h5,
@@ -10966,15 +10962,15 @@ body .my-container .cover-container {
   overflow: hidden;
 }
 
-body .my-container .skill-container {
-  min-width: 40px;
-  min-height: 25px;
+body .my-container .box {
+  min-width: 80px;
+  height: 35px;
   background-color: #141913;
   border-radius: 5px;
   color: #95f50f;
   text-align: center;
-  line-height: 25px;
-  font-size: 15px;
+  line-height: 35px;
+  font-size: 20px;
   padding: 0 4px 0 4px;
 }
 
@@ -11010,7 +11006,7 @@ body .my-container .delete-btn:hover {
 .edit {
   border: 2px solid #141913;
   border-radius: 10px;
-  padding: 20px;
+  padding: 60px;
 }
 
 .edit .cover-container,
@@ -11018,8 +11014,6 @@ body .my-container .delete-btn:hover {
   width: 150px;
   height: 150px;
   overflow: hidden;
-  display: block;
-  margin: 0 auto;
 }
 
 .edit label,
@@ -11032,12 +11026,56 @@ body .my-container .delete-btn:hover {
   text-transform: capitalize;
 }
 
-.edit .skills-container {
-  padding-left: 77px;
+.edit .cat {
+  margin: 4px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 5px;
+  border: 1px solid #141913;
+  overflow: hidden;
+  float: left;
+  height: 50px;
+  width: 96px;
 }
 
-.edit .skills {
-  margin-right: 20px;
+.edit .cat label {
+  float: left;
+  line-height: 30px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.edit .cat label span {
+  text-align: center;
+  padding: 10px;
+  display: block;
+}
+
+.edit .cat label input {
+  position: absolute;
+  display: none;
+  color: #fff !important;
+}
+
+.edit .cat label input + span {
+  color: #141913;
+}
+
+.edit .cat input:checked + span {
+  color: #95f50f;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+.edit .cat input:checked + span {
+  background-color: #141913;
+}
+
+.edit .check-container {
+  padding-left: 10px;
+  border: #141913 solid 2px;
+  border-radius: 5px;
+  padding: 20px;
+  width: 40%;
 }
 
 .edit .my-btn {
@@ -11086,6 +11124,7 @@ body .my-container .delete-btn:hover {
 
 .logout-link {
   color: #141913;
+  text-transform: capitalize;
 }
 
 .logout-link:hover {
@@ -11175,6 +11214,14 @@ body .my-container .delete-btn:hover {
   font-size: 18px;
 }
 
+.no-message {
+  margin-top: 200px;
+  background-color: #141913;
+  color: #95f50f;
+  height: 60px;
+  line-height: 60px;
+}
+
 .my-table {
   margin-top: 100px;
   border: 1px solid #141913;
@@ -11191,6 +11238,14 @@ body .my-container .delete-btn:hover {
 
 .my-table .t-body {
   font-size: 18px;
+}
+
+.no-message {
+  margin-top: 200px;
+  background-color: #141913;
+  color: #95f50f;
+  height: 60px;
+  line-height: 60px;
 }
 
 body {

@@ -38,13 +38,9 @@
             </table>
         @else
             {{-- in caso non ci sono messaggi --}}
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Al momento non ci sono messaggi!!</th>
-                    </tr>
-                </thead>
-            </table>
+            <h2 class="text-center no-message">
+                Al momento non ci sono messaggi
+            </h2>
         @endif
     </div>
 
