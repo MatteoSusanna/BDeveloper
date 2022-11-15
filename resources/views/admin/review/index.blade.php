@@ -29,13 +29,9 @@
             </table>
         @else
             {{-- in caso non ci sono recensioni --}}
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Al momento non ci sono recensioni!!</th>
-                    </tr>
-                </thead>
-            </table>
+            <h2 class="text-center no-message">
+                Al momento non ci sono recensioni
+            </h2>
         @endif
     </div>
 

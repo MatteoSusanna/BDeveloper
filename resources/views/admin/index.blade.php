@@ -21,24 +21,28 @@
       <div class="text-center">
   
         <h1 class="text-capitalize">{{$developer->name}} {{$developer->lastname}}</h1>
-  
-        @foreach ($developer->specialization as $specialization)
-          <h2 class="mt-3">{{ $specialization->name }} Developer</h2>
-        @endforeach
-        
 
-        <h4 class="mt-5">COMPETENZE</h4>
-        <div class="d-flex justify-content-center">
-          @foreach ($developer->skill as $skill)
-            <h5 class="mt-2 mr-3 skill-container">{{ $skill->name }}</h5>
+        <h4 class="mt-5">SPECIALIZZAZIONI:</h4>
+        <div class="d-flex flex-wrap justify-content-center">
+          @foreach ($developer->specialization as $specialization)
+            <h4 class="mt-3 mr-3 box">{{ $specialization->name }}</h4>
           @endforeach
         </div>
+        
+
+        <h4 class="mt-5">COMPETENZE:</h4>
+        <div class="d-flex flex-wrap justify-content-center">
+          @foreach ($developer->skill as $skill)
+            <h5 class="mt-2 mr-3 box">{{ $skill->name }}</h5>
+          @endforeach
+        </div>
+
 
       </div>
   
     </div>
   
-    <div class="p-5">
+    <div class="p-5 align-self-center">
 
       <h4>C.V.</h4>
       <div class="cv-container d-flex flex-wrap align-items-center">
@@ -56,17 +60,17 @@
   
       <div>
   
-        <h4>TELEFONO</h4>
+        <h4 class="mt-3">TELEFONO</h4>
         @if ($developer->phone)
           <h5>{{ $developer->phone }}</h5>
         @else
           <h5> - </h5>
         @endif
         
-        <h4>INDIRIZZO</h4>
+        <h4 class="mt-3">INDIRIZZO</h4>
         <h5 class="text-capitalize">{{$developer->address}}</h5>
 
-        <h4>PAGA ORARIA</h4>
+        <h4 class="mt-3">PAGA ORARIA</h4>
         @if ($developer->hourly_wage)
           <h5>€ {{ $developer->hourly_wage }}</h5>
         @else

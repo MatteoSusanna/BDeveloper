@@ -29,11 +29,15 @@
                 <div class="card-body mb-5">
 
                     <h4 class="card-title">{{developer.name}} {{developer.lastname}}</h4>
-                    <h5 class="card-text" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}} Developer</h5>
-    
-                    <h5>Skills:</h5>
+
+                    <h4>Specializzazioni:</h4>
                     <div class="d-flex flex-wrap">
-                        <p class="skill-container mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</p>
+                        <h4 class="box mr-2" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}}</h4>
+                    </div>
+    
+                    <h5 class="mt-3">Skills:</h5>
+                    <div class="d-flex flex-wrap">
+                        <h5 class="box mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</h5>
                     </div>
 
                 </div>
@@ -144,7 +148,7 @@
         overflow: hidden;
     }
 
-    .skill-container {
+    .box {
         min-width: 40px;
         min-height: 25px;
         background-color: #141913;

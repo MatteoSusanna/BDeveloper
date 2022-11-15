@@ -8,16 +8,14 @@ body {
 
         h1, h2, h3 {
             font-weight: 800;
+            color: #141913;
         }
 
         .data-container {
-            background-color: #6ed433;
+            background: rgb(45,181,124);
+            background-image: linear-gradient(50deg, rgba(45,181,124,1) 0%, rgba(149,245,15,1) 13%, rgba(31,208,43,1) 91%, rgba(56,192,113,1) 100%);
         }
 
-        h1, h2, h3 {
-            color: #141913;
-        }
-    
         h5, h6 {
             color: #606060;
         }
@@ -32,15 +30,15 @@ body {
             overflow: hidden
         }
 
-        .skill-container {
-            min-width: 40px;
-            min-height: 25px;
+        .box {
+            min-width: 80px;
+            height: 35px;
             background-color: #141913;
             border-radius: 5px;
             color: #95f50f;
             text-align: center;
-            line-height: 25px;
-            font-size: 15px;
+            line-height: 35px;
+            font-size: 20px;
             padding: 0 4px 0 4px;
         }
 
