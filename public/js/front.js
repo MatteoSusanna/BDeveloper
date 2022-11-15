@@ -1987,7 +1987,11 @@ __webpack_require__.r(__webpack_exports__);
       spinner: false,
       SelectedSpecializations: '',
       nomeSpec: '',
-      vote: ''
+      numRecFilter: [5, 20, 50, 100],
+      selectNum: null,
+      lunghezzaPiv: null,
+      numeroEguale: null,
+      somma: null
     };
   },
   methods: {
@@ -1996,18 +2000,17 @@ __webpack_require__.r(__webpack_exports__);
       this.spinner = true;
       axios.get('/api/developer/', {
         params: {
-          inputText: this.nomeSpec,
-          inputVote: this.vote
+          inputText: this.nomeSpec
         }
       }).then(function (response) {
         _this.spinner = false;
         _this.developers = response.data.results;
-        console.log(response.data);
       });
     },
     getAllDeveloper: function getAllDeveloper() {
       var _this2 = this;
       this.spinner = true;
+      this.selectNum = '';
       axios.get('/api/developer/', {
         params: {
           inputText: ''
@@ -2028,8 +2031,20 @@ __webpack_require__.r(__webpack_exports__);
       this.getDeveloper();
     },
     filterVote: function filterVote(n) {
-      this.vote = n;
-      //this.getDeveloper();
+      console.log(n);
+      this.numeroEguale = n;
+    },
+    calcolaMedia: function calcolaMedia(review) {
+      var somma = 0;
+      review.forEach(function (vote) {
+        somma += vote;
+        media = somma / review.length;
+        return Math.ceil(media);
+      });
+      //somma += rew.vote 
+    },
+    filterNum: function filterNum(numero) {
+      this.selectNum = numero;
     }
   },
   mounted: function mounted() {
@@ -2329,38 +2344,47 @@ var render = function render() {
     staticClass: "mt-2 mr-3"
   }, [_vm._v("Filtra per voto:")]), _vm._v(" "), _c("div", {
     staticClass: "input-group-prepend"
-  }, [_c("select", {
-    staticClass: "custom-select",
-    attrs: {
-      id: "inputGroupSelect03"
-    }
-  }, [_c("option", {
-    attrs: {
-      selected: "",
-      disabled: ""
-    }
-  }, [_vm._v("Seleziona voto")]), _vm._v(" "), _vm._l(5, function (n) {
-    return _c("option", {
+  }, _vm._l(5, function (n) {
+    return _c("button", {
       key: n,
-      domProps: {
-        value: n
+      staticClass: "btn search-btn m-2",
+      attrs: {
+        type: "button"
       },
       on: {
         click: function click($event) {
           return _vm.filterVote(n);
         }
       }
-    }, [_vm._v(_vm._s(n))]);
-  })], 2)]), _vm._v(" "), _c("h3", {
+    }, [_vm._v("\n                " + _vm._s(n) + "\n            ")]);
+  }), 0), _vm._v(" "), _c("h3", {
     staticClass: "mt-2 mr-3"
-  }, [_vm._v("Numero recensioni:")]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm.spinner ? _c("div", {
+  }, [_vm._v("Numero recensioni:")]), _vm._v(" "), _c("div", {
+    staticClass: "input-group-prepend"
+  }, _vm._l(_vm.numRecFilter, function (numero, index) {
+    return _c("button", {
+      key: index,
+      staticClass: "btn search-btn m-2",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.filterNum(numero);
+        }
+      }
+    }, [_vm._v("\n                Maggiore di " + _vm._s(numero) + "\n            ")]);
+  }), 0)]), _vm._v(" "), _vm.spinner ? _c("div", {
     staticClass: "d-flex justify-content-center"
-  }, [_vm._m(1)]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_vm._m(0)]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "d-flex flex-wrap"
   }, _vm._l(_vm.developers, function (developer, index) {
     return _c("div", {
       key: index,
-      staticClass: "p-3 card profile-card"
+      staticClass: "p-3 card profile-card",
+      "class": {
+        "d-none": developer.review.length < _vm.selectNum
+      }
     }, [_c("div", {
       staticClass: "m-auto img-container rounded-circle"
     }, [_c("img", {
@@ -2403,38 +2427,6 @@ var render = function render() {
   }), 0)]);
 };
 var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "input-group-prepend"
-  }, [_c("select", {
-    staticClass: "custom-select",
-    attrs: {
-      id: "inputGroupSelect04"
-    }
-  }, [_c("option", {
-    attrs: {
-      selected: "",
-      disabled: ""
-    }
-  }, [_vm._v("Selezione per numero recensioni")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "5"
-    }
-  }, [_vm._v("Maggiore di 5")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "20"
-    }
-  }, [_vm._v("Maggiore di 20")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "50"
-    }
-  }, [_vm._v("Maggiore di 50")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "100"
-    }
-  }, [_vm._v("Maggiore di 100")])])]);
-}, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -2940,7 +2932,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".search-btn {\n  border: 1px solid #141913;\n}\n.search-btn:hover {\n  background-color: #141913;\n  color: #95f50f;\n}\n.color-btn {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n  background-color: rgba(0, 0, 0, 0);\n  position: relative;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .box {\n  min-width: 40px;\n  min-height: 25px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 25px;\n  font-size: 15px;\n  padding: 0 4px 0 4px;\n}\n.profile-card .btn-show, .profile-card .color- {\n  background-color: #141913;\n  color: #95f50f;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  bottom: 10px;\n}\n.profile-card .btn-show:hover, .profile-card .color-:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
+exports.push([module.i, ".d-block {\n  display: block;\n}\n.d-none {\n  display: none;\n}\n.search-btn {\n  border: 1px solid #141913;\n}\n.search-btn:hover {\n  background-color: #141913;\n  color: #95f50f;\n}\n.color-btn {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n  background-color: rgba(0, 0, 0, 0);\n  position: relative;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .box {\n  min-width: 40px;\n  min-height: 25px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 25px;\n  font-size: 15px;\n  padding: 0 4px 0 4px;\n}\n.profile-card .btn-show, .profile-card .color- {\n  background-color: #141913;\n  color: #95f50f;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  bottom: 10px;\n}\n.profile-card .btn-show:hover, .profile-card .color-:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
 
 // exports
 
