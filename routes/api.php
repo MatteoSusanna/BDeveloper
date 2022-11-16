@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/developer', function (Request $request) {
     return $request->user();
-}); */
+});
 
 //sviluppatori
 Route::get('developer', 'Api\DeveloperController@index');
@@ -27,9 +27,12 @@ Route::get('specializations', 'Api\SpecializationController@index');
 //singolo sviluppatore
 Route::get('developer/{slug}', 'Api\DeveloperController@show');
 
+
 //messaggio
 Route::post('message', 'Api\MessageController@store');
 
 //recensione
 Route::post('review', 'Api\ReviewController@store');
+
+
 

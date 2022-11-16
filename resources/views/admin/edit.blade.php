@@ -70,7 +70,7 @@
                     <input type="text" class="form-control input @error('name')is-invalid @enderror" id="name" name="name" value="{{old('name', $developer->name)}}" required>
         
                     @error('name')
-                            <div class="invalid-feedback">{{$message}}</div>
+                        <div class="invalid-feedback">{{$message}}</div>
                     @enderror
                 </div>
         
@@ -142,7 +142,7 @@
                         @endif
                     @endforeach
     
-                    @error('specializations')
+                    @error('specialization')
                         <div class="invalid-feedback">{{$message}}</div>
                     @enderror
                 </div>

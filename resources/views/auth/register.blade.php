@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -92,7 +93,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" minlength="8" required autocomplete="new-password" >
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -106,13 +107,19 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" >
+
+                                @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-registration">
+                                <button type="submit" class="btn btn-registration" onclick="return Validate()">
                                     {{ __('Registrati') }}
                                 </button>
                             </div>
@@ -122,5 +129,19 @@
             </div>
         </div>
     </div>
+    <script>
+        function Validate() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("password-confirm").value;
+            if (password != confirmPassword) {
+                alert("Passwords do not match!");
+                document.getElementById("password").classList.add("border-danger");
+                document.getElementById("password-confirm").classList.add("border-danger");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </div>
+
 @endsection

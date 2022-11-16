@@ -43,7 +43,7 @@ class DeveloperController extends Controller
 
         $avgVote = Review::groupBy('user_id')->sum('vote');
         
-        \Log::info($avgVote);
+        // \Log::info($avgVote);
 
         return response()->json([
             'status' => true,
@@ -55,7 +55,7 @@ class DeveloperController extends Controller
     public function show($slug){
 
         $developer = User::where('slug', $slug)->with(['skill', 'specialization'])->firstOrFail();
-
+        
         //passaggio cover
         
             if($developer->cover){
@@ -71,23 +71,14 @@ class DeveloperController extends Controller
             } else{
                 $developer->curriculum = asset('img/no-file.png');
             }
-        
 
         return response()->json([
             'status' => true,
-            'result' => $developer
+            'result' => $developer,
         ]);
-
-
 
     }
 
-    public function getDeveloperLogged(){
-        $developer = Auth::check();
-
-        return response()->json([
-            'status' => true,
-            'result' => $developer
-        ]);
-    }
 }
+
+

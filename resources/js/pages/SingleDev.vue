@@ -37,7 +37,9 @@
                     <!-- Contenuto nome -->
                     <div class="form-group">
                         <label for="nome">Nome</label>
-                        <input type="text" class="form-control input input-text" :class="(errors.name)?'is-invalid':''" id="nome" v-model="name" required placeholder="Scrivi il tuo nome">
+
+                        <input v-if="!authUser" type="text" class="form-control input input-text" :class="(errors.name)?'is-invalid':''" id="nome" v-model="name" required placeholder="Scrivi il tuo nome">
+                        <input v-else type="text" class="form-control input input-text" :class="(errors.name)?'is-invalid':''" id="nome" v-model="authUser.name" required placeholder="Scrivi il tuo nome">
 
                         <div class="invalid-feedback" v-for="(error, index) in errors.name" :key="index">
                             {{error}}
@@ -47,7 +49,9 @@
                     <!-- Contenuto cognome -->
                     <div class="form-group">
                         <label for="cognome">Cognome</label>
-                        <input type="text" class="form-control input input-text" :class="(errors.lastname)?'is-invalid':''" id="cognome" v-model="lastname" required placeholder="Scrivi il tuo cognome">
+                        
+                        <input v-if="!authUser" type="text" class="form-control input input-text" :class="(errors.lastname)?'is-invalid':''" id="cognome" v-model="lastname" required placeholder="Scrivi il tuo cognome">
+                        <input v-else type="text" class="form-control input input-text" :class="(errors.lastname)?'is-invalid':''" id="cognome" v-model="authUser.lastname" required placeholder="Scrivi il tuo cognome">
 
                         <div class="invalid-feedback" v-for="(error, index) in errors.lastname" :key="index">
                             {{error}}
@@ -57,7 +61,9 @@
                     <!-- Contenuto email -->
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control input" :class="(errors.email)?'is-invalid':''" id="email" v-model="email" required placeholder="Scrivi la tua email">
+                        
+                        <input v-if="!authUser" type="email" class="form-control input" :class="(errors.email)?'is-invalid':''" id="email" v-model="email" required placeholder="Scrivi la tua email">
+                        <input v-else type="email" class="form-control input" :class="(errors.email)?'is-invalid':''" id="email" v-model="authUser.email" required placeholder="Scrivi la tua email">
 
                         <div class="invalid-feedback" v-for="(error, index) in errors.email" :key="index">
                             {{error}}
@@ -184,6 +190,7 @@ export default {
             statusReview: false,
             disabledButton: false,
             disabledButtonRew: false,
+            authUser: window.authUser
         }
     },
     methods:{
@@ -244,7 +251,8 @@ export default {
             axios.get('/api/developer/' + slug)
             .then(res =>{
                 this.developer = res.data.result
-                this.idDev = res.data.result.id             
+                this.idDev = res.data.result.id
+                console.log(res.data.result)            
             })
 
     }
