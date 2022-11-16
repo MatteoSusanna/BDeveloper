@@ -144,7 +144,7 @@
                     </div>
                 </div>
 
-                <!-- Bottone invio recensione -->
+                <!-- Bottone invio  -->
                 <button class="btn btn-primary my-3" type="button" disabled v-if="(disabledButtonRew)">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Invio
