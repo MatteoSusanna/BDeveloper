@@ -19,19 +19,14 @@
                         <h4> Tel: {{developer.phone}}</h4>
                         <h4>Indirizzo: {{developer.address}}</h4>
                     </div>
-                    
-                </div>  
+
+                </div>
             </div>
 
 
 
-            <div class="message-container p-5">
+            <div class="message-container p-5 text-center">
                 <h2>Contattami</h2>
-                <!-- In caso messaggio inviato con successo -->
-                <div class="alert alert-success" role="alert" v-if="statusMessage">
-                    Messaggio inviato con successo!
-                </div>
-
                 <!-- form invio messaggio sviluppatore -->
                 <form @submit.prevent="sendMessage()">
                     <!-- Contenuto nome -->
@@ -79,24 +74,24 @@
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Invio
                     </button>
-                    
+
                     <button v-else type="submit" class="btn btn-single-dev my-3">Invia messaggio</button>
+
+                    <!-- In caso messaggio inviato con successo -->
+                    <div class="alert alert-success my_alert" role="alert" v-if="statusMessage">
+                        <i class="fa-solid fa-circle-check"></i> <h4>Messaggio inviato con successo!</h4>
+                    </div>
                 </form>
             </div>
 
         </div>
 
 
-        <div class="review-container p-5 mb-5">
+        <div class="review-container p-5 mb-5 text-center">
             <h2 class="mb-5">Lascia una recensione</h2>
-            <!-- In caso recensione inviata con successo -->
-            <div class="alert alert-success" role="alert" v-if="statusReview">
-                Recensione inviata con successo!
-            </div>
-
             <!-- form invio recensione sviluppatore -->
             <form @submit.prevent="sendReview()">
-                
+
                 <div class="d-flex">
                     <!-- Contenuto nome -->
                     <div class="form-group mr-5">
@@ -151,8 +146,13 @@
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Invio
                 </button>
-                
+
                 <button v-else type="submit" class="btn btn-single-dev my-3">Invia Recensione</button>
+
+                 <!-- In caso recensione inviata con successo -->
+                <div class="alert alert-success my_alert" role="alert" v-if="statusReview">
+                    <i class="fa-solid fa-circle-check"></i> <h3>Recensione inviata con successo!</h3>
+                </div>
             </form>
         </div>
         <div class="d-flex justify-content-center">
@@ -210,7 +210,7 @@ export default {
                         this.errors = res.data.error;
                     }
 
-                });                
+                });
         },
         //invia recensione
         sendReview(){
@@ -235,16 +235,16 @@ export default {
                         this.errors = res.data.error;
                     }
 
-                });                
+                });
         }
     },
     mounted(){
         let slug = this.$route.params.slug;
-            
+
             axios.get('/api/developer/' + slug)
             .then(res =>{
                 this.developer = res.data.result
-                this.idDev = res.data.result.id             
+                this.idDev = res.data.result.id
             })
 
     }
@@ -278,6 +278,19 @@ export default {
         border-radius: 10px;
         padding-top: 40px;
         padding-bottom: 40px;
+
+        .my_alert {
+            width:100%;
+            margin:10px auto;
+            padding:15px;
+            border-radius:5px;
+            background-color: #a8f0c6;
+            border-left:5px solid green;
+
+            .fa-solid {
+                font-size: 18px;
+            }
+        }
     }
 
     .btn-single-dev {
@@ -309,8 +322,20 @@ export default {
         margin-top: 60px;
         border: 2px solid #141913;
         border-radius: 10px;
-    }
 
+        .my_alert {
+            width:100%;
+            margin:10px auto;
+            padding:15px;
+            border-radius:5px;
+            background-color: #a8f0c6;
+            border-left:5px solid green;
+
+            .fa-solid {
+                font-size: 18px;
+            }
+        }
+    }
 }
 
 

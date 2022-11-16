@@ -8,8 +8,8 @@
 
       <div class="d-flex align-items-center">
         <div v-if="!developer">
-          <a class="p-3 link" href="/login">Login</a>
-          <a class="p-3 link" href="/register">Registrati</a>
+            <a class="p-3 link" href="/login">Login</a>
+            <a class="p-3 link" href="/register">Registrati</a>
         </div>
         <div v-else>
           <a class="p-3" href="/admin"><i class="fs-5 fas fa-user"></i></a>
@@ -36,7 +36,7 @@ export default {
   //     axios.get('/api/developer/').then((response) =>{
   //       this.developer = response.data.results
   //       console.log(response.data);
-  //     })  
+  //     })
   //   }
   // },
   mounted(){
@@ -44,7 +44,7 @@ export default {
     axios.get('/api/developer/').then((response) =>{
         this.developer = response.data
         console.log(response.data);
-      }) 
+      })
   }
 };
 </script>
@@ -58,5 +58,6 @@ export default {
       color: #95f50f;
       font-size: 20px;
     }
-  }
+
+}
 </style>

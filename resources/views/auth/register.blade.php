@@ -50,13 +50,13 @@
                                             <option value="{{$specialization->id}}">{{$specialization->name}}</option>
                                         @endforeach
                                     </select>
-                                
+
                                     @error('specializations')
                                         <div class="invalid-feedback">{{$message}}</div>
                                     @enderror
                                 </div>
                         </div>
-                        
+
 
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}</label>
