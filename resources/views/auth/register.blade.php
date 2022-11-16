@@ -94,6 +94,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" minlength="8" required autocomplete="new-password" >
+                                <div id="alert" class="text-center" role="alert"></div>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -134,7 +135,9 @@
             var password = document.getElementById("password").value;
             var confirmPassword = document.getElementById("password-confirm").value;
             if (password != confirmPassword) {
-                alert("Passwords do not match!");
+                
+                document.getElementById("alert").classList.add('alert-danger');
+                document.getElementById("alert").innerHTML = "Le passwords non corrispondono";
                 document.getElementById("password").classList.add("border-danger");
                 document.getElementById("password-confirm").classList.add("border-danger");
                 return false;
