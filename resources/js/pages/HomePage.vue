@@ -44,7 +44,7 @@
 
         <div class="d-flex flex-wrap" >
             <!-- card sviluppatori -->
-            <div class="p-3 card profile-card" v-for="(developer, index) in developers" :key="index" :class="{'d-none': (developer.review.length < selectNum), 'd-none': (numeroEguale !== media[index] )}">
+            <div class="p-3 card profile-card" v-for="(developer, index) in developers" :key="index" :class="{'d-none': (numeroEguale !== media ), 'd-none': (developer.review.length < selectNum) }">
                 <div class="m-auto img-container rounded-circle">
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
@@ -91,6 +91,7 @@
             numeroEguale: null,
             somma: null,
             media: null,
+            avg: []
             }
         },
         methods:{
@@ -105,9 +106,11 @@
                     this.spinner = false;
                     this.developers = response.data.results
                     this.media = response.data.avg;
-                    console.log(this.media[1]);
+                    console.log(this.media);
+                    
                 })  
             },
+
             getAllDeveloper(){
                 this.spinner = true;
                 this.selectNum = '';
@@ -134,10 +137,6 @@
             filterNum(numero){
                 this.selectNum = numero;
             },
-
-
-
-
             filterVote(n){
                 console.log(n)
                 this.numeroEguale = n
@@ -151,16 +150,23 @@
                 });
                 //somma += rew.vote 
             },
-
-
             
         },
         mounted(){
             this.getDeveloper();
             this.getSpecializations();
+        },
+        computed: {
+            getAvg() {
+                this.media.forEach((e) => {
+                    if (this.numeroEguale == e.average) {
+                        this.avg.push(e.user_id);
+                        console.log(this.avg);
+                    }
+                })
+                return this.avg;
+            }
         }
-        
-                
     }
 </script>
 
