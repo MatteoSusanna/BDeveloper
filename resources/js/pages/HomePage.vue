@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-center align-items-center mt-4 mb-5">
             <h3 class="mt-2 mr-3">Filtra per specializzazione:</h3>
             <div class="input-group-prepend">
-
+                <!-- filtraggio specializzazioni -->
                 <button type="button" class="btn search-btn m-2" :class="(activeButton == 3)? 'color-btn': ''" @click="getAllDeveloper(); activeButton = 3">Tutti</button>
 
                 <button type="button" class="btn search-btn m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" 
@@ -14,24 +14,24 @@
             </div>
 
             <h3 class="mt-2 mr-3">Filtra per voto:</h3>
-
+            <!-- filtraggio per media voto -->
             <div class="input-group-prepend">
-                <select class="custom-select" id="inputGroupSelect03">
-                    <option selected disabled>Seleziona voto</option>
-                    <option v-for="n in 5" :key="n" :value="n" @click="filterVote(n)">{{n}}</option>
-                </select>
+
+                <button type="button" class="btn search-btn m-2" v-for="n in 5" :key="n" 
+                    @click="filterVote(n)">
+                    {{n}}
+                </button>
+
             </div>
 
             <h3 class="mt-2 mr-3">Numero recensioni:</h3>
-            
+            <!-- filtraggio numero recensioni -->            
             <div class="input-group-prepend">
-                <select class="custom-select" id="inputGroupSelect04">
-                    <option selected disabled>Selezione per numero recensioni</option>
-                    <option value="5">Maggiore di 5</option>
-                    <option value="20">Maggiore di 20</option>
-                    <option value="50">Maggiore di 50</option>
-                    <option value="100">Maggiore di 100</option>
-                </select>
+
+                <button type="button" class="btn search-btn m-2" v-for="(numero, index) in numRecFilter" :key="index" 
+                    @click="filterNum(numero)">
+                    Maggiore di {{numero}}
+                </button>
             </div>
 
         </div>
@@ -42,8 +42,9 @@
             </div>
         </div>
 
-        <div class="d-flex flex-wrap">
-            <div class="p-3 card profile-card" v-for="(developer, index) in developers" :key="index">
+        <div class="d-flex flex-wrap" >
+            <!-- card sviluppatori -->
+            <div class="p-3 card profile-card" v-for="(developer, index) in developers" :key="index" :class="{'d-none': (developer.review.length < selectNum)}">
                 <div class="m-auto img-container rounded-circle">
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
@@ -68,6 +69,7 @@
 
             </div>
         </div>
+        
     </div>
 
 </template>
@@ -83,7 +85,11 @@
             spinner: false,
             SelectedSpecializations: '',
             nomeSpec: '',
-            vote: '',
+            numRecFilter: [5, 20, 50, 100],
+            selectNum: null,
+            lunghezzaPiv: null,
+            numeroEguale: null,
+            somma: null,
             }
         },
         methods:{
@@ -92,17 +98,17 @@
                 axios.get('/api/developer/', {
                     params:{
                         inputText: this.nomeSpec,
-                        inputVote: this.vote,
                     }
                 })
                 .then((response) =>{
                     this.spinner = false;
                     this.developers = response.data.results
-                    console.log(response.data)
+                    console.log(response.data);
                 })  
             },
             getAllDeveloper(){
                 this.spinner = true;
+                this.selectNum = '';
                 axios.get('/api/developer/', {
                     params:{
                         inputText: '',
@@ -123,10 +129,29 @@
                 this.nomeSpec = specialization;
                 this.getDeveloper();                
             },
+            filterNum(numero){
+                this.selectNum = numero;
+            },
+
+
+
+
             filterVote(n){
-                this.vote = n
-                //this.getDeveloper();
-            }
+                console.log(n)
+                this.numeroEguale = n
+            },
+            calcolaMedia(review){
+                let somma = 0;
+                review.forEach(vote => {
+                    somma += vote;
+                    media = somma / review.length;
+                    return Math.ceil(media);
+                });
+                //somma += rew.vote 
+            },
+
+
+            
         },
         mounted(){
             this.getDeveloper();
@@ -138,6 +163,13 @@
 </script>
 
 <style lang="scss">
+.d-block{
+    display: block;
+}
+
+.d-none{
+    display: none;
+}
 
 
 .search-btn {

@@ -15,13 +15,19 @@ class DeveloperController extends Controller
 
         $data = request()->all();
 
+        \Log::info($data);
+
         if($data['inputText'] == ''){
+
             $developers = User::with(['skill', 'specialization', 'review'])->get();
+
         }else{
+
             $developers = User::with(['skill', 'specialization', 'review'])->whereHas('specialization', function ($q){
                 $data = request()->all();
                 $q->where('specialization_id', $data['inputText']);
-            })->get();       
+            })->get();      
+
         }
         
         //passaggio cover
@@ -41,9 +47,10 @@ class DeveloperController extends Controller
             } 
         }
 
-        $avgVote = Review::groupBy('user_id')->sum('vote');
         
-        // \Log::info($avgVote);
+        //$avgVote = Review::groupBy('user_id')->sum('vote');
+        
+        \Log::info($avgVote);
 
         return response()->json([
             'status' => true,
