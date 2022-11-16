@@ -1,29 +1,29 @@
 <template>
-  <div class="container-fluid my_header mb-3">
+    <div class="container-fluid my_header mb-3">
 
-    <div class="container d-flex justify-content-between align-items-center">
-      <a href="/">
-        <img src="/img/logo.jpeg" class="img-fluid w-25">
-      </a>
+        <div class="container d-flex justify-content-between align-items-center">
+        <a href="/">
+            <img src="/img/logo.jpeg" class="img-fluid w-25">
+        </a>
 
-      <div class="d-flex align-items-center">
-        <div v-if="!authUser">
-          <a class="p-3 link" href="/login">Login</a>
-          <a class="p-3 link" href="/register">Registrati</a>
-        </div>
-        <div v-else>
-          <a class="p-3 profile-container" href="/admin">
-            <div class="text-center">
-              <i class=" fas fa-user"></i>
-              <div>{{ authUser.name }} {{ authUser.lastname }}</div>
+            <div class="d-flex align-items-center">
+                <div v-if="!authUser">
+                    <a class="p-3 link" href="/login">Login</a>
+                    <a class="p-3 link" href="/register">Registrati</a>
+                </div>
+
+                <div v-else>
+                    <a class="p-3 profile-container" href="/admin">
+                        <div class="text-center">
+                            <i class=" fas fa-user"></i>
+                            <div>{{ authUser.name }} {{ authUser.lastname }}
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
-          </a>
         </div>
-      </div>
-
     </div>
-
-  </div>
 </template>
 
 <script>
@@ -35,7 +35,6 @@ export default {
       authUser: window.authUser
     }
   },
-
 };
 </script>
 
@@ -54,6 +53,6 @@ export default {
       text-decoration: none;
       color: #95f50f;
     }
-    
-  }
+
+}
 </style>
