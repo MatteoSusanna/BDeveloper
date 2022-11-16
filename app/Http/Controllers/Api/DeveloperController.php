@@ -15,7 +15,6 @@ class DeveloperController extends Controller
 
         $data = request()->all();
 
-        \Log::info($data);
 
         if($data['inputText'] == ''){
 
@@ -26,9 +25,10 @@ class DeveloperController extends Controller
             $developers = User::with(['skill', 'specialization', 'review'])->whereHas('specialization', function ($q){
                 $data = request()->all();
                 $q->where('specialization_id', $data['inputText']);
-            })->get();      
+            })->get();
 
         }
+
         
         //passaggio cover
         foreach($developers as $developer){
@@ -47,14 +47,18 @@ class DeveloperController extends Controller
             } 
         }
 
+
+            $avgVote = DB::table('reviews')->select('user_id', DB::raw('round(AVG(vote),0) as avarage'))
+                ->groupBy('user_id')->get();
+
+
         
-        //$avgVote = Review::groupBy('user_id')->sum('vote');
-        
-        //\Log::info($avgVote);
+        //\Log::info($average);
 
         return response()->json([
             'status' => true,
             'results' => $developers,
+            'avg' => $avgVote
         ]);
 
     }

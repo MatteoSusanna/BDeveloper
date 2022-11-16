@@ -2128,6 +2128,11 @@ __webpack_require__.r(__webpack_exports__);
       _this3.idDev = res.data.result.id;
       console.log(res.data.result);
     });
+    if (authUser) {
+      this.name = this.authUser.name;
+      this.lastname = this.authUser.lastname;
+      this.email = this.authUser.email;
+    }
   }
 });
 
@@ -2195,7 +2200,7 @@ var render = function render() {
     staticClass: "text-center"
   }, [_c("i", {
     staticClass: "fas fa-user"
-  }), _vm._v(" "), _c("div", [_vm._v(_vm._s(_vm.authUser.name) + " " + _vm._s(_vm.authUser.lastname))])])])])])])]);
+  }), _vm._v(" "), _c("div", [_vm._v(_vm._s(_vm.authUser.name) + " " + _vm._s(_vm.authUser.lastname) + "\n                        ")])])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -2468,13 +2473,8 @@ var render = function render() {
   }), 0), _vm._v(" "), _c("div", {
     staticClass: "mt-4"
   }, [_c("h4", [_vm._v("Email: " + _vm._s(_vm.developer.email))]), _vm._v(" "), _c("h4", [_vm._v(" Tel: " + _vm._s(_vm.developer.phone))]), _vm._v(" "), _c("h4", [_vm._v("Indirizzo: " + _vm._s(_vm.developer.address))])])], 2)]), _vm._v(" "), _c("div", {
-    staticClass: "message-container p-5"
-  }, [_c("h2", [_vm._v("Contattami")]), _vm._v(" "), _vm.statusMessage ? _c("div", {
-    staticClass: "alert alert-success",
-    attrs: {
-      role: "alert"
-    }
-  }, [_vm._v("\n                Messaggio inviato con successo!\n            ")]) : _vm._e(), _vm._v(" "), _c("form", {
+    staticClass: "message-container p-5 text-center"
+  }, [_c("h2", [_vm._v("Contattami")]), _vm._v(" "), _c("form", {
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -2487,7 +2487,7 @@ var render = function render() {
     attrs: {
       "for": "nome"
     }
-  }, [_vm._v("Nome")]), _vm._v(" "), !_vm.authUser ? _c("input", {
+  }, [_vm._v("Nome")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2511,30 +2511,6 @@ var render = function render() {
         _vm.name = $event.target.value;
       }
     }
-  }) : _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.authUser.name,
-      expression: "authUser.name"
-    }],
-    staticClass: "form-control input input-text",
-    "class": _vm.errors.name ? "is-invalid" : "",
-    attrs: {
-      type: "text",
-      id: "nome",
-      required: "",
-      placeholder: "Scrivi il tuo nome"
-    },
-    domProps: {
-      value: _vm.authUser.name
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.authUser, "name", $event.target.value);
-      }
-    }
   }), _vm._v(" "), _vm._l(_vm.errors.name, function (error, index) {
     return _c("div", {
       key: index,
@@ -2546,7 +2522,7 @@ var render = function render() {
     attrs: {
       "for": "cognome"
     }
-  }, [_vm._v("Cognome")]), _vm._v(" "), !_vm.authUser ? _c("input", {
+  }, [_vm._v("Cognome")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2570,30 +2546,6 @@ var render = function render() {
         _vm.lastname = $event.target.value;
       }
     }
-  }) : _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.authUser.lastname,
-      expression: "authUser.lastname"
-    }],
-    staticClass: "form-control input input-text",
-    "class": _vm.errors.lastname ? "is-invalid" : "",
-    attrs: {
-      type: "text",
-      id: "cognome",
-      required: "",
-      placeholder: "Scrivi il tuo cognome"
-    },
-    domProps: {
-      value: _vm.authUser.lastname
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.authUser, "lastname", $event.target.value);
-      }
-    }
   }), _vm._v(" "), _vm._l(_vm.errors.lastname, function (error, index) {
     return _c("div", {
       key: index,
@@ -2605,7 +2557,7 @@ var render = function render() {
     attrs: {
       "for": "email"
     }
-  }, [_vm._v("Email")]), _vm._v(" "), !_vm.authUser ? _c("input", {
+  }, [_vm._v("Email")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2627,30 +2579,6 @@ var render = function render() {
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.email = $event.target.value;
-      }
-    }
-  }) : _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.authUser.email,
-      expression: "authUser.email"
-    }],
-    staticClass: "form-control input",
-    "class": _vm.errors.email ? "is-invalid" : "",
-    attrs: {
-      type: "email",
-      id: "email",
-      required: "",
-      placeholder: "Scrivi la tua email"
-    },
-    domProps: {
-      value: _vm.authUser.email
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.authUser, "email", $event.target.value);
       }
     }
   }), _vm._v(" "), _vm._l(_vm.errors.email, function (error, index) {
@@ -2710,16 +2638,18 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Invia messaggio")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "review-container p-5 mb-5"
-  }, [_c("h2", {
-    staticClass: "mb-5"
-  }, [_vm._v("Lascia una recensione")]), _vm._v(" "), _vm.statusReview ? _c("div", {
-    staticClass: "alert alert-success",
+  }, [_vm._v("Invia messaggio")]), _vm._v(" "), _vm.statusMessage ? _c("div", {
+    staticClass: "alert alert-success my_alert",
     attrs: {
       role: "alert"
     }
-  }, [_vm._v("\n            Recensione inviata con successo!\n        ")]) : _vm._e(), _vm._v(" "), _c("form", {
+  }, [_c("i", {
+    staticClass: "fa-solid fa-circle-check"
+  }), _vm._v(" "), _c("h4", [_vm._v("Messaggio inviato con successo!")])]) : _vm._e()])])]), _vm._v(" "), _c("div", {
+    staticClass: "review-container p-5 mb-5 text-center"
+  }, [_c("h2", {
+    staticClass: "mb-5"
+  }, [_vm._v("Lascia una recensione")]), _vm._v(" "), _c("form", {
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -2914,7 +2844,14 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Invia Recensione")])])]), _vm._v(" "), _vm._m(0)]);
+  }, [_vm._v("Invia Recensione")]), _vm._v(" "), _vm.statusReview ? _c("div", {
+    staticClass: "alert alert-success my_alert",
+    attrs: {
+      role: "alert"
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-circle-check"
+  }), _vm._v(" "), _c("h3", [_vm._v("Recensione inviata con successo!")])]) : _vm._e()])]), _vm._v(" "), _vm._m(0)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -3005,7 +2942,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container-single-dev {\n  margin-top: 80px;\n  margin-bottom: 80px;\n}\n.container-single-dev .img-container {\n  width: 200px;\n  height: 200px;\n}\n.container-single-dev .skill-container {\n  min-width: 50px;\n  min-height: 40px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 40px;\n  font-size: 20px;\n  padding: 0 4px 0 4px;\n}\n.container-single-dev .message-container {\n  border: 2px solid #141913;\n  border-radius: 10px;\n  padding-top: 40px;\n  padding-bottom: 40px;\n}\n.container-single-dev .btn-single-dev {\n  background-color: #141913;\n  color: #95f50f;\n  font-size: 20px;\n}\n.container-single-dev .btn-single-dev:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}\n.container-single-dev .input {\n  width: 300px;\n}\n.container-single-dev .input-text {\n  text-transform: capitalize;\n}\n.container-single-dev label {\n  font-size: 20px;\n}\n.container-single-dev .review-container {\n  margin-top: 60px;\n  border: 2px solid #141913;\n  border-radius: 10px;\n}", ""]);
+exports.push([module.i, ".container-single-dev {\n  margin-top: 80px;\n  margin-bottom: 80px;\n}\n.container-single-dev .img-container {\n  width: 200px;\n  height: 200px;\n}\n.container-single-dev .skill-container {\n  min-width: 50px;\n  min-height: 40px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 40px;\n  font-size: 20px;\n  padding: 0 4px 0 4px;\n}\n.container-single-dev .message-container {\n  border: 2px solid #141913;\n  border-radius: 10px;\n  padding-top: 40px;\n  padding-bottom: 40px;\n}\n.container-single-dev .message-container .my_alert {\n  width: 100%;\n  margin: 10px auto;\n  padding: 15px;\n  border-radius: 5px;\n  background-color: #a8f0c6;\n  border-left: 5px solid green;\n}\n.container-single-dev .message-container .my_alert .fa-solid {\n  font-size: 18px;\n}\n.container-single-dev .btn-single-dev {\n  background-color: #141913;\n  color: #95f50f;\n  font-size: 20px;\n}\n.container-single-dev .btn-single-dev:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}\n.container-single-dev .input {\n  width: 300px;\n}\n.container-single-dev .input-text {\n  text-transform: capitalize;\n}\n.container-single-dev label {\n  font-size: 20px;\n}\n.container-single-dev .review-container {\n  margin-top: 60px;\n  border: 2px solid #141913;\n  border-radius: 10px;\n}\n.container-single-dev .review-container .my_alert {\n  width: 100%;\n  margin: 10px auto;\n  padding: 15px;\n  border-radius: 5px;\n  background-color: #a8f0c6;\n  border-left: 5px solid green;\n}\n.container-single-dev .review-container .my_alert .fa-solid {\n  font-size: 18px;\n}", ""]);
 
 // exports
 
