@@ -1908,31 +1908,12 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MyAppHeader",
   data: function data() {
     return {
-      developer: null
+      authUser: window.authUser
     };
-  },
-  // methods:{
-  //   getDeveloper(){
-  //     axios.get('/api/developer/').then((response) =>{
-  //       this.developer = response.data.results
-  //       console.log(response.data);
-  //     })  
-  //   }
-  // },
-  mounted: function mounted() {
-    var _this = this;
-    // this.getDeveloper();
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/developer/').then(function (response) {
-      _this.developer = response.data;
-      console.log(response.data);
-    });
   }
 });
 
@@ -2069,7 +2050,8 @@ __webpack_require__.r(__webpack_exports__);
       statusMessage: false,
       statusReview: false,
       disabledButton: false,
-      disabledButtonRew: false
+      disabledButtonRew: false,
+      authUser: window.authUser
     };
   },
   methods: {
@@ -2128,6 +2110,7 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/developer/' + slug).then(function (res) {
       _this3.developer = res.data.result;
       _this3.idDev = res.data.result.id;
+      console.log(res.data.result);
     });
   }
 });
@@ -2174,10 +2157,10 @@ var render = function render() {
   return _c("div", {
     staticClass: "container-fluid my_header mb-3"
   }, [_c("div", {
-    staticClass: "container d-flex justify-content-between"
+    staticClass: "container d-flex justify-content-between align-items-center"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center"
-  }, [!_vm.developer ? _c("div", [_c("a", {
+  }, [!_vm.authUser ? _c("div", [_c("a", {
     staticClass: "p-3 link",
     attrs: {
       href: "/login"
@@ -2187,7 +2170,16 @@ var render = function render() {
     attrs: {
       href: "/register"
     }
-  }, [_vm._v("Registrati")])]) : _c("div", [_vm._m(1)])])])]);
+  }, [_vm._v("Registrati")])]) : _c("div", [_c("a", {
+    staticClass: "p-3 profile-container",
+    attrs: {
+      href: "/admin"
+    }
+  }, [_c("div", {
+    staticClass: "text-center"
+  }, [_c("i", {
+    staticClass: "fas fa-user"
+  }), _vm._v(" "), _c("div", [_vm._v(_vm._s(_vm.authUser.name) + " " + _vm._s(_vm.authUser.lastname))])])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -2201,17 +2193,6 @@ var staticRenderFns = [function () {
     attrs: {
       src: "/img/logo.jpeg"
     }
-  })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("a", {
-    staticClass: "p-3",
-    attrs: {
-      href: "/admin"
-    }
-  }, [_c("i", {
-    staticClass: "fs-5 fas fa-user"
   })]);
 }];
 render._withStripped = true;
@@ -2513,7 +2494,7 @@ var render = function render() {
     attrs: {
       "for": "nome"
     }
-  }, [_vm._v("Nome")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("Nome")]), _vm._v(" "), !_vm.authUser ? _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2537,6 +2518,30 @@ var render = function render() {
         _vm.name = $event.target.value;
       }
     }
+  }) : _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.authUser.name,
+      expression: "authUser.name"
+    }],
+    staticClass: "form-control input input-text",
+    "class": _vm.errors.name ? "is-invalid" : "",
+    attrs: {
+      type: "text",
+      id: "nome",
+      required: "",
+      placeholder: "Scrivi il tuo nome"
+    },
+    domProps: {
+      value: _vm.authUser.name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.authUser, "name", $event.target.value);
+      }
+    }
   }), _vm._v(" "), _vm._l(_vm.errors.name, function (error, index) {
     return _c("div", {
       key: index,
@@ -2548,7 +2553,7 @@ var render = function render() {
     attrs: {
       "for": "cognome"
     }
-  }, [_vm._v("Cognome")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("Cognome")]), _vm._v(" "), !_vm.authUser ? _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2572,6 +2577,30 @@ var render = function render() {
         _vm.lastname = $event.target.value;
       }
     }
+  }) : _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.authUser.lastname,
+      expression: "authUser.lastname"
+    }],
+    staticClass: "form-control input input-text",
+    "class": _vm.errors.lastname ? "is-invalid" : "",
+    attrs: {
+      type: "text",
+      id: "cognome",
+      required: "",
+      placeholder: "Scrivi il tuo cognome"
+    },
+    domProps: {
+      value: _vm.authUser.lastname
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.authUser, "lastname", $event.target.value);
+      }
+    }
   }), _vm._v(" "), _vm._l(_vm.errors.lastname, function (error, index) {
     return _c("div", {
       key: index,
@@ -2583,7 +2612,7 @@ var render = function render() {
     attrs: {
       "for": "email"
     }
-  }, [_vm._v("Email")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("Email")]), _vm._v(" "), !_vm.authUser ? _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2605,6 +2634,30 @@ var render = function render() {
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.email = $event.target.value;
+      }
+    }
+  }) : _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.authUser.email,
+      expression: "authUser.email"
+    }],
+    staticClass: "form-control input",
+    "class": _vm.errors.email ? "is-invalid" : "",
+    attrs: {
+      type: "email",
+      id: "email",
+      required: "",
+      placeholder: "Scrivi la tua email"
+    },
+    domProps: {
+      value: _vm.authUser.email
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.authUser, "email", $event.target.value);
       }
     }
   }), _vm._v(" "), _vm._l(_vm.errors.email, function (error, index) {
@@ -2921,7 +2974,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".my_header {\n  background-color: #141913;\n  box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;\n}\n.my_header .link {\n  color: #95f50f;\n  font-size: 20px;\n}", ""]);
+exports.push([module.i, ".my_header {\n  background-color: #141913;\n  box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;\n}\n.my_header .link {\n  color: #95f50f;\n  font-size: 20px;\n}\n.my_header .profile-container {\n  font-size: 20px;\n  text-decoration: none;\n  color: #95f50f;\n}", ""]);
 
 // exports
 
@@ -19796,7 +19849,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\INTEL\Desktop\BDeveloper\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/francescosangalli/Documents/Boolean/BDeveloper/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })

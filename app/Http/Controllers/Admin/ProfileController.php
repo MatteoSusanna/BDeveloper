@@ -101,7 +101,7 @@ class ProfileController extends Controller
                                 'phone' => 'nullable|numeric|digits_between:10,12',
                                 'cover' => 'nullable|image|max:10000',
                                 'hourly_wage' => 'nullable|numeric|max:999.99|min:1',
-                                'specialization_id' => 'nullable|exists:specializations,id',
+                                'specializations' => 'required|min:1|exists:specializations,id',
                                 'skills' => 'exists:skills,id'
         ],
         [
@@ -130,7 +130,8 @@ class ProfileController extends Controller
             'hourly_wage.numeric' => 'Il campo può contenere solo valori numerici',
             'hourly_wage.max' => 'La cifra inserita deve essere compresa tra 1 e 999,99',
 
-            'specialization_id.exists' => "L'ID inserito non è valido",
+            'specializations.required' => "Seleziona almeno una specializzazione",
+            'specializations.exists' => "L'ID inserito non è valido",
 
             'skills.exists' => "L'ID inserito non è valido",
             
@@ -226,4 +227,5 @@ class ProfileController extends Controller
         return $slug;
 
     }
+
 }
