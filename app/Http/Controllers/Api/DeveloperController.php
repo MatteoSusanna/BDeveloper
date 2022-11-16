@@ -48,7 +48,7 @@ class DeveloperController extends Controller
         }
 
 
-            $avgVote = DB::table('reviews')->select('user_id', DB::raw('round(AVG(vote),0) as avarage'))
+            $avgVote = DB::table('reviews')->select('user_id', DB::raw('round(AVG(vote),0) as average'))
                 ->groupBy('user_id')->get();
 
 

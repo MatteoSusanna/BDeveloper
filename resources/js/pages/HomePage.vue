@@ -44,7 +44,7 @@
 
         <div class="d-flex flex-wrap" >
             <!-- card sviluppatori -->
-            <div class="p-3 card profile-card" v-for="(developer, index) in developers" :key="index" :class="{'d-none': (developer.review.length < selectNum)}">
+            <div class="p-3 card profile-card" v-for="(developer, index) in developers" :key="index" :class="{'d-none': (developer.review.length < selectNum), 'd-none': (numeroEguale !== media[index] )}">
                 <div class="m-auto img-container rounded-circle">
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
@@ -90,6 +90,7 @@
             lunghezzaPiv: null,
             numeroEguale: null,
             somma: null,
+            media: null,
             }
         },
         methods:{
@@ -103,7 +104,8 @@
                 .then((response) =>{
                     this.spinner = false;
                     this.developers = response.data.results
-                    console.log(response.data);
+                    this.media = response.data.avg;
+                    console.log(this.media[1]);
                 })  
             },
             getAllDeveloper(){
