@@ -2005,6 +2005,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this.spinner = false;
         _this.developers = response.data.results;
+        console.log(response.data);
       });
     },
     getAllDeveloper: function getAllDeveloper() {
@@ -2030,6 +2031,9 @@ __webpack_require__.r(__webpack_exports__);
       this.nomeSpec = specialization;
       this.getDeveloper();
     },
+    filterNum: function filterNum(numero) {
+      this.selectNum = numero;
+    },
     filterVote: function filterVote(n) {
       console.log(n);
       this.numeroEguale = n;
@@ -2042,9 +2046,6 @@ __webpack_require__.r(__webpack_exports__);
         return Math.ceil(media);
       });
       //somma += rew.vote 
-    },
-    filterNum: function filterNum(numero) {
-      this.selectNum = numero;
     }
   },
   mounted: function mounted() {

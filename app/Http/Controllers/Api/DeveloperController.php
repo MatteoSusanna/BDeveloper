@@ -47,7 +47,9 @@ class DeveloperController extends Controller
             } 
         }
 
+        
         //$avgVote = Review::groupBy('user_id')->sum('vote');
+        
         
 
         return response()->json([

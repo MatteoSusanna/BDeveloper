@@ -103,6 +103,7 @@
                 .then((response) =>{
                     this.spinner = false;
                     this.developers = response.data.results
+                    console.log(response.data);
                 })  
             },
             getAllDeveloper(){
@@ -128,6 +129,13 @@
                 this.nomeSpec = specialization;
                 this.getDeveloper();                
             },
+            filterNum(numero){
+                this.selectNum = numero;
+            },
+
+
+
+
             filterVote(n){
                 console.log(n)
                 this.numeroEguale = n
@@ -140,11 +148,10 @@
                     return Math.ceil(media);
                 });
                 //somma += rew.vote 
-                
             },
-            filterNum(numero){
-                this.selectNum = numero;
-            }
+
+
+            
         },
         mounted(){
             this.getDeveloper();
