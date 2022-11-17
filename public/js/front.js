@@ -1967,39 +1967,36 @@ __webpack_require__.r(__webpack_exports__);
       activeButton: 3,
       spinner: false,
       SelectedSpecializations: '',
+      //specializzazioni recuperate back
       nomeSpec: '',
+      //nome specializzazione
       numRecFilter: [5, 20, 50, 100],
+      avgVote: null,
       selectNum: null,
-      lunghezzaPiv: null,
-      numeroEguale: null,
-      somma: null
+      numeroEguale: '' //numero al click sul filtra voto
     };
   },
+
   methods: {
     getDeveloper: function getDeveloper() {
       var _this = this;
       this.spinner = true;
-      axios.get('/api/developer/', {
-        params: {
-          inputText: this.nomeSpec
-        }
-      }).then(function (response) {
+      axios.get('/api/developer/').then(function (response) {
         _this.spinner = false;
         _this.developers = response.data.results;
-        console.log(response.data);
+        _this.avgVote = response.data.avg;
+        console.log(_this.developers);
+        /* console.log(this.media) */
       });
     },
     getAllDeveloper: function getAllDeveloper() {
       var _this2 = this;
       this.spinner = true;
       this.selectNum = '';
-      axios.get('/api/developer/', {
-        params: {
-          inputText: ''
-        }
-      }).then(function (response) {
+      axios.get('/api/developer/').then(function (response) {
         _this2.spinner = false;
         _this2.developers = response.data.results;
+        _this2.avgVote = response.data.avg;
       });
     },
     getSpecializations: function getSpecializations() {
@@ -2010,28 +2007,47 @@ __webpack_require__.r(__webpack_exports__);
     },
     filter: function filter(specialization) {
       this.nomeSpec = specialization;
-      this.getDeveloper();
+      //this.getDeveloper();                
     },
     filterNum: function filterNum(numero) {
+      console.log(this.selectNum);
       this.selectNum = numero;
     },
     filterVote: function filterVote(n) {
       console.log(n);
       this.numeroEguale = n;
+      //this.getDeveloper();  
     },
-    calcolaMedia: function calcolaMedia(review) {
-      var somma = 0;
-      review.forEach(function (vote) {
-        somma += vote;
-        media = somma / review.length;
-        return Math.ceil(media);
+    filterAvg: function filterAvg() {
+      var _this4 = this;
+      this.developers.forEach(function (developer) {
+        _this4.avgVote.forEach(function (avg) {
+          if (avg.user_id == developer.id) {
+            return developer.avg = avg.average;
+          }
+          if (developer.avg == undefined) {
+            return developer.avg = '';
+          }
+        });
       });
-      //somma += rew.vote 
     }
   },
   mounted: function mounted() {
     this.getDeveloper();
     this.getSpecializations();
+  },
+  computed: {
+    provaFiltraggio: function provaFiltraggio() {
+      var _this5 = this;
+      this.filterAvg();
+      return this.developers.filter(function (develop) {
+        for (var i = 0; i < develop.specialization.length; i++) {
+          if (develop.specialization[i].name.includes(_this5.nomeSpec)) {
+            return develop.specialization[i].name.includes(_this5.nomeSpec) && develop.review.length >= _this5.selectNum && develop.avg >= _this5.numeroEguale;
+          }
+        }
+      });
+    }
   }
 });
 
@@ -2312,7 +2328,7 @@ var render = function render() {
         _vm.activeButton = 3;
       }
     }
-  }, [_vm._v("Tutti")]), _vm._v(" "), _vm._l(_vm.SelectedSpecializations, function (specialization, index) {
+  }, [_vm._v("Tutti")]), _vm._v(" "), _vm._l(_vm.SelectedSpecializations, function (spec, index) {
     return _c("button", {
       key: index,
       staticClass: "btn search-btn m-2",
@@ -2322,11 +2338,11 @@ var render = function render() {
       },
       on: {
         click: function click($event) {
-          _vm.filter(specialization.id);
+          _vm.filter(spec.name);
           _vm.activeButton = index;
         }
       }
-    }, [_vm._v("\n                    " + _vm._s(specialization.name) + "\n            ")]);
+    }, [_vm._v("\n                    " + _vm._s(spec.name) + "\n            ")]);
   })], 2), _vm._v(" "), _c("h3", {
     staticClass: "mt-2 mr-3"
   }, [_vm._v("Filtra per voto:")]), _vm._v(" "), _c("div", {
@@ -2365,7 +2381,7 @@ var render = function render() {
     staticClass: "d-flex justify-content-center"
   }, [_vm._m(0)]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "d-flex flex-wrap"
-  }, _vm._l(_vm.developers, function (developer, index) {
+  }, _vm._l(_vm.provaFiltraggio, function (developer, index) {
     return _c("div", {
       key: index,
       staticClass: "p-3 card profile-card",
@@ -2383,7 +2399,7 @@ var render = function render() {
       staticClass: "card-body mb-5"
     }, [_c("h4", {
       staticClass: "card-title"
-    }, [_vm._v(_vm._s(developer.name) + " " + _vm._s(developer.lastname))]), _vm._v(" "), _c("h4", [_vm._v("Specializzazioni:")]), _vm._v(" "), _c("div", {
+    }, [_vm._v(_vm._s(developer.name) + " " + _vm._s(developer.lastname))]), _vm._v("\n                " + _vm._s(developer.avg) + "\n\n                "), _c("h4", [_vm._v("Specializzazioni:")]), _vm._v(" "), _c("div", {
       staticClass: "d-flex flex-wrap"
     }, _vm._l(developer.specialization, function (specialization, index) {
       return _c("h4", {
