@@ -6,9 +6,9 @@
                 <!-- filtraggio specializzazioni -->
                 <button type="button" class="btn search-btn m-2" :class="(activeButton == 3)? 'color-btn': ''" @click="getAllDeveloper(); activeButton = 3">Tutti</button>
 
-                <button type="button" class="btn search-btn m-2" v-for="(specialization, index) in SelectedSpecializations" :key="index" 
-                        @click="filter(specialization.id); activeButton = index" :class="(activeButton == index)?'color-btn':''">
-                        {{specialization.name}}
+                <button type="button" class="btn search-btn m-2" v-for="(spec, index) in SelectedSpecializations" :key="index" 
+                        @click="filter(spec.name); activeButton = index" :class="(activeButton == index)?'color-btn':''">
+                        {{spec.name}}
                 </button>
                 
             </div>
@@ -44,7 +44,7 @@
 
         <div class="d-flex flex-wrap" >
             <!-- card sviluppatori -->
-            <div class="p-3 card profile-card" v-for="(developer, index) in developers" :key="index" :class="{'d-none': (developer.review.length < selectNum), 'd-none': (numeroEguale !== media[index] )}">
+            <div class="p-3 card profile-card" v-for="(developer, index) in provaFiltraggio" :key="index" :class="{'d-none': developer.review.length < selectNum}">
                 <div class="m-auto img-container rounded-circle">
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
@@ -52,6 +52,7 @@
                 <div class="card-body mb-5">
 
                     <h4 class="card-title">{{developer.name}} {{developer.lastname}}</h4>
+                    {{developer.avg}}
 
                     <h4>Specializzazioni:</h4>
                     <div class="d-flex flex-wrap">
@@ -83,42 +84,41 @@
             searchBar: null,
             activeButton: 3,
             spinner: false,
-            SelectedSpecializations: '',
-            nomeSpec: '',
+            SelectedSpecializations: '', //specializzazioni recuperate back
+            nomeSpec: '', //nome specializzazione
             numRecFilter: [5, 20, 50, 100],
+            
+            avgVote: null,
+
             selectNum: null,
-            lunghezzaPiv: null,
-            numeroEguale: null,
-            somma: null,
-            media: null,
+
+            numeroEguale: '', //numero al click sul filtra voto
             }
         },
         methods:{
             getDeveloper(){
                 this.spinner = true;
-                axios.get('/api/developer/', {
-                    params:{
-                        inputText: this.nomeSpec,
-                    }
-                })
+                axios.get('/api/developer/')
                 .then((response) =>{
                     this.spinner = false;
                     this.developers = response.data.results
-                    this.media = response.data.avg;
-                    console.log(this.media[1]);
+
+                    this.avgVote = response.data.avg
+                    
+                    console.log(this.developers)
+                    /* console.log(this.media) */
                 })  
             },
             getAllDeveloper(){
                 this.spinner = true;
                 this.selectNum = '';
-                axios.get('/api/developer/', {
-                    params:{
-                        inputText: '',
-                    }
-                })
+                axios.get('/api/developer/')
                 .then((response) =>{
                     this.spinner = false;
                     this.developers = response.data.results
+
+                    this.avgVote = response.data.avg
+
                 })  
             },
             getSpecializations(){
@@ -129,11 +129,12 @@
             },
             filter(specialization){
                 this.nomeSpec = specialization;
-                this.getDeveloper();                
+                //this.getDeveloper();                
             },
             filterNum(numero){
+                console.log(this.selectNum)
                 this.selectNum = numero;
-            },
+            },            
 
 
 
@@ -141,16 +142,27 @@
             filterVote(n){
                 console.log(n)
                 this.numeroEguale = n
+                //this.getDeveloper();  
+
+                
             },
-            calcolaMedia(review){
-                let somma = 0;
-                review.forEach(vote => {
-                    somma += vote;
-                    media = somma / review.length;
-                    return Math.ceil(media);
-                });
-                //somma += rew.vote 
-            },
+
+
+            filterAvg(){
+                this.developers.forEach(developer =>{
+                    this.avgVote.forEach(avg =>{
+                        if(avg.user_id == developer.id){
+                            return developer.avg = avg.average
+                        }
+                            
+                        if(developer.avg == undefined){
+                            return developer.avg = '';
+                        }
+                            
+                    })
+                })
+
+            }
 
 
             
@@ -158,6 +170,21 @@
         mounted(){
             this.getDeveloper();
             this.getSpecializations();
+        },
+        computed:{
+
+            provaFiltraggio(){
+
+
+                this.filterAvg();
+                return this.developers.filter(develop =>{
+                    for(let i = 0; i < develop.specialization.length; i++){
+                        if(develop.specialization[i].name.includes(this.nomeSpec)){
+                            return develop.specialization[i].name.includes(this.nomeSpec)  && develop.review.length >= this.selectNum  && develop.avg >= this.numeroEguale 
+                        }
+                    }
+                }) 
+            },
         }
         
                 
