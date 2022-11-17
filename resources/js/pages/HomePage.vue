@@ -109,6 +109,7 @@
                     /* console.log(this.media) */
                 })  
             },
+
             getAllDeveloper(){
                 this.spinner = true;
                 this.selectNum = '';
@@ -186,8 +187,6 @@
                 }) 
             },
         }
-        
-                
     }
 </script>
 
