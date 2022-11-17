@@ -112,15 +112,8 @@
             getAllDeveloper(){
                 this.numeroEguale = '';
                 this.selectNum = null;
+                this.nomeSpec = '';
 
-                this.filterAvg();
-                return this.developers.filter(develop =>{
-                    for(let i = 0; i < develop.specialization.length; i++){
-                        if(develop.specialization[i].name.includes(this.nomeSpec)){
-                            return develop.specialization[i].name.includes(this.nomeSpec = '') 
-                        }
-                    }
-                }) 
             },
             getSpecializations(){
                 axios.get('/api/specializations/')
