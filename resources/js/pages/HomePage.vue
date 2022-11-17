@@ -110,16 +110,17 @@
                 })  
             },
             getAllDeveloper(){
-                this.spinner = true;
-                this.selectNum = '';
-                axios.get('/api/developer/')
-                .then((response) =>{
-                    this.spinner = false;
-                    this.developers = response.data.results
+                this.numeroEguale = '';
+                this.selectNum = null;
 
-                    this.avgVote = response.data.avg
-
-                })  
+                this.filterAvg();
+                return this.developers.filter(develop =>{
+                    for(let i = 0; i < develop.specialization.length; i++){
+                        if(develop.specialization[i].name.includes(this.nomeSpec)){
+                            return develop.specialization[i].name.includes(this.nomeSpec = '') 
+                        }
+                    }
+                }) 
             },
             getSpecializations(){
                 axios.get('/api/specializations/')

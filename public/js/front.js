@@ -1991,12 +1991,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     getAllDeveloper: function getAllDeveloper() {
       var _this2 = this;
-      this.spinner = true;
-      this.selectNum = '';
-      axios.get('/api/developer/').then(function (response) {
-        _this2.spinner = false;
-        _this2.developers = response.data.results;
-        _this2.avgVote = response.data.avg;
+      this.numeroEguale = '';
+      this.selectNum = null;
+      this.filterAvg();
+      return this.developers.filter(function (develop) {
+        for (var i = 0; i < develop.specialization.length; i++) {
+          if (develop.specialization[i].name.includes(_this2.nomeSpec)) {
+            return develop.specialization[i].name.includes(_this2.nomeSpec = '');
+          }
+        }
       });
     },
     getSpecializations: function getSpecializations() {
@@ -19795,7 +19798,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\simon\Desktop\bdeveloper\BDeveloper\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\INTEL\Desktop\BDeveloper\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
