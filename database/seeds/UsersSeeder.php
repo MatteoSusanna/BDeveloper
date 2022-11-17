@@ -1,6 +1,8 @@
 <?php
 
 use App\User;
+use App\Review;
+use App\Message;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\File;
@@ -256,7 +258,25 @@ class UsersSeeder extends Seeder
             $NewDeveloper->save();
             $NewDeveloper->specialization()->attach($faker->numberBetween(1, 3));
             $NewDeveloper->skill()->attach($faker->numberBetween(1, 6));
-            $NewDeveloper->skill()->attach($faker->numberBetween(6, 12));
-        }
+            $NewDeveloper->skill()->attach($faker->numberBetween(7, 12));;
+            
+            for ($i = 0; $i < rand(1, 2000); $i++) {
+                $review = new Review();
+                $review->name = $developer['name'];
+                $review->vote = rand(1, 5);
+                $review->text = $faker->text(50);
+                $review->lastname = $developer['lastname'];
+                $NewDeveloper->review()->save($review);
+            }
+
+            for ($i = 0; $i < rand(1, 25); $i++) {
+                $message = new Message();
+                $message->name = $developer['name'];
+                $message->email = $developer['email'];
+                $message->text = $faker->text(50);
+                $message->lastname = $developer['lastname'];
+                $NewDeveloper->message()->save($message);
+            }
+        };
     }
 }
