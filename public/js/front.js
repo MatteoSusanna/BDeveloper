@@ -1964,7 +1964,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       developers: [],
       searchBar: null,
-      activeButton: 3,
+      btnSpec: 0.1,
+      btnVote: '',
+      btnRev: '',
       spinner: false,
       SelectedSpecializations: '',
       //specializzazioni recuperate back
@@ -1995,6 +1997,9 @@ __webpack_require__.r(__webpack_exports__);
       this.numeroEguale = '';
       this.selectNum = null;
       this.nomeSpec = '';
+      this.btnRev = '';
+      this.btnVote = '';
+      this.btnSpec = 0.1;
     },
     getSpecializations: function getSpecializations() {
       var _this2 = this;
@@ -2036,6 +2041,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     provaFiltraggio: function provaFiltraggio() {
       var _this4 = this;
+      if (this.btnRev || this.btnVote != '') {
+        this.btnSpec = 0.2;
+      }
       this.filterAvg();
       return this.developers.filter(function (develop) {
         for (var i = 0; i < develop.specialization.length; i++) {
@@ -2316,39 +2324,43 @@ var render = function render() {
   return _c("div", {
     staticClass: "mb-5"
   }, [_c("div", {
-    staticClass: "d-flex justify-content-center align-items-center mt-4 mb-5"
-  }, [_c("h3", {
-    staticClass: "mt-2 mr-3"
+    staticClass: "d-flex-column mt-4 mb-5"
+  }, [_c("div", {
+    staticClass: "d-flex justify-content-center"
+  }, [_c("h4", {
+    staticClass: "mr-3 align-self-center"
   }, [_vm._v("Filtra per specializzazione:")]), _vm._v(" "), _c("div", {
     staticClass: "input-group-prepend"
   }, [_c("button", {
     staticClass: "btn search-btn m-2",
-    "class": _vm.activeButton == 3 ? "color-btn" : "",
+    "class": _vm.btnSpec == 0.1 ? "color-btn" : "",
     attrs: {
       type: "button"
     },
     on: {
       click: function click($event) {
         _vm.getAllDeveloper();
-        _vm.activeButton = 3;
+        _vm.btnSpec = 0.1;
       }
     }
   }, [_vm._v("Tutti")]), _vm._v(" "), _vm._l(_vm.SelectedSpecializations, function (spec, index) {
     return _c("button", {
       key: index,
       staticClass: "btn search-btn m-2",
-      "class": _vm.activeButton == index ? "color-btn" : "",
+      "class": _vm.btnSpec == index ? "color-btn" : "",
       attrs: {
         type: "button"
       },
       on: {
         click: function click($event) {
           _vm.filter(spec.name);
-          _vm.activeButton = index;
+          _vm.btnSpec = index;
         }
       }
-    }, [_vm._v("\n                    " + _vm._s(spec.name) + "\n            ")]);
-  })], 2), _vm._v(" "), _c("h3", {
+    }, [_vm._v("\n                        " + _vm._s(spec.name) + "\n                ")]);
+  })], 2)]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex justify-content-center align-items-center"
+  }, [_c("h4", {
     staticClass: "mt-2 mr-3"
   }, [_vm._v("Filtra per voto:")]), _vm._v(" "), _c("div", {
     staticClass: "input-group-prepend"
@@ -2356,33 +2368,37 @@ var render = function render() {
     return _c("button", {
       key: n,
       staticClass: "btn search-btn m-2",
+      "class": _vm.btnVote == n ? "color-btn" : "",
       attrs: {
         type: "button"
       },
       on: {
         click: function click($event) {
-          return _vm.filterVote(n);
+          _vm.filterVote(n);
+          _vm.btnVote = n;
         }
       }
-    }, [_vm._v("\n                " + _vm._s(n) + "\n            ")]);
-  }), 0), _vm._v(" "), _c("h3", {
-    staticClass: "mt-2 mr-3"
+    }, [_vm._v("\n                    " + _vm._s(n) + "\n                ")]);
+  }), 0), _vm._v(" "), _c("h4", {
+    staticClass: "mt-2 mx-3"
   }, [_vm._v("Numero recensioni:")]), _vm._v(" "), _c("div", {
     staticClass: "input-group-prepend"
   }, _vm._l(_vm.numRecFilter, function (numero, index) {
     return _c("button", {
       key: index,
       staticClass: "btn search-btn m-2",
+      "class": _vm.btnRev == numero ? "color-btn" : "",
       attrs: {
         type: "button"
       },
       on: {
         click: function click($event) {
-          return _vm.filterNum(numero);
+          _vm.filterNum(numero);
+          _vm.btnRev = numero;
         }
       }
-    }, [_vm._v("\n                Maggiore di " + _vm._s(numero) + "\n            ")]);
-  }), 0)]), _vm._v(" "), _vm.spinner ? _c("div", {
+    }, [_vm._v("\n                    Maggiore di " + _vm._s(numero) + "\n                ")]);
+  }), 0)])]), _vm._v(" "), _vm.spinner ? _c("div", {
     staticClass: "d-flex justify-content-center"
   }, [_vm._m(0)]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "d-flex flex-wrap"
@@ -2481,9 +2497,9 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "d-flex justify-content-between"
   }, [_c("div", {
-    staticClass: "d-flex align-self-center"
+    staticClass: "d-flex"
   }, [_c("div", {
-    staticClass: "img-container rounded-circle overflow-hidden mt-4"
+    staticClass: "img-container rounded-circle overflow-hidden"
   }, [_c("img", {
     staticClass: "img-fluid",
     attrs: {
@@ -2491,20 +2507,37 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "ml-5 info-container"
-  }, [_c("h1", [_vm._v(_vm._s(_vm.developer.name) + " " + _vm._s(_vm.developer.lastname))]), _vm._v(" "), _vm._l(_vm.developer.specialization, function (specialization, index) {
-    return _c("h2", {
-      key: index
-    }, [_vm._v(_vm._s(specialization.name) + " Developer")]);
-  }), _vm._v(" "), _c("div", {
-    staticClass: "d-flex"
+  }, [_c("h1", [_vm._v(_vm._s(_vm.developer.name) + " " + _vm._s(_vm.developer.lastname))]), _vm._v(" "), _c("h4", [_vm._v("Specialization:")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex flex-wrap box-container"
+  }, _vm._l(_vm.developer.specialization, function (specialization, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "mr-2 mb-3 box"
+    }, [_vm._v(_vm._s(specialization.name))]);
+  }), 0), _vm._v(" "), _c("h4", [_vm._v("Skill:")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex flex-wrap box-container"
   }, _vm._l(_vm.developer.skill, function (skill, index) {
     return _c("div", {
       key: index,
-      staticClass: "mr-2 skill-container"
+      staticClass: "mr-2 mb-2 box"
     }, [_vm._v(_vm._s(skill.name))]);
   }), 0), _vm._v(" "), _c("div", {
     staticClass: "mt-4"
-  }, [_c("h4", [_vm._v("Email: " + _vm._s(_vm.developer.email))]), _vm._v(" "), _c("h4", [_vm._v(" Tel: " + _vm._s(_vm.developer.phone))]), _vm._v(" "), _c("h4", [_vm._v("Indirizzo: " + _vm._s(_vm.developer.address))])])], 2)]), _vm._v(" "), _c("div", {
+  }, [_c("h4", [_vm._v("Email: " + _vm._s(_vm.developer.email))]), _vm._v(" "), _c("h4", [_vm._v("Tel: " + _vm._s(_vm.developer.phone))]), _vm._v(" "), _c("h4", [_vm._v("Indirizzo: " + _vm._s(_vm.developer.address))])]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex align-items-center mt-4"
+  }, [_c("h3", [_vm._v("C.V.")]), _vm._v(" "), _vm.developer.curriculum != "http://127.0.0.1:8000/img/no-file.png" ? _c("a", {
+    attrs: {
+      href: _vm.developer.curriculum,
+      target: "_blank"
+    }
+  }, [_c("img", {
+    staticClass: "img-fluid",
+    attrs: {
+      src: "http://127.0.0.1:8000/img/pdf.png"
+    }
+  })]) : _c("h5", {
+    staticClass: "ml-3"
+  }, [_vm._v("Curriculum non caricato")])])])]), _vm._v(" "), _c("div", {
     staticClass: "message-container p-5 text-center"
   }, [_c("h2", [_vm._v("Contattami")]), _vm._v(" "), _c("form", {
     on: {
@@ -2974,7 +3007,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container-single-dev {\n  margin-top: 80px;\n  margin-bottom: 80px;\n}\n.container-single-dev .img-container {\n  width: 200px;\n  height: 200px;\n}\n.container-single-dev .skill-container {\n  min-width: 50px;\n  min-height: 40px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 40px;\n  font-size: 20px;\n  padding: 0 4px 0 4px;\n}\n.container-single-dev .message-container {\n  border: 2px solid #141913;\n  border-radius: 10px;\n  padding-top: 40px;\n  padding-bottom: 40px;\n}\n.container-single-dev .message-container .my_alert {\n  width: 100%;\n  margin: 10px auto;\n  padding: 15px;\n  border-radius: 5px;\n  background-color: #a8f0c6;\n  border-left: 5px solid green;\n}\n.container-single-dev .message-container .my_alert .fa-solid {\n  font-size: 18px;\n}\n.container-single-dev .btn-single-dev {\n  background-color: #141913;\n  color: #95f50f;\n  font-size: 20px;\n}\n.container-single-dev .btn-single-dev:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}\n.container-single-dev .input {\n  width: 300px;\n}\n.container-single-dev .input-text {\n  text-transform: capitalize;\n}\n.container-single-dev label {\n  font-size: 20px;\n}\n.container-single-dev .review-container {\n  margin-top: 60px;\n  border: 2px solid #141913;\n  border-radius: 10px;\n}\n.container-single-dev .review-container .my_alert {\n  width: 100%;\n  margin: 10px auto;\n  padding: 15px;\n  border-radius: 5px;\n  background-color: #a8f0c6;\n  border-left: 5px solid green;\n}\n.container-single-dev .review-container .my_alert .fa-solid {\n  font-size: 18px;\n}", ""]);
+exports.push([module.i, ".container-single-dev {\n  margin-top: 80px;\n  margin-bottom: 80px;\n}\n.container-single-dev .img-container {\n  width: 200px;\n  height: 200px;\n}\n.container-single-dev .box-container {\n  max-width: 300px;\n}\n.container-single-dev .box {\n  min-width: 50px;\n  min-height: 40px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 40px;\n  font-size: 20px;\n  padding: 0 4px 0 4px;\n}\n.container-single-dev .message-container {\n  border: 2px solid #141913;\n  border-radius: 10px;\n  padding-top: 40px;\n  padding-bottom: 40px;\n}\n.container-single-dev .message-container .my_alert {\n  width: 100%;\n  margin: 10px auto;\n  padding: 15px;\n  border-radius: 5px;\n  background-color: #a8f0c6;\n  border-left: 5px solid green;\n}\n.container-single-dev .message-container .my_alert .fa-solid {\n  font-size: 18px;\n}\n.container-single-dev .btn-single-dev {\n  background-color: #141913;\n  color: #95f50f;\n  font-size: 20px;\n}\n.container-single-dev .btn-single-dev:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}\n.container-single-dev .input {\n  width: 300px;\n}\n.container-single-dev .input-text {\n  text-transform: capitalize;\n}\n.container-single-dev label {\n  font-size: 20px;\n}\n.container-single-dev .review-container {\n  margin-top: 60px;\n  border: 2px solid #141913;\n  border-radius: 10px;\n}\n.container-single-dev .review-container .my_alert {\n  width: 100%;\n  margin: 10px auto;\n  padding: 15px;\n  border-radius: 5px;\n  background-color: #a8f0c6;\n  border-left: 5px solid green;\n}\n.container-single-dev .review-container .my_alert .fa-solid {\n  font-size: 18px;\n}", ""]);
 
 // exports
 
