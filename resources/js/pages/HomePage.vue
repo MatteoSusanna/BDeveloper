@@ -188,7 +188,7 @@
 
             provaFiltraggio(){
                 if (this.btnRev || this.btnVote != '') {
-                    this.btnSpec = 0.2
+                    this.btnSpec != 0.1
                 }
                 this.filterAvg();
                 return this.developers.filter(develop =>{

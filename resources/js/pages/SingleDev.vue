@@ -266,6 +266,8 @@ export default {
             this.name = this.authUser.name;
             this.lastname = this.authUser.lastname;
             this.email = this.authUser.email;
+            this.nome = this.authUser.name;
+            this.cognome = this.authUser.lastname;
         }
 
     }
