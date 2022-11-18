@@ -2,9 +2,11 @@
     <div class="container-fluid my_header mb-3">
 
         <div class="container d-flex justify-content-between align-items-center">
-        <a href="/">
-            <img src="/img/logo.jpeg" class="img-fluid w-25">
-        </a>
+          <div>
+            <a href="/">
+              <img src="/img/logo.jpeg" class="img-fluid w-25">
+            </a>
+          </div>
 
             <div class="d-flex align-items-center">
                 <div v-if="!authUser">
@@ -42,6 +44,9 @@ export default {
   .my_header{
     background-color: #141913;
     box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;
+    width: 100%;
+
+    
 
     .link {
       color: #95f50f;

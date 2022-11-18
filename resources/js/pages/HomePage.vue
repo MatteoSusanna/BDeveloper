@@ -1,11 +1,15 @@
 <template>
     <div class="mb-5">
-        <div class="d-flex-column mt-4 mb-5">
+        <div class="d-flex align-items-center justify-content-center filter-btn mt-5" :class="filterList == false ? 'mb-5':''"  v-on:click="filterList = !filterList">
+            <h4 class="mt-2">Filtra per </h4>
+            <i class="fa-solid fa-circle-chevron-up ml-1" :class="filterList == true? 'filter-arrow': ''"></i>
+        </div>
+        
+        <div class="d-flex-column mt-4 mb-5 position-relative" v-show="filterList">
             <div class="d-flex justify-content-center">
-                <h4 class="mr-3 align-self-center">Filtra per specializzazione:</h4>
+                <h4 class="mr-3 align-self-center">Specializzazione:</h4>
                 <div class="input-group-prepend">
                     <!-- filtraggio specializzazioni -->
-                    <button type="button" class="btn search-btn m-2" :class="(btnSpec == 0.1)? 'color-btn': ''" @click="getAllDeveloper(); btnSpec = 0.1">Tutti</button>
 
                     <button type="button" class="btn search-btn m-2" v-for="(spec, index) in SelectedSpecializations" :key="index" 
                             @click="filter(spec.name); btnSpec = index" :class="(btnSpec == index)?'color-btn':''">
@@ -16,7 +20,7 @@
             </div>
 
             <div class="d-flex justify-content-center align-items-center">
-                <h4 class="mt-2 mr-3">Filtra per voto:</h4>
+                <h4 class="mt-2 mr-3">Media voto:</h4>
                 <!-- filtraggio per media voto -->
                 <div class="input-group-prepend">
 
@@ -36,6 +40,8 @@
                         Maggiore di {{numero}}
                     </button>
                 </div>
+                <!-- tasto reset -->
+                <button type="button" class="btn reset" @click="getAllDeveloper(); btnSpec = 0.1"><i class="fa-solid fa-x"></i></button>
             </div>
 
         </div>
@@ -99,14 +105,12 @@
             SelectedSpecializations: '', //specializzazioni recuperate back
             nomeSpec: '', //nome specializzazione
             numRecFilter: [5, 20, 50, 100],
-
             review: null,
-            
             avgVote: null,
-
             selectNum: null,
-
             numeroEguale: '', //numero al click sul filtra voto
+            filterList: false,
+
             }
         },
         methods:{
@@ -187,9 +191,9 @@
         computed:{
 
             provaFiltraggio(){
-                if (this.btnRev || this.btnVote != '') {
-                    this.btnSpec != 0.1
-                }
+                // if (this.btnRev || this.btnVote != '') {
+                //     this.btnSpec != 0.1
+                // }
                 this.filterAvg();
                 return this.developers.filter(develop =>{
                     for(let i = 0; i < develop.specialization.length; i++){
@@ -218,6 +222,28 @@
 </script>
 
 <style lang="scss">
+.filter-btn {
+    border: #141913 solid 1px;
+    border-radius: 5px;
+    width: 180px;
+    height: 40px;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0 auto;
+
+    .filter-arrow {
+        transform: rotate(180deg);
+    }
+}
+
+.reset {
+    font-size: 25px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
 .d-block{
     display: block;
 }
@@ -225,7 +251,6 @@
 .d-none{
     display: none;
 }
-
 
 .search-btn {
     border: 1px solid #141913;
