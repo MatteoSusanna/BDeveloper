@@ -1,37 +1,41 @@
 <template>
     <div class="mb-5">
-        <div class="d-flex justify-content-center align-items-center mt-4 mb-5">
-            <h3 class="mt-2 mr-3">Filtra per specializzazione:</h3>
-            <div class="input-group-prepend">
-                <!-- filtraggio specializzazioni -->
-                <button type="button" class="btn search-btn m-2" :class="(activeButton == 3)? 'color-btn': ''" @click="getAllDeveloper(); activeButton = 3">Tutti</button>
+        <div class="d-flex-column mt-4 mb-5">
+            <div class="d-flex justify-content-center">
+                <h4 class="mr-3 align-self-center">Filtra per specializzazione:</h4>
+                <div class="input-group-prepend">
+                    <!-- filtraggio specializzazioni -->
+                    <button type="button" class="btn search-btn m-2" :class="(btnSpec == 0.1)? 'color-btn': ''" @click="getAllDeveloper(); btnSpec = 0.1">Tutti</button>
 
-                <button type="button" class="btn search-btn m-2" v-for="(spec, index) in SelectedSpecializations" :key="index" 
-                        @click="filter(spec.name); activeButton = index" :class="(activeButton == index)?'color-btn':''">
-                        {{spec.name}}
-                </button>
-                
+                    <button type="button" class="btn search-btn m-2" v-for="(spec, index) in SelectedSpecializations" :key="index" 
+                            @click="filter(spec.name); btnSpec = index" :class="(btnSpec == index)?'color-btn':''">
+                            {{spec.name}}
+                    </button>
+                    
+                </div>
             </div>
 
-            <h3 class="mt-2 mr-3">Filtra per voto:</h3>
-            <!-- filtraggio per media voto -->
-            <div class="input-group-prepend">
+            <div class="d-flex justify-content-center align-items-center">
+                <h4 class="mt-2 mr-3">Filtra per voto:</h4>
+                <!-- filtraggio per media voto -->
+                <div class="input-group-prepend">
 
-                <button type="button" class="btn search-btn m-2" v-for="n in 5" :key="n" 
-                    @click="filterVote(n)">
-                    {{n}}
-                </button>
+                    <button type="button" class="btn search-btn m-2" :class="(btnVote == n)? 'color-btn': ''" v-for="n in 5" :key="n" 
+                        @click="filterVote(n); btnVote = n">
+                        {{n}}
+                    </button>
 
-            </div>
+                </div>
 
-            <h3 class="mt-2 mr-3">Numero recensioni:</h3>
-            <!-- filtraggio numero recensioni -->            
-            <div class="input-group-prepend">
+                <h4 class="mt-2 mx-3">Numero recensioni:</h4>
+                <!-- filtraggio numero recensioni -->            
+                <div class="input-group-prepend">
 
-                <button type="button" class="btn search-btn m-2" v-for="(numero, index) in numRecFilter" :key="index" 
-                    @click="filterNum(numero)">
-                    Maggiore di {{numero}}
-                </button>
+                    <button type="button" class="btn search-btn m-2" :class="(btnRev == numero)? 'color-btn': ''" v-for="(numero, index) in numRecFilter" :key="index" 
+                        @click="filterNum(numero); btnRev = numero">
+                        Maggiore di {{numero}}
+                    </button>
+                </div>
             </div>
 
         </div>
@@ -88,7 +92,9 @@
             return{
             developers: [],
             searchBar: null,
-            activeButton: 3,
+            btnSpec: 0.1,
+            btnVote: '',
+            btnRev: '',
             spinner: false,
             SelectedSpecializations: '', //specializzazioni recuperate back
             nomeSpec: '', //nome specializzazione
@@ -123,6 +129,9 @@
                 this.numeroEguale = '';
                 this.selectNum = null;
                 this.nomeSpec = '';
+                this.btnRev = '';
+                this.btnVote = '';
+                this.btnSpec = 0.1;
 
             },
             getSpecializations(){
@@ -178,8 +187,9 @@
         computed:{
 
             provaFiltraggio(){
-
-
+                if (this.btnRev || this.btnVote != '') {
+                    this.btnSpec = 0.2
+                }
                 this.filterAvg();
                 return this.developers.filter(develop =>{
                     for(let i = 0; i < develop.specialization.length; i++){
@@ -198,8 +208,9 @@
                             
                         }
                     }
-                }) 
-            },
+                })
+            }
+            
         }
         
                 

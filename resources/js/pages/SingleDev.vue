@@ -3,26 +3,36 @@
 
         <div class="d-flex justify-content-between">
 
-            <div class="d-flex align-self-center">
-                <div class="img-container rounded-circle overflow-hidden mt-4">
+            <div class="d-flex">
+                
+                <div class="img-container rounded-circle overflow-hidden ">
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
 
                 <div class="ml-5 info-container">
                     <h1>{{developer.name}} {{developer.lastname}}</h1>
-                    <h2 v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}} Developer</h2>
-                    <div class="d-flex">
-                        <div class="mr-2 skill-container" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</div>
+                    <h4>Specialization:</h4>
+                    <div class="d-flex flex-wrap box-container">
+                        <div class="mr-2 mb-3 box" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}}</div>
+                    </div>
+                    <h4>Skill:</h4>
+                    <div class="d-flex flex-wrap box-container">
+                        <div class="mr-2 mb-2 box" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</div>
                     </div>
                     <div class="mt-4">
                         <h4>Email: {{developer.email}}</h4>
-                        <h4> Tel: {{developer.phone}}</h4>
+                        <h4>Tel: {{developer.phone}}</h4>
                         <h4>Indirizzo: {{developer.address}}</h4>
                     </div>
-
+                    <div class="d-flex align-items-center mt-4">
+                        <h3>C.V.</h3>
+                        <a v-if="developer.curriculum != 'http://127.0.0.1:8000/img/no-file.png'" :href="developer.curriculum" target="_blank">
+                            <img src="http://127.0.0.1:8000/img/pdf.png" class="img-fluid">
+                        </a>
+                        <h5 v-else class="ml-3">Curriculum non caricato</h5>
+                    </div>
                 </div>
             </div>
-
 
 
             <div class="message-container p-5 text-center">
@@ -272,7 +282,11 @@ export default {
         height: 200px;
     }
 
-    .skill-container {
+    .box-container {
+        max-width: 300px;
+    }
+
+    .box {
         min-width: 50px;
         min-height: 40px;
         background-color: #141913;
