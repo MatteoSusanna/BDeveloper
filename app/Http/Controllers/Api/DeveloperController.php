@@ -19,6 +19,8 @@ class DeveloperController extends Controller
 
         $developers = User::with(['skill', 'specialization', 'review'])->get();
 
+        $review = Review::all();
+
         
         //passaggio cover
         foreach($developers as $developer){
@@ -49,6 +51,7 @@ class DeveloperController extends Controller
             'status' => true,
             'results' => $developers,
             'avg' => $average,
+            'review' => $review
         ]);
 
     }

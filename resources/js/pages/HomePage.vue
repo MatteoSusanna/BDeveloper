@@ -52,7 +52,13 @@
                 <div class="card-body mb-5">
 
                     <h4 class="card-title">{{developer.name}} {{developer.lastname}}</h4>
-                    {{developer.avg}}
+
+                    <div v-if="developer.avg > 0">
+                        <i class="fa-star" v-for="n in 5" :key="n" :class="(n>developer.avg)?'fa-regular':'fa-solid'"></i>
+                    </div>
+                    <div v-else>
+                        <i v-for="n in 5" :key="n" class="fa-star fa-regular"></i>
+                    </div>
 
                     <h4>Specializzazioni:</h4>
                     <div class="d-flex flex-wrap">
@@ -87,6 +93,8 @@
             SelectedSpecializations: '', //specializzazioni recuperate back
             nomeSpec: '', //nome specializzazione
             numRecFilter: [5, 20, 50, 100],
+
+            review: null,
             
             avgVote: null,
 
@@ -102,6 +110,8 @@
                 .then((response) =>{
                     this.spinner = false;
                     this.developers = response.data.results
+
+                    this.review = response.data.review
 
                     this.avgVote = response.data.avg
                     
@@ -174,7 +184,18 @@
                 return this.developers.filter(develop =>{
                     for(let i = 0; i < develop.specialization.length; i++){
                         if(develop.specialization[i].name.includes(this.nomeSpec)){
-                            return develop.specialization[i].name.includes(this.nomeSpec)  && develop.review.length >= this.selectNum  && develop.avg >= this.numeroEguale 
+
+                            if(this.review.length == 0){
+                                return develop.specialization[i].name.includes(this.nomeSpec)
+                            }else{
+                                if(develop.review.length >= this.selectNum){
+                                    if(develop.avg >= this.numeroEguale ){
+                                        return develop.specialization[i].name.includes(this.nomeSpec)
+                                    }
+                                }
+                            }   
+                            
+                            
                         }
                     }
                 }) 

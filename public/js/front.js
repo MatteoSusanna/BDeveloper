@@ -1971,6 +1971,7 @@ __webpack_require__.r(__webpack_exports__);
       nomeSpec: '',
       //nome specializzazione
       numRecFilter: [5, 20, 50, 100],
+      review: null,
       avgVote: null,
       selectNum: null,
       numeroEguale: '' //numero al click sul filtra voto
@@ -1984,28 +1985,21 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/developer/').then(function (response) {
         _this.spinner = false;
         _this.developers = response.data.results;
+        _this.review = response.data.review;
         _this.avgVote = response.data.avg;
         console.log(_this.developers);
         /* console.log(this.media) */
       });
     },
     getAllDeveloper: function getAllDeveloper() {
-      var _this2 = this;
       this.numeroEguale = '';
       this.selectNum = null;
-      this.filterAvg();
-      return this.developers.filter(function (develop) {
-        for (var i = 0; i < develop.specialization.length; i++) {
-          if (develop.specialization[i].name.includes(_this2.nomeSpec)) {
-            return develop.specialization[i].name.includes(_this2.nomeSpec = '');
-          }
-        }
-      });
+      this.nomeSpec = '';
     },
     getSpecializations: function getSpecializations() {
-      var _this3 = this;
+      var _this2 = this;
       axios.get('/api/specializations/').then(function (response) {
-        _this3.SelectedSpecializations = response.data.results;
+        _this2.SelectedSpecializations = response.data.results;
       });
     },
     filter: function filter(specialization) {
@@ -2022,9 +2016,9 @@ __webpack_require__.r(__webpack_exports__);
       //this.getDeveloper();  
     },
     filterAvg: function filterAvg() {
-      var _this4 = this;
+      var _this3 = this;
       this.developers.forEach(function (developer) {
-        _this4.avgVote.forEach(function (avg) {
+        _this3.avgVote.forEach(function (avg) {
           if (avg.user_id == developer.id) {
             return developer.avg = avg.average;
           }
@@ -2041,12 +2035,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     provaFiltraggio: function provaFiltraggio() {
-      var _this5 = this;
+      var _this4 = this;
       this.filterAvg();
       return this.developers.filter(function (develop) {
         for (var i = 0; i < develop.specialization.length; i++) {
-          if (develop.specialization[i].name.includes(_this5.nomeSpec)) {
-            return develop.specialization[i].name.includes(_this5.nomeSpec) && develop.review.length >= _this5.selectNum && develop.avg >= _this5.numeroEguale;
+          if (develop.specialization[i].name.includes(_this4.nomeSpec)) {
+            if (_this4.review.length == 0) {
+              return develop.specialization[i].name.includes(_this4.nomeSpec);
+            } else {
+              if (develop.review.length >= _this4.selectNum) {
+                if (develop.avg >= _this4.numeroEguale) {
+                  return develop.specialization[i].name.includes(_this4.nomeSpec);
+                }
+              }
+            }
           }
         }
       });
@@ -2402,7 +2404,18 @@ var render = function render() {
       staticClass: "card-body mb-5"
     }, [_c("h4", {
       staticClass: "card-title"
-    }, [_vm._v(_vm._s(developer.name) + " " + _vm._s(developer.lastname))]), _vm._v("\n                " + _vm._s(developer.avg) + "\n\n                "), _c("h4", [_vm._v("Specializzazioni:")]), _vm._v(" "), _c("div", {
+    }, [_vm._v(_vm._s(developer.name) + " " + _vm._s(developer.lastname))]), _vm._v(" "), developer.avg > 0 ? _c("div", _vm._l(5, function (n) {
+      return _c("i", {
+        key: n,
+        staticClass: "fa-star",
+        "class": n > developer.avg ? "fa-regular" : "fa-solid"
+      });
+    }), 0) : _c("div", _vm._l(5, function (n) {
+      return _c("i", {
+        key: n,
+        staticClass: "fa-star fa-regular"
+      });
+    }), 0), _vm._v(" "), _c("h4", [_vm._v("Specializzazioni:")]), _vm._v(" "), _c("div", {
       staticClass: "d-flex flex-wrap"
     }, _vm._l(developer.specialization, function (specialization, index) {
       return _c("h4", {
