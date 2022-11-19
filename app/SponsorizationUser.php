@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class SponsorizationUser extends Model
+class SponsorizationUser extends Pivot
 {
     /**
      * The users that belong to the role.
