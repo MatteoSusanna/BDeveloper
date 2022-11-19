@@ -38,7 +38,7 @@ Route::middleware('auth')
 
         //rotta sponsorizzazione
         Route::get('/sponsorization', 'SponsorizationController@index')->name('sponsorization');
-        // Route::get('/sponsorization', 'SponsorizationController@store')->name('sponsorization.store');
+        Route::post('/sponsorization', 'SponsorizationController@store')->name('sponsorization.store');
     });
 
 

@@ -24,8 +24,10 @@ class CreateSponsorizationUserTable extends Migration
             $table->dateTime('ends_at');
 
             $table->primary(['user_id', 'sponsorization_id']); 
+
+            $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.
