@@ -260,7 +260,7 @@ class UsersSeeder extends Seeder
             $NewDeveloper->skill()->attach($faker->numberBetween(1, 6));
             $NewDeveloper->skill()->attach($faker->numberBetween(7, 12));
             
-            for ($i = 0; $i < rand(1, 2000); $i++) {
+            /* for ($i = 0; $i < rand(1, 2000); $i++) {
                 $review = new Review();
                 $review->name = $developer['name'];
                 $review->vote = rand(1, 5);
@@ -276,7 +276,7 @@ class UsersSeeder extends Seeder
                 $message->text = $faker->text(50);
                 $message->lastname = $developer['lastname'];
                 $NewDeveloper->message()->save($message);
-            }
+            } */
         };
     }
 }

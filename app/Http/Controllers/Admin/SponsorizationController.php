@@ -38,10 +38,11 @@ public function store(){
     $userSponsorization->sponsorization_id = $data['sponsorization_id'];
 
     $currentDateTime = Carbon::now();
+
     if($userSponsorizations->last() && $userSponsorizations->last()->ends_at > $currentDateTime){
         return redirect()->back()->with('status', 'errore');
     }else{
-        $userSponsorization->starts_at = $currentDateTime;
+        $userSponsorization->starts_at = Carbon::now();
         $userSponsorization->ends_at = $currentDateTime->addHours($sponsorization->duration);
         $userSponsorization->fill($data);
         $userSponsorization->save();
