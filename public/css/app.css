@@ -11252,7 +11252,8 @@ body .my-container .delete-btn:hover {
 .payment {
   max-width: 500px;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .payment Button {

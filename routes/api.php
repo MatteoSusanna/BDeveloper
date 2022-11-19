@@ -34,5 +34,9 @@ Route::post('message', 'Api\MessageController@store');
 //recensione
 Route::post('review', 'Api\ReviewController@store');
 
+//sponsorizzazione
+Route::get('sponsorization', 'Api\SponsorizationController@index');
+
+
 
 

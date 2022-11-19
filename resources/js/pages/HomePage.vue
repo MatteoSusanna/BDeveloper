@@ -1,5 +1,43 @@
 <template>
     <div class="mb-5">
+        <div>
+            <div class="d-flex flex-wrap" v-for="(developer, index) in sponsorizations" :key="index">
+                <!-- card sviluppatori sponsorizzati-->
+                <div class="p-3 card profile-card" v-if="developer.sponsorization.length > 0">
+    
+                    <div class="m-auto img-container rounded-circle">
+                        <img :src="developer.cover" class="img-fluid" >
+                    </div>
+
+                    <div class="card-body mb-5">
+
+                        <h4 class="card-title">{{developer.name}} {{developer.lastname}}</h4>
+
+                        <div v-if="developer.avg > 0">
+                            <i class="fa-star" v-for="n in 5" :key="n" :class="(n>developer.avg)?'fa-regular':'fa-solid'"></i>
+                        </div>
+                        <div v-else>
+                            <i v-for="n in 5" :key="n" class="fa-star fa-regular"></i>
+                        </div>
+
+                        <h4>Specializzazioni:</h4>
+                        <div class="d-flex flex-wrap">
+                            <h4 class="box mr-2" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}}</h4>
+                        </div>
+        
+                        <h5 class="mt-3">Skills:</h5>
+                        <div class="d-flex flex-wrap">
+                            <h5 class="box mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</h5>
+                        </div>
+
+                    </div>
+
+                    <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
+
+                </div>
+            </div>
+        </div>
+
         <div class="d-flex align-items-center justify-content-center filter-btn mt-5" :class="filterList == false ? 'mb-5':''"  v-on:click="filterList = !filterList">
             <h4 class="mt-2">Filtra per </h4>
             <i class="fa-solid fa-circle-chevron-up ml-1" :class="filterList == true? 'filter-arrow': ''"></i>
@@ -54,7 +92,7 @@
 
         <div class="d-flex flex-wrap" >
             <!-- card sviluppatori -->
-            <div class="p-3 card profile-card" v-for="(developer, index) in provaFiltraggio" :key="index" :class="{'d-none': developer.review.length < selectNum}">
+            <div class="p-3 card profile-card" v-for="(developer, index) in provaFiltraggio" :key="index" :class="{'d-none': developer.review.length < selectNum}" >
                 <div class="m-auto img-container rounded-circle">
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
@@ -110,6 +148,7 @@
             selectNum: null,
             numeroEguale: '', //numero al click sul filtra voto
             filterList: false,
+            sponsorizations: null,
 
             }
         },
@@ -144,6 +183,15 @@
                     this.SelectedSpecializations = response.data.results
                 })  
             },
+
+            getSponsor(){
+                axios.get('/api/sponsorization/')
+                    .then((response) =>{
+                        this.sponsorizations = response.data.results
+                        console.log(response.data.results);
+                    })  
+            },
+
             filter(specialization){
                 this.nomeSpec = specialization;
                 //this.getDeveloper();                
@@ -187,6 +235,7 @@
         mounted(){
             this.getDeveloper();
             this.getSpecializations();
+            this.getSponsor();
         },
         computed:{
 
