@@ -20,7 +20,8 @@ class CreateSponsorizationUserTable extends Migration
             $table->unsignedBigInteger('sponsorization_id');
             $table->foreign('sponsorization_id')->references('id')->on('sponsorizations');
 
-            $table->dateTime('start_date');
+            $table->dateTime('starts_at');
+            $table->dateTime('ends_at');
 
             $table->primary(['user_id', 'sponsorization_id']); 
         });

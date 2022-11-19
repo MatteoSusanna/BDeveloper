@@ -9,6 +9,6 @@ class Sponsorization extends Model
     protected $fillable = ['name', 'price', 'duration'];
 
     public function user(){
-        return $this->belongsToMany('App\User')->withPivot('start_date');
+        return $this->belongsToMany('App\User','sponsorization_user', 'user_id', 'sponsorization_id')->withPivot('starts_at', 'ends_at')->using('App\SponsorizationUser');
     }
 }

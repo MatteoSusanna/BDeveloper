@@ -23,7 +23,7 @@ return [
     ],
     [
         "title" => "Sponsorizzazioni",
-        "url" => "#",
+        "url" => "admin.sponsorization",
         'notifiche' => 0
     ],
     [

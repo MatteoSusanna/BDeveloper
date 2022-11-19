@@ -11034,7 +11034,7 @@ body .my-container .delete-btn:hover {
   overflow: hidden;
   float: left;
   height: 50px;
-  width: 96px;
+  min-width: 96px;
 }
 
 .edit .cat label {
@@ -11247,6 +11247,21 @@ body .my-container .delete-btn:hover {
   color: #95f50f;
   height: 60px;
   line-height: 60px;
+}
+
+.payment {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 150px;
+}
+
+.payment Button {
+  border-radius: 5px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  background-color: #141913;
+  color: #95f50f;
 }
 
 body {

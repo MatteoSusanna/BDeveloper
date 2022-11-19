@@ -35,6 +35,10 @@ Route::middleware('auth')
 
         //rotta recensione
         Route::get('/review', 'ReviewController@index')->name('review');
+
+        //rotta sponsorizzazione
+        Route::get('/sponsorization', 'SponsorizationController@index')->name('sponsorization');
+        // Route::get('/sponsorization', 'SponsorizationController@store')->name('sponsorization.store');
     });
 
 
