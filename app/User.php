@@ -18,7 +18,7 @@ class User extends Authenticatable
     }
 
     public function sponsorization(){
-        return $this->belongsToMany('App\Sponsorization')->withPivot('start_date');
+        return $this->belongsToMany('App\Sponsorization')->withPivot('starts_at', 'ends_at');
     }
 
     public function message(){

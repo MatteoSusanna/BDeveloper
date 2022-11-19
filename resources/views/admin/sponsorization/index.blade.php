@@ -8,20 +8,22 @@
   @csrf
 
   <div class="container text-center">
-    <div class="input-group">
-      <select name="sponsorization_id" id="" class="my-5 custom-select">
-        <option value="" selected disabled>Seleziona tipo sponsorizzazione</option>
-        @foreach ($sponsorizations as $sponsorization)
-          <option value="{{$sponsorization->id}}" >{{$sponsorization->name}} - {{$sponsorization->price}} € - {{$sponsorization->duration}} H</option>
-        @endforeach
-      </select>
+    <div class="payment">
+        <div class="input-group">
+            <select name="sponsorization_id" id="" class="my-5 custom-select">
+                <option value="" selected disabled>Seleziona una sponsorizzazione</option>
+                @foreach ($sponsorizations as $sponsorization)
+                <option value="{{$sponsorization->id}}" >{{$sponsorization->name}} - {{$sponsorization->price}} € - {{$sponsorization->duration}} H</option>
+                @endforeach
+            </select>
+        </div>
+        
+        <div id="dropin-wrapper">
+            <div id="checkout-message"></div>
+            <div id="dropin-container"></div>
+            <button id="submit-button">Effettua il pagamento</button>
+        </div>
     </div>
-  
-      <div id="dropin-wrapper" class="payment">
-          <div id="checkout-message"></div>
-          <div id="dropin-container"></div>
-          <button id="submit-button">Effettua il pagamento</button>
-      </div>
   </div>
     <script>
       var button = document.querySelector('#submit-button');
