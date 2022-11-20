@@ -1,6 +1,6 @@
 <template>
     <div class="mb-5">
-        <div>
+        <div class="my_card">
             <div class="d-flex flex-wrap" v-for="(developer, index) in sponsorizations" :key="index">
                 <!-- card sviluppatori sponsorizzati-->
                 <div class="p-3 card profile-card" v-if="developer.sponsorization.length > 0">
@@ -37,6 +37,7 @@
                 </div>
             </div>
         </div>
+
 
         <div class="d-flex align-items-center justify-content-center filter-btn mt-5" :class="filterList == false ? 'mb-5':''"  v-on:click="filterList = !filterList">
             <h4 class="mt-2">Filtra per </h4>
@@ -271,6 +272,14 @@
 </script>
 
 <style lang="scss">
+.my_card{
+    height: 400px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 30px;
+}
+
 .filter-btn {
     border: #141913 solid 1px;
     border-radius: 5px;

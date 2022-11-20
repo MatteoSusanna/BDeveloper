@@ -1978,7 +1978,8 @@ __webpack_require__.r(__webpack_exports__);
       selectNum: null,
       numeroEguale: '',
       //numero al click sul filtra voto
-      filterList: false
+      filterList: false,
+      sponsorizations: null
     };
   },
   methods: {
@@ -2008,6 +2009,13 @@ __webpack_require__.r(__webpack_exports__);
         _this2.SelectedSpecializations = response.data.results;
       });
     },
+    getSponsor: function getSponsor() {
+      var _this3 = this;
+      axios.get('/api/sponsorization/').then(function (response) {
+        _this3.sponsorizations = response.data.results;
+        console.log(response.data.results);
+      });
+    },
     filter: function filter(specialization) {
       this.nomeSpec = specialization;
       //this.getDeveloper();                
@@ -2022,9 +2030,9 @@ __webpack_require__.r(__webpack_exports__);
       //this.getDeveloper();  
     },
     filterAvg: function filterAvg() {
-      var _this3 = this;
+      var _this4 = this;
       this.developers.forEach(function (developer) {
-        _this3.avgVote.forEach(function (avg) {
+        _this4.avgVote.forEach(function (avg) {
           if (avg.user_id == developer.id) {
             return developer.avg = avg.average;
           }
@@ -2038,23 +2046,24 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getDeveloper();
     this.getSpecializations();
+    this.getSponsor();
   },
   computed: {
     provaFiltraggio: function provaFiltraggio() {
-      var _this4 = this;
+      var _this5 = this;
       // if (this.btnRev || this.btnVote != '') {
       //     this.btnSpec != 0.1
       // }
       this.filterAvg();
       return this.developers.filter(function (develop) {
         for (var i = 0; i < develop.specialization.length; i++) {
-          if (develop.specialization[i].name.includes(_this4.nomeSpec)) {
-            if (_this4.review.length == 0) {
-              return develop.specialization[i].name.includes(_this4.nomeSpec);
+          if (develop.specialization[i].name.includes(_this5.nomeSpec)) {
+            if (_this5.review.length == 0) {
+              return develop.specialization[i].name.includes(_this5.nomeSpec);
             } else {
-              if (develop.review.length >= _this4.selectNum) {
-                if (develop.avg >= _this4.numeroEguale) {
-                  return develop.specialization[i].name.includes(_this4.nomeSpec);
+              if (develop.review.length >= _this5.selectNum) {
+                if (develop.avg >= _this5.numeroEguale) {
+                  return develop.specialization[i].name.includes(_this5.nomeSpec);
                 }
               }
             }
@@ -2327,6 +2336,64 @@ var render = function render() {
   return _c("div", {
     staticClass: "mb-5"
   }, [_c("div", {
+    staticClass: "my_card"
+  }, _vm._l(_vm.sponsorizations, function (developer, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "d-flex flex-wrap"
+    }, [developer.sponsorization.length > 0 ? _c("div", {
+      staticClass: "p-3 card profile-card"
+    }, [_c("div", {
+      staticClass: "m-auto img-container rounded-circle"
+    }, [_c("img", {
+      staticClass: "img-fluid",
+      attrs: {
+        src: developer.cover
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "card-body mb-5"
+    }, [_c("h4", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(developer.name) + " " + _vm._s(developer.lastname))]), _vm._v(" "), developer.avg > 0 ? _c("div", _vm._l(5, function (n) {
+      return _c("i", {
+        key: n,
+        staticClass: "fa-star",
+        "class": n > developer.avg ? "fa-regular" : "fa-solid"
+      });
+    }), 0) : _c("div", _vm._l(5, function (n) {
+      return _c("i", {
+        key: n,
+        staticClass: "fa-star fa-regular"
+      });
+    }), 0), _vm._v(" "), _c("h4", [_vm._v("Specializzazioni:")]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex flex-wrap"
+    }, _vm._l(developer.specialization, function (specialization, index) {
+      return _c("h4", {
+        key: index,
+        staticClass: "box mr-2"
+      }, [_vm._v(_vm._s(specialization.name))]);
+    }), 0), _vm._v(" "), _c("h5", {
+      staticClass: "mt-3"
+    }, [_vm._v("Skills:")]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex flex-wrap"
+    }, _vm._l(developer.skill, function (skill, index) {
+      return _c("h5", {
+        key: index,
+        staticClass: "box mr-2"
+      }, [_vm._v(_vm._s(skill.name))]);
+    }), 0)]), _vm._v(" "), _c("router-link", {
+      staticClass: "btn btn-show mb-0",
+      attrs: {
+        to: {
+          name: "profile-details",
+          params: {
+            slug: developer.slug
+          }
+        },
+        title: "Maggiori dettagli"
+      }
+    }, [_vm._v("Vedi Profilo")])], 1) : _vm._e()]);
+  }), 0), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center justify-content-center filter-btn mt-5",
     "class": _vm.filterList == false ? "mb-5" : "",
     on: {
@@ -3011,7 +3078,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".filter-btn {\n  border: #141913 solid 1px;\n  border-radius: 5px;\n  width: 180px;\n  height: 40px;\n  padding: 10px;\n  font-size: 20px;\n  cursor: pointer;\n  margin: 0 auto;\n}\n.filter-btn .filter-arrow {\n  transform: rotate(180deg);\n}\n.reset {\n  font-size: 25px;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n.d-block {\n  display: block;\n}\n.d-none {\n  display: none;\n}\n.search-btn {\n  border: 1px solid #141913;\n}\n.search-btn:hover {\n  background-color: #141913;\n  color: #95f50f;\n}\n.color-btn {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n  background-color: rgba(0, 0, 0, 0);\n  position: relative;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .box {\n  min-width: 40px;\n  min-height: 25px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 25px;\n  font-size: 15px;\n  padding: 0 4px 0 4px;\n}\n.profile-card .btn-show, .profile-card .color- {\n  background-color: #141913;\n  color: #95f50f;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  bottom: 10px;\n}\n.profile-card .btn-show:hover, .profile-card .color-:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
+exports.push([module.i, ".my_card {\n  height: 400px;\n  width: 100%;\n  overflow: hidden;\n  overflow-y: scroll;\n  padding: 30px;\n}\n.filter-btn {\n  border: #141913 solid 1px;\n  border-radius: 5px;\n  width: 180px;\n  height: 40px;\n  padding: 10px;\n  font-size: 20px;\n  cursor: pointer;\n  margin: 0 auto;\n}\n.filter-btn .filter-arrow {\n  transform: rotate(180deg);\n}\n.reset {\n  font-size: 25px;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n.d-block {\n  display: block;\n}\n.d-none {\n  display: none;\n}\n.search-btn {\n  border: 1px solid #141913;\n}\n.search-btn:hover {\n  background-color: #141913;\n  color: #95f50f;\n}\n.color-btn {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n  background-color: rgba(0, 0, 0, 0);\n  position: relative;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .box {\n  min-width: 40px;\n  min-height: 25px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 25px;\n  font-size: 15px;\n  padding: 0 4px 0 4px;\n}\n.profile-card .btn-show, .profile-card .color- {\n  background-color: #141913;\n  color: #95f50f;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  bottom: 10px;\n}\n.profile-card .btn-show:hover, .profile-card .color-:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
 
 // exports
 
@@ -19867,7 +19934,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/francescosangalli/Documents/Boolean/BDeveloper/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\INTEL\Desktop\BDeveloper\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

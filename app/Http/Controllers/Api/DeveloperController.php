@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Review;
+use App\Sponsorization;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class DeveloperController extends Controller
 
         \Log::info($data);
 
-        $developers = User::with(['skill', 'specialization', 'review'])->get();
+        $developers = User::with(['skill', 'specialization', 'review', 'sponsorization'])->get();
 
         $review = Review::all();
 

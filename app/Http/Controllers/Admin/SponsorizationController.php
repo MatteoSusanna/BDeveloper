@@ -16,7 +16,9 @@ class SponsorizationController extends Controller
     $sponsorizations = Sponsorization::all();
     $user = Auth::user();
 
-    return view('admin.sponsorization.index', compact('sponsorizations', 'user'));
+    $userSponsorizations = SponsorizationUser::where('user_id', $user->id)->get();
+
+    return view('admin.sponsorization.index', compact('sponsorizations', 'user', 'userSponsorizations'));
 
 }
 protected $dates = [

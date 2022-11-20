@@ -4,6 +4,11 @@
 
 @section('content')
 
+@if ($userSponsorizations->last() != '' && $userSponsorizations->last()->ends_at > now())
+  <h2>La tua sponsorizzazione scade il {{$userSponsorizations->last()->ends_at}}</h2>
+
+@endif
+
 <form action="{{route('admin.sponsorization.store')}}" method="POST">
   @csrf
 
@@ -21,7 +26,8 @@
         <div id="dropin-wrapper">
             <div id="checkout-message"></div>
             <div id="dropin-container"></div>
-            <button id="submit-button">Effettua il pagamento</button>
+            
+            <button id="submit-button" @if ($userSponsorizations->last() != '' && $userSponsorizations->last()->ends_at > now()) disabled @endif>Effettua il pagamento</button>
         </div>
     </div>
   </div>
