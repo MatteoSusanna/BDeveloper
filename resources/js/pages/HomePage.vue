@@ -149,7 +149,9 @@
             selectNum: null,
             numeroEguale: '', //numero al click sul filtra voto
             filterList: false,
-            sponsorizations: null,
+            sponsorizations: [],
+
+            vote: null,
 
             }
         },
@@ -190,6 +192,8 @@
                     .then((response) =>{
                         this.sponsorizations = response.data.results
                         console.log(response.data.results);
+                        this.vote = response.data.avg
+                        this.filterAvgSpons();
                     })  
             },
 
@@ -214,6 +218,21 @@
             },
 
 
+            filterAvgSpons(){
+                this.sponsorizations.forEach(developer =>{
+                    this.vote.forEach(avg =>{
+                        if(avg.user_id == developer.id){
+                            return developer.avg = avg.average
+                        }
+                            
+                        if(developer.avg == undefined){
+                            return developer.avg = '';
+                        }
+                            
+                    })
+                })
+
+            },
             filterAvg(){
                 this.developers.forEach(developer =>{
                     this.avgVote.forEach(avg =>{

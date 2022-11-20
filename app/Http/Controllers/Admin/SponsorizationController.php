@@ -30,6 +30,7 @@ public function store(){
 
     $data = request()->all();
 
+
     $user = Auth::user();
     $sponsorization = Sponsorization::find($data['sponsorization_id']);
 

@@ -15,7 +15,7 @@
   <div class="container text-center">
     <div class="payment">
         <div class="input-group">
-            <select name="sponsorization_id" id="" class="my-5 custom-select">
+            <select name="sponsorization_id" id="" class="my-5 custom-select" required>
                 <option value="" selected disabled>Seleziona una sponsorizzazione</option>
                 @foreach ($sponsorizations as $sponsorization)
                 <option value="{{$sponsorization->id}}" >{{$sponsorization->name}} - {{$sponsorization->price}} € - {{$sponsorization->duration}} H</option>

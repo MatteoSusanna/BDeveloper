@@ -1979,7 +1979,8 @@ __webpack_require__.r(__webpack_exports__);
       numeroEguale: '',
       //numero al click sul filtra voto
       filterList: false,
-      sponsorizations: null
+      sponsorizations: [],
+      vote: null
     };
   },
   methods: {
@@ -2014,6 +2015,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/sponsorization/').then(function (response) {
         _this3.sponsorizations = response.data.results;
         console.log(response.data.results);
+        _this3.vote = response.data.avg;
+        _this3.filterAvgSpons();
       });
     },
     filter: function filter(specialization) {
@@ -2029,10 +2032,23 @@ __webpack_require__.r(__webpack_exports__);
       this.numeroEguale = n;
       //this.getDeveloper();  
     },
-    filterAvg: function filterAvg() {
+    filterAvgSpons: function filterAvgSpons() {
       var _this4 = this;
+      this.sponsorizations.forEach(function (developer) {
+        _this4.vote.forEach(function (avg) {
+          if (avg.user_id == developer.id) {
+            return developer.avg = avg.average;
+          }
+          if (developer.avg == undefined) {
+            return developer.avg = '';
+          }
+        });
+      });
+    },
+    filterAvg: function filterAvg() {
+      var _this5 = this;
       this.developers.forEach(function (developer) {
-        _this4.avgVote.forEach(function (avg) {
+        _this5.avgVote.forEach(function (avg) {
           if (avg.user_id == developer.id) {
             return developer.avg = avg.average;
           }
@@ -2050,20 +2066,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     provaFiltraggio: function provaFiltraggio() {
-      var _this5 = this;
+      var _this6 = this;
       // if (this.btnRev || this.btnVote != '') {
       //     this.btnSpec != 0.1
       // }
       this.filterAvg();
       return this.developers.filter(function (develop) {
         for (var i = 0; i < develop.specialization.length; i++) {
-          if (develop.specialization[i].name.includes(_this5.nomeSpec)) {
-            if (_this5.review.length == 0) {
-              return develop.specialization[i].name.includes(_this5.nomeSpec);
+          if (develop.specialization[i].name.includes(_this6.nomeSpec)) {
+            if (_this6.review.length == 0) {
+              return develop.specialization[i].name.includes(_this6.nomeSpec);
             } else {
-              if (develop.review.length >= _this5.selectNum) {
-                if (develop.avg >= _this5.numeroEguale) {
-                  return develop.specialization[i].name.includes(_this5.nomeSpec);
+              if (develop.review.length >= _this6.selectNum) {
+                if (develop.avg >= _this6.numeroEguale) {
+                  return develop.specialization[i].name.includes(_this6.nomeSpec);
                 }
               }
             }
