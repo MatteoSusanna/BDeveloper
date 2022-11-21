@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class SponsorizationController extends Controller
 {
+    public function generate(Request $request) {
+        return 'genarate';
+    }
+    public function makePayment(Request $request) {
+        return 'makePayment';
+    }
     public function index(){
 
         $sponsorization = User::with(['skill', 'specialization', 'review', 'sponsorization'])->whereHas('sponsorization', function($q){

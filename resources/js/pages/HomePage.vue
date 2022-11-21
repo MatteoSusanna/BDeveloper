@@ -1,43 +1,46 @@
 <template>
     <div class="mb-5">
-        <h1 class="text-center mt-4">Profili in evidenza</h1>
-        <div class="my_card sponsored-container">
-            
-            <div class="d-flex flex-wrap" v-for="(developer, index) in sponsorizations" :key="index">
-                <!-- card sviluppatori sponsorizzati-->
-                <div class="p-3 card profile-card" v-if="developer.sponsorization.length > 0">
-    
-                    <div class="m-auto img-container rounded-circle">
-                        <img :src="developer.cover" class="img-fluid" >
-                    </div>
-
-                    <div class="card-body mb-5">
-
-                        <h4 class="card-title">{{developer.name}} {{developer.lastname}}</h4>
-
-                        <div v-if="developer.avg > 0">
-                            <i class="fa-star" v-for="n in 5" :key="n" :class="(n>developer.avg)?'fa-regular':'fa-solid'"></i>
-                        </div>
-                        <div v-else>
-                            <i v-for="n in 5" :key="n" class="fa-star fa-regular"></i>
-                        </div>
-
-                        <h4>Specializzazioni:</h4>
-                        <div class="d-flex flex-wrap">
-                            <h4 class="box mr-2" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}}</h4>
-                        </div>
         
-                        <h5 class="mt-3">Skills:</h5>
-                        <div class="d-flex flex-wrap">
-                            <h5 class="box mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</h5>
+        <div  v-if="sponsorizations.length > 0">
+            <h1 class="text-center">Profili in evidenza</h1>
+            <div class="sponsored-container">
+                
+                <!-- card sviluppatori sponsorizzati-->
+                <div class="d-flex">
+                    <div class=" mt-4 p-3 card profile-card" v-for="(developer, index) in sponsorizations" :key="index">
+    
+                        <div class="m-auto img-container rounded-circle">
+                            <img :src="developer.cover" class="img-fluid" >
                         </div>
 
+                        <div class="card-body mb-5">
+
+                            <h4 class="card-title">{{developer.name}} {{developer.lastname}}</h4>
+
+                            <div v-if="developer.avg > 0">
+                                <i class="fa-star" v-for="n in 5" :key="n" :class="(n>developer.avg)?'fa-regular':'fa-solid'"></i>
+                            </div>
+                            <div v-else>
+                                <i v-for="n in 5" :key="n" class="fa-star fa-regular"></i>
+                            </div>
+
+                            <h4>Specializzazioni:</h4>
+                            <div class="d-flex flex-wrap">
+                                <h4 class="box mr-2" v-for="(specialization, index) in developer.specialization" :key="index">{{specialization.name}}</h4>
+                            </div>
+
+                            <h5 class="mt-3">Skills:</h5>
+                            <div class="d-flex flex-wrap">
+                                <h5 class="box mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</h5>
+                            </div>
+                            <router-link class="btn btn-show" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
+
+                        </div>
+
+
                     </div>
-
-                    <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
-
                 </div>
-            </div>
+        </div>
         </div>
 
 
@@ -291,16 +294,19 @@
 </script>
 
 <style lang="scss">
-.sponsored-container {
-    min-height: 600px;
-}
 
-.my_card{
-    height: 400px;
-    width: 100%;
-    overflow: hidden;
-    overflow-y: scroll;
-    padding: 30px;
+.sponsored-container {
+    min-height: 400px;
+    overflow-x: scroll;
+    padding-left: 5px;
+    padding-right: 20px;
+    .sponsored-card-container {
+        
+        &:last-child{
+        margin-right: 20px;
+        }
+    }
+    
 }
 
 .filter-btn {
@@ -354,6 +360,7 @@
     border: 1px solid #141913;
     background-color: rgba($color: #000000, $alpha: 0);
     position: relative;
+    flex-shrink: 0;
 
     &:hover {
         transform: scale(1.1);

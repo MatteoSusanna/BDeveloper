@@ -37,6 +37,9 @@ Route::post('review', 'Api\ReviewController@store');
 //sponsorizzazione
 Route::get('sponsorization', 'Api\SponsorizationController@index');
 
+Route::get('sponsorization/generate', 'Api\SponsorizationController@generate');
+Route::post('sponsorization/make/payment', 'Api\SponsorizationController@makePayment');
+
 
 
 
