@@ -1,6 +1,8 @@
 <template>
     <div class="mb-5">
-        <div class="my_card">
+        <h1 class="text-center mt-4">Profili in evidenza</h1>
+        <div class="my_card sponsored-container">
+            
             <div class="d-flex flex-wrap" v-for="(developer, index) in sponsorizations" :key="index">
                 <!-- card sviluppatori sponsorizzati-->
                 <div class="p-3 card profile-card" v-if="developer.sponsorization.length > 0">
@@ -39,7 +41,7 @@
         </div>
 
 
-        <div class="d-flex align-items-center justify-content-center filter-btn mt-5" :class="filterList == false ? 'mb-5':''"  v-on:click="filterList = !filterList">
+        <div class="d-flex align-items-center justify-content-center filter-btn mt-2" :class="filterList == false ? 'mb-5':''"  v-on:click="filterList = !filterList">
             <h4 class="mt-2">Filtra per </h4>
             <i class="fa-solid fa-circle-chevron-up ml-1" :class="filterList == true? 'filter-arrow': ''"></i>
         </div>
@@ -260,9 +262,7 @@
         computed:{
 
             provaFiltraggio(){
-                // if (this.btnRev || this.btnVote != '') {
-                //     this.btnSpec != 0.1
-                // }
+
                 this.filterAvg();
                 return this.developers.filter(develop =>{
                     for(let i = 0; i < develop.specialization.length; i++){
@@ -291,6 +291,10 @@
 </script>
 
 <style lang="scss">
+.sponsored-container {
+    min-height: 600px;
+}
+
 .my_card{
     height: 400px;
     width: 100%;
