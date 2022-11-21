@@ -49566,9 +49566,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-// The checkout route
-var checkout = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module './routes/checkout'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-app.use('/checkout', checkout);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

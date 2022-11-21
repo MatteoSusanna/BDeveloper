@@ -31,7 +31,7 @@
         </div>
     </div>
   </div>
-    <script>
+    <script type="application/javascript">
       var button = document.querySelector('#submit-button');
     
       braintree.dropin.create({

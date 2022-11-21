@@ -2067,9 +2067,6 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     provaFiltraggio: function provaFiltraggio() {
       var _this6 = this;
-      // if (this.btnRev || this.btnVote != '') {
-      //     this.btnSpec != 0.1
-      // }
       this.filterAvg();
       return this.developers.filter(function (develop) {
         for (var i = 0; i < develop.specialization.length; i++) {
@@ -2351,14 +2348,16 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "mb-5"
+  }, [_vm.sponsorizations.length > 0 ? _c("div", [_c("h1", {
+    staticClass: "text-center"
+  }, [_vm._v("Profili in evidenza")]), _vm._v(" "), _c("div", {
+    staticClass: "sponsored-container"
   }, [_c("div", {
-    staticClass: "my_card"
+    staticClass: "d-flex"
   }, _vm._l(_vm.sponsorizations, function (developer, index) {
     return _c("div", {
       key: index,
-      staticClass: "d-flex flex-wrap"
-    }, [developer.sponsorization.length > 0 ? _c("div", {
-      staticClass: "p-3 card profile-card"
+      staticClass: "mt-4 p-3 card profile-card"
     }, [_c("div", {
       staticClass: "m-auto img-container rounded-circle"
     }, [_c("img", {
@@ -2397,8 +2396,8 @@ var render = function render() {
         key: index,
         staticClass: "box mr-2"
       }, [_vm._v(_vm._s(skill.name))]);
-    }), 0)]), _vm._v(" "), _c("router-link", {
-      staticClass: "btn btn-show mb-0",
+    }), 0), _vm._v(" "), _c("router-link", {
+      staticClass: "btn btn-show",
       attrs: {
         to: {
           name: "profile-details",
@@ -2408,9 +2407,9 @@ var render = function render() {
         },
         title: "Maggiori dettagli"
       }
-    }, [_vm._v("Vedi Profilo")])], 1) : _vm._e()]);
-  }), 0), _vm._v(" "), _c("div", {
-    staticClass: "d-flex align-items-center justify-content-center filter-btn mt-5",
+    }, [_vm._v("Vedi Profilo")])], 1)]);
+  }), 0)])]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "d-flex align-items-center justify-content-center filter-btn mt-2",
     "class": _vm.filterList == false ? "mb-5" : "",
     on: {
       click: function click($event) {
@@ -3094,7 +3093,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".my_card {\n  height: 400px;\n  width: 100%;\n  overflow: hidden;\n  overflow-y: scroll;\n  padding: 30px;\n}\n.filter-btn {\n  border: #141913 solid 1px;\n  border-radius: 5px;\n  width: 180px;\n  height: 40px;\n  padding: 10px;\n  font-size: 20px;\n  cursor: pointer;\n  margin: 0 auto;\n}\n.filter-btn .filter-arrow {\n  transform: rotate(180deg);\n}\n.reset {\n  font-size: 25px;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n.d-block {\n  display: block;\n}\n.d-none {\n  display: none;\n}\n.search-btn {\n  border: 1px solid #141913;\n}\n.search-btn:hover {\n  background-color: #141913;\n  color: #95f50f;\n}\n.color-btn {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n  background-color: rgba(0, 0, 0, 0);\n  position: relative;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .box {\n  min-width: 40px;\n  min-height: 25px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 25px;\n  font-size: 15px;\n  padding: 0 4px 0 4px;\n}\n.profile-card .btn-show, .profile-card .color- {\n  background-color: #141913;\n  color: #95f50f;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  bottom: 10px;\n}\n.profile-card .btn-show:hover, .profile-card .color-:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
+exports.push([module.i, ".sponsored-container {\n  min-height: 400px;\n  overflow-x: scroll;\n  padding-left: 5px;\n  padding-right: 20px;\n}\n.sponsored-container .sponsored-card-container:last-child {\n  margin-right: 20px;\n}\n.filter-btn {\n  border: #141913 solid 1px;\n  border-radius: 5px;\n  width: 180px;\n  height: 40px;\n  padding: 10px;\n  font-size: 20px;\n  cursor: pointer;\n  margin: 0 auto;\n}\n.filter-btn .filter-arrow {\n  transform: rotate(180deg);\n}\n.reset {\n  font-size: 25px;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n.d-block {\n  display: block;\n}\n.d-none {\n  display: none;\n}\n.search-btn {\n  border: 1px solid #141913;\n}\n.search-btn:hover {\n  background-color: #141913;\n  color: #95f50f;\n}\n.color-btn {\n  background-color: #141913;\n  color: #95f50f;\n}\n.profile-card {\n  width: calc(25% - 20px);\n  margin: 0 10px 36px 10px;\n  border: 1px solid #141913;\n  background-color: rgba(0, 0, 0, 0);\n  position: relative;\n  flex-shrink: 0;\n}\n.profile-card:hover {\n  transform: scale(1.1);\n  box-shadow: 0.15rem 0.15rem 0.25rem #141913;\n}\n.profile-card .img-container {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n}\n.profile-card .box {\n  min-width: 40px;\n  min-height: 25px;\n  background-color: #141913;\n  border-radius: 5px;\n  color: #95f50f;\n  text-align: center;\n  line-height: 25px;\n  font-size: 15px;\n  padding: 0 4px 0 4px;\n}\n.profile-card .btn-show, .profile-card .color- {\n  background-color: #141913;\n  color: #95f50f;\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  bottom: 10px;\n}\n.profile-card .btn-show:hover, .profile-card .color-:hover {\n  background-color: #090908;\n  box-shadow: 0.15rem 0.15rem 0.25rem #31372c;\n  color: #95f50f;\n}", ""]);
 
 // exports
 
@@ -19950,7 +19949,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\INTEL\Desktop\BDeveloper\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/francescosangalli/Documents/Boolean/BDeveloper/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
