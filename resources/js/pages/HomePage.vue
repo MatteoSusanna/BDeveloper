@@ -3,7 +3,7 @@
         
         <div  v-if="sponsorizations.length > 0">
             <h1 class="text-center">Profili in evidenza</h1>
-            <div class="sponsored-container">
+            <div class="sponsored_container">
                 
                 <!-- card sviluppatori sponsorizzati-->
                 <div class="d-flex">
@@ -95,6 +95,10 @@
                 <span class="sr-only"></span>
             </div>
         </div>
+
+        <!-- Risultati trovati -->
+        <h2 v-if="provaFiltraggio.length > 0" class="text-center my-4">Risultati trovati {{provaFiltraggio.length}}</h2>
+        <h2 v-else class="text-center my-4">Nessun risultato trovato</h2>
 
         <div class="d-flex flex-wrap" >
             <!-- card sviluppatori -->
@@ -295,7 +299,7 @@
 
 <style lang="scss">
 
-.sponsored-container {
+.sponsored_container {
     min-height: 400px;
     overflow-x: scroll;
     padding-left: 5px;

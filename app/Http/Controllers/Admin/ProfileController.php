@@ -200,6 +200,7 @@ class ProfileController extends Controller
         Storage::delete($developer->curriculum);
         Storage::delete($developer->cover);
         $developer->skill()->sync([]);
+        $developer->sponsorization()->sync([]);
         
 
         $developer->delete();
