@@ -9,7 +9,7 @@
 
 @endif
 
-<form action="{{route('admin.sponsorization.store')}}" method="POST">
+<form id="payment-form" action="{{route('admin.sponsorization.store')}}" method="POST">
   @csrf
 
   <div class="container text-center">
@@ -28,48 +28,54 @@
             <div id="dropin-container"></div>
             
             <button id="submit-button" @if ($userSponsorizations->last() != '' && $userSponsorizations->last()->ends_at > now()) disabled @endif>Effettua il pagamento</button>
+            <input type="hidden" id="nonce" name="payment_method_nonce"/>
         </div>
     </div>
   </div>
-    <script type="application/javascript">
+</form>
+    <script type="text/javascript">
+      const form = document.getElementById('payment-form');
       var button = document.querySelector('#submit-button');
+      var client_token = "{{$token}}";
     
       braintree.dropin.create({
         // Insert your tokenization key here
-        authorization: 'sandbox_d5rfmhp7_6ypmc473hntyvpvy',
+        authorization: client_token,
         container: '#dropin-container'
-      }, function (createErr, instance) {
-        button.addEventListener('click', function () {
-          instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
-            // When the user clicks on the 'Submit payment' button this code will send the
-            // encrypted payment information in a variable called a payment method nonce
-            $.ajax({
-              type: 'POST',
-              url: '/checkout',
-              data: {'paymentMethodNonce': payload.nonce}
-            }).done(function(result) {
-              // Tear down the Drop-in UI
-              instance.teardown(function (teardownErr) {
-                if (teardownErr) {
-                  console.error('Could not tear down Drop-in UI!');
-                } else {
-                  console.info('Drop-in UI has been torn down!');
-                  // Remove the 'Submit payment' button
-                  $('#submit-button').remove();
-                }
-              });
-    
-              if (result.success) {
-                $('#checkout-message').html('<h1>Success</h1><p>Your Drop-in UI is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>');
-              } else {
-                console.log(result);
-                $('#checkout-message').html('<h1>Error</h1><p>Check your console.</p>');
-              }
-            });
-          });
-        });
-      });
+      }, function (error, dropinInstance) {
+        form.addEventListener('submit', event => {
+          event.preventDefault();
+          let button = document.querySelector('button');
+          button.disabled=true;
+          dropinInstance.requestPaymentMethod((error, payload) => {
+            if (error) console.error(error);
+            document.getElementById('nonce').value = payload.nonce;
+            $nonceFromTheClient = $_POST["payment_method_nonce"]
+      form.submit();
+    });
+  });
+});
+
+    //   braintree.dropin.create({
+    //   authorization: client_token,
+    //   container: '#dropin-container',
+    //   paypal: {
+    //         flow: 'vault'
+    //     }
+    //   }, function (createErr, instance) {
+    //   button.addEventListener('click', function () {
+    //     instance.requestPaymentMethod(function (err, payload) {
+    //       $.get('{{ route('admin.payment.process') }}', {payload}, function (response) {
+    //         if (response.success) {
+    //           alert('Payment successfull!');
+    //         } else {
+    //           alert('Payment failed');
+    //         }
+    //       }, 'json');
+    //     });
+    //   });
+    // });
   </script>
-</form>
+
 
 @endsection
