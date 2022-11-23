@@ -251,12 +251,12 @@ class UsersSeeder extends Seeder
             $NewDeveloper->password = $developer['password'];
             $NewDeveloper->curriculum = $developer['curriculum'];
             $NewDeveloper->phone = $developer['phone'];
-            $contents = new File(__DIR__ . '/../../storage/app/public/img/' . rand(1, 5) . '.jpg');
+            $contents = new File(__DIR__ . '/../../public/img/imgCover/' . rand(1, 5) . '.jpg');
             $NewDeveloper->cover = Storage::put('uploads', $contents);
             $NewDeveloper->hourly_wage = $developer['hourly_wage'];
             $NewDeveloper->Slug=Str::slug($developer['name']  . '-' . $developer['lastname'], '-');
             $NewDeveloper->save();
-            $NewDeveloper->specialization()->attach(rand($faker->numberBetween(1, 8)));
+            $NewDeveloper->specialization()->attach($faker->numberBetween(1, 8));
             $NewDeveloper->skill()->attach($faker->numberBetween(1, 6));
             $NewDeveloper->skill()->attach($faker->numberBetween(7, 12));
             
