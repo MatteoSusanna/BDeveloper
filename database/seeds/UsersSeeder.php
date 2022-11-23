@@ -28,7 +28,7 @@ class UsersSeeder extends Seeder
                 "password" => Hash::make("paolorossi"),
                 "curriculum" => null,
                 "phone" => 3451298456,
-                "cover" => 'imgCover/1.jpg',
+                "cover" => null,
                 "hourly_wage" => 12.50,
             ],
             [
@@ -251,7 +251,8 @@ class UsersSeeder extends Seeder
             $NewDeveloper->password = $developer['password'];
             $NewDeveloper->curriculum = $developer['curriculum'];
             $NewDeveloper->phone = $developer['phone'];
-            $NewDeveloper->cover = $developer['cover'];
+            $contents = new File(__DIR__ . '/../../public/img/imgCover/' . rand(1, 20) . '.jpg');
+            $NewDeveloper->cover = Storage::put('uploads', $contents);
             $NewDeveloper->hourly_wage = $developer['hourly_wage'];
             $NewDeveloper->Slug=Str::slug($developer['name']  . '-' . $developer['lastname'], '-');
             $NewDeveloper->save();
