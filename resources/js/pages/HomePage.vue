@@ -44,22 +44,23 @@
         </div>
 
 
-        <div class="d-flex align-items-center justify-content-center filter-btn mt-2" :class="filterList == false ? 'mb-5':''"  v-on:click="filterList = !filterList">
+        <div class="d-flex align-items-center justify-content-center filter-btn mt-2" :class="filterList == false ? 'mb-3':''"  v-on:click="filterList = !filterList">
             <h4 class="mt-2">Filtra per </h4>
             <i class="fa-solid fa-circle-chevron-up ml-1" :class="filterList == true? 'filter-arrow': ''"></i>
         </div>
         
         <div class="d-flex-column mt-4 mb-5 position-relative" v-show="filterList">
+
             <div class="d-flex justify-content-center">
                 <h4 class="mr-3 align-self-center">Specializzazione:</h4>
                 <div class="input-group-prepend">
                     <!-- filtraggio specializzazioni -->
-
-                    <button type="button" class="btn search-btn m-2" v-for="(spec, index) in SelectedSpecializations" :key="index" 
-                            @click="filter(spec.name); btnSpec = index" :class="(btnSpec == index)?'color-btn':''">
-                            {{spec.name}}
-                    </button>
                     
+                    <button type="button" class="btn search-btn m-2" v-for="(spec, index) in SelectedSpecializations" :key="index" 
+                    @click="filter(spec.name); btnSpec = index" :class="(btnSpec == index)?'color-btn':''">
+                    {{spec.name}}
+                </button>
+                
                 </div>
             </div>
 
@@ -67,28 +68,52 @@
                 <h4 class="mt-2 mr-3">Media voto:</h4>
                 <!-- filtraggio per media voto -->
                 <div class="input-group-prepend">
-
+                    
                     <button type="button" class="btn search-btn m-2" :class="(btnVote == n)? 'color-btn': ''" v-for="n in 5" :key="n" 
-                        @click="filterVote(n); btnVote = n">
-                        {{n}}
-                    </button>
-
-                </div>
-
-                <h4 class="mt-2 mx-3">Numero recensioni:</h4>
-                <!-- filtraggio numero recensioni -->            
-                <div class="input-group-prepend">
-
-                    <button type="button" class="btn search-btn m-2" :class="(btnRev == numero)? 'color-btn': ''" v-for="(numero, index) in numRecFilter" :key="index" 
-                        @click="filterNum(numero); btnRev = numero">
-                        Maggiore di {{numero}}
-                    </button>
-                </div>
+                    @click="filterVote(n); btnVote = n">
+                    {{n}}
+                </button>
+                
+            </div>
+            
+            <h4 class="mt-2 mx-3">Numero recensioni:</h4>
+            <!-- filtraggio numero recensioni -->            
+            <div class="input-group-prepend">
+                
+                <button type="button" class="btn search-btn m-2" :class="(btnRev == numero)? 'color-btn': ''" v-for="(numero, index) in numRecFilter" :key="index" 
+                @click="filterNum(numero); btnRev = numero">
+                Maggiore di {{numero}}
+                </button>
+            </div>
                 <!-- tasto reset -->
                 <button type="button" class="btn reset" @click="getAllDeveloper(); btnSpec = 0.1"><i class="fa-solid fa-x"></i></button>
             </div>
 
+            <div>
+            </div>
+            
         </div>
+        
+        <div class="d-flex align-items-center justify-content-center filter-btn mt-2" :class="sortList == false ? 'mb-5':''"  v-on:click="sortList = !sortList">
+            <h4 class="mt-2">Ordina per </h4>
+            <i class="fa-solid fa-circle-chevron-up ml-1" :class="sortList == true? 'filter-arrow': ''"></i>
+        </div>
+
+        <div class=" mt-4 mb-5 position-relative text-center" v-show="sortList">
+            
+                <button class="mr-2 btn search-btn m-2 p-1" :class="orderBtn == 1 ? 'color-btn' : '' " @click="sortB('review'); orderBtn=1">Recensioni <i class="fas fa-sort-amount-up"></i> </button>
+           
+                <button class="mr-2 btn search-btn m-2 p-1" :class="orderBtn == 2 ? 'color-btn' : '' " @click="sortA('review'); orderBtn=2">recensione  <i class="fas fa-sort-amount-up-alt"></i> </button>
+            
+                <button class="mr-2 btn search-btn m-2 p-1" :class="orderBtn == 3 ? 'color-btn' : '' " @click="sortB('avg'); orderBtn=3">voto <i class="fas fa-sort-amount-up"></i> </button>
+            
+                <button class="mr-2 btn search-btn m-2 p-1" :class="orderBtn == 4 ? 'color-btn' : '' " @click="sortA('avg'); orderBtn=4">voto <i class="fas fa-sort-amount-up-alt"></i> </button>
+           
+                <button class="btn reset" @click="sortReset('id'); orderBtn=0"><i class="fa-solid fa-x"></i></button>
+            
+        </div>
+
+
         <!--Spinner di caricamento post-->
         <div class="d-flex justify-content-center" v-if="spinner">
             <div class="spinner-border text-secondary" role="status">
@@ -101,6 +126,7 @@
         <h2 v-else class="text-center my-4">Nessun risultato trovato</h2>
 
         <div class="d-flex flex-wrap" >
+            
             <!-- card sviluppatori -->
             <div class="p-3 card profile-card" v-for="(developer, index) in provaFiltraggio" :key="index" :class="{'d-none': developer.review.length < selectNum}" >
                 <div class="m-auto img-container rounded-circle">
@@ -140,6 +166,7 @@
 </template>
 
 <script>
+import axios from "axios";
     export default {
         name: 'HomePage',
         data(){
@@ -159,9 +186,9 @@
             numeroEguale: '', //numero al click sul filtra voto
             filterList: false,
             sponsorizations: [],
-
+            sortList: false,
             vote: null,
-
+            orderBtn: 0,
             }
         },
         methods:{
@@ -215,7 +242,40 @@
                 this.selectNum = numero;
             },            
 
+            sortB(prop){
+                this.developers.sort((a,b) => {
+                    if(a[prop] > b[prop] ){
+                        return 1;
+                    }
+                    if( a[prop] < b[prop] ){
+                        return -1;
+                    }
+                    return 0;
+                })
+            },
+            sortA(prop){
+                this.developers.sort((a,b) => {
+                    if(a[prop] > b[prop] ){
+                        return -1;
+                    }
+                    if( a[prop] < b[prop] ){
+                        return 1;
+                    }
+                    return 0;
+                })
+            },
 
+            sortReset(prop){
+                this.developers.sort((a,b) => {
+                    if(a[prop] > b[prop] ){
+                        return 1;
+                    }
+                    if( a[prop] < b[prop] ){
+                        return -1;
+                    }
+                    return 0;
+                })
+            },
 
 
             filterVote(n){

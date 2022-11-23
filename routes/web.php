@@ -40,6 +40,9 @@ Route::middleware('auth')
         Route::get('/sponsorization', 'SponsorizationController@index')->name('sponsorization');
         Route::get('/sponsorization/process', 'SponsorizationController@process')->name('payment.process');
         Route::post('/sponsorization', 'SponsorizationController@store')->name('sponsorization.store');
+
+        //rotta statistiche
+        Route::get('/statistiche', 'StatisticheController@index')->name('statistiche');
     });
 
 

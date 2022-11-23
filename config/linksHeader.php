@@ -28,7 +28,7 @@ return [
     ],
     [
         "title" => "Statistiche",
-        "url" => "#",
+        "url" => "admin.statistiche",
         'notifiche' => 0
     ],
 ];

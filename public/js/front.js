@@ -1958,6 +1958,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HomePage',
   data: function data() {
@@ -1980,14 +1983,16 @@ __webpack_require__.r(__webpack_exports__);
       //numero al click sul filtra voto
       filterList: false,
       sponsorizations: [],
-      vote: null
+      sortList: false,
+      vote: null,
+      orderBtn: 0
     };
   },
   methods: {
     getDeveloper: function getDeveloper() {
       var _this = this;
       this.spinner = true;
-      axios.get('/api/developer/').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/developer/').then(function (response) {
         _this.spinner = false;
         _this.developers = response.data.results;
         _this.review = response.data.review;
@@ -2006,13 +2011,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     getSpecializations: function getSpecializations() {
       var _this2 = this;
-      axios.get('/api/specializations/').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/specializations/').then(function (response) {
         _this2.SelectedSpecializations = response.data.results;
       });
     },
     getSponsor: function getSponsor() {
       var _this3 = this;
-      axios.get('/api/sponsorization/').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/sponsorization/').then(function (response) {
         _this3.sponsorizations = response.data.results;
         console.log(response.data.results);
         _this3.vote = response.data.avg;
@@ -2026,6 +2031,39 @@ __webpack_require__.r(__webpack_exports__);
     filterNum: function filterNum(numero) {
       console.log(this.selectNum);
       this.selectNum = numero;
+    },
+    sortB: function sortB(prop) {
+      this.developers.sort(function (a, b) {
+        if (a[prop] > b[prop]) {
+          return 1;
+        }
+        if (a[prop] < b[prop]) {
+          return -1;
+        }
+        return 0;
+      });
+    },
+    sortA: function sortA(prop) {
+      this.developers.sort(function (a, b) {
+        if (a[prop] > b[prop]) {
+          return -1;
+        }
+        if (a[prop] < b[prop]) {
+          return 1;
+        }
+        return 0;
+      });
+    },
+    sortReset: function sortReset(prop) {
+      this.developers.sort(function (a, b) {
+        if (a[prop] > b[prop]) {
+          return 1;
+        }
+        if (a[prop] < b[prop]) {
+          return -1;
+        }
+        return 0;
+      });
     },
     filterVote: function filterVote(n) {
       console.log(n);
@@ -2098,6 +2136,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SingleDev',
   data: function data() {
@@ -2127,7 +2168,7 @@ __webpack_require__.r(__webpack_exports__);
     sendMessage: function sendMessage() {
       var _this = this;
       this.disabledButton = true;
-      axios.post('/api/message', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/message', {
         'name': this.name,
         'lastname': this.lastname,
         'email': this.email,
@@ -2151,7 +2192,7 @@ __webpack_require__.r(__webpack_exports__);
     sendReview: function sendReview() {
       var _this2 = this;
       this.disabledButtonRew = true;
-      axios.post('/api/review', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/review', {
         'nome': this.nome,
         'cognome': this.cognome,
         'messaggio': this.messaggio,
@@ -2175,7 +2216,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this3 = this;
     var slug = this.$route.params.slug;
-    axios.get('/api/developer/' + slug).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/developer/' + slug).then(function (res) {
       _this3.developer = res.data.result;
       _this3.idDev = res.data.result.id;
       console.log(res.data.result);
@@ -2410,7 +2451,7 @@ var render = function render() {
     }, [_vm._v("Vedi Profilo")])], 1)]);
   }), 0)])]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center justify-content-center filter-btn mt-2",
-    "class": _vm.filterList == false ? "mb-5" : "",
+    "class": _vm.filterList == false ? "mb-3" : "",
     on: {
       click: function click($event) {
         _vm.filterList = !_vm.filterList;
@@ -2449,7 +2490,7 @@ var render = function render() {
           _vm.btnSpec = index;
         }
       }
-    }, [_vm._v("\n                        " + _vm._s(spec.name) + "\n                ")]);
+    }, [_vm._v("\n                " + _vm._s(spec.name) + "\n            ")]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "d-flex justify-content-center align-items-center"
   }, [_c("h4", {
@@ -2470,7 +2511,7 @@ var render = function render() {
           _vm.btnVote = n;
         }
       }
-    }, [_vm._v("\n                    " + _vm._s(n) + "\n                ")]);
+    }, [_vm._v("\n                " + _vm._s(n) + "\n            ")]);
   }), 0), _vm._v(" "), _c("h4", {
     staticClass: "mt-2 mx-3"
   }, [_vm._v("Numero recensioni:")]), _vm._v(" "), _c("div", {
@@ -2489,7 +2530,7 @@ var render = function render() {
           _vm.btnRev = numero;
         }
       }
-    }, [_vm._v("\n                    Maggiore di " + _vm._s(numero) + "\n                ")]);
+    }, [_vm._v("\n            Maggiore di " + _vm._s(numero) + "\n            ")]);
   }), 0), _vm._v(" "), _c("button", {
     staticClass: "btn reset",
     attrs: {
@@ -2503,7 +2544,82 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-x"
-  })])])]), _vm._v(" "), _vm.spinner ? _c("div", {
+  })])]), _vm._v(" "), _c("div")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex align-items-center justify-content-center filter-btn mt-2",
+    "class": _vm.sortList == false ? "mb-5" : "",
+    on: {
+      click: function click($event) {
+        _vm.sortList = !_vm.sortList;
+      }
+    }
+  }, [_c("h4", {
+    staticClass: "mt-2"
+  }, [_vm._v("Ordina per ")]), _vm._v(" "), _c("i", {
+    staticClass: "fa-solid fa-circle-chevron-up ml-1",
+    "class": _vm.sortList == true ? "filter-arrow" : ""
+  })]), _vm._v(" "), _c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.sortList,
+      expression: "sortList"
+    }],
+    staticClass: "mt-4 mb-5 position-relative text-center"
+  }, [_c("button", {
+    staticClass: "mr-2 btn search-btn m-2 p-1",
+    "class": _vm.orderBtn == 1 ? "color-btn" : "",
+    on: {
+      click: function click($event) {
+        _vm.sortB("review");
+        _vm.orderBtn = 1;
+      }
+    }
+  }, [_vm._v("Recensioni "), _c("i", {
+    staticClass: "fas fa-sort-amount-up"
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "mr-2 btn search-btn m-2 p-1",
+    "class": _vm.orderBtn == 2 ? "color-btn" : "",
+    on: {
+      click: function click($event) {
+        _vm.sortA("review");
+        _vm.orderBtn = 2;
+      }
+    }
+  }, [_vm._v("recensione  "), _c("i", {
+    staticClass: "fas fa-sort-amount-up-alt"
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "mr-2 btn search-btn m-2 p-1",
+    "class": _vm.orderBtn == 3 ? "color-btn" : "",
+    on: {
+      click: function click($event) {
+        _vm.sortB("avg");
+        _vm.orderBtn = 3;
+      }
+    }
+  }, [_vm._v("voto "), _c("i", {
+    staticClass: "fas fa-sort-amount-up"
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "mr-2 btn search-btn m-2 p-1",
+    "class": _vm.orderBtn == 4 ? "color-btn" : "",
+    on: {
+      click: function click($event) {
+        _vm.sortA("avg");
+        _vm.orderBtn = 4;
+      }
+    }
+  }, [_vm._v("voto "), _c("i", {
+    staticClass: "fas fa-sort-amount-up-alt"
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "btn reset",
+    on: {
+      click: function click($event) {
+        _vm.sortReset("id");
+        _vm.orderBtn = 0;
+      }
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-x"
+  })])]), _vm._v(" "), _vm.spinner ? _c("div", {
     staticClass: "d-flex justify-content-center"
   }, [_vm._m(0)]) : _vm._e(), _vm._v(" "), _vm.provaFiltraggio.length > 0 ? _c("h2", {
     staticClass: "text-center my-4"
