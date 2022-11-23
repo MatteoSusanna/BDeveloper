@@ -20,9 +20,51 @@ class SponsorizationController extends Controller
 
     $userSponsorizations = SponsorizationUser::where('user_id', $user->id)->get();
 
-    return view('admin.sponsorization.index', compact('sponsorizations', 'user', 'userSponsorizations'));
+    $gateway = new \Braintree\Gateway([
+        // i dati li riprendiamo dal config precedentemente inizializzato
+        'environment' => config('services.braintree.environment'),
+        'merchantId' => config('services.braintree.merchantId'),
+        'publicKey' => config('services.braintree.publicKey'),
+        'privateKey' => config('services.braintree.privateKey')
+    ]);
+
+    // genero il token e lo passo alla rotta, dentro la rotta in var client_token (script) mi riferisco a questo
+    $token = $gateway->ClientToken()->generate();
+        
+
+    return view('admin.sponsorization.index', compact('sponsorizations', 'user', 'userSponsorizations', 'token'));
 
 }
+
+public function process(Request $request, Gateway $gateway)
+{
+    $payload = $request->input('payload', false);
+    $nonce = $payload['nonce'];
+    $sponsorization = Sponsorization::all();
+
+    $price  = Sponsorization::where('price', $sponsorization->id)->first();
+
+    if ($price == 1) {
+        $amount = 2.99;
+    } elseif ( $price == 2) {
+        $amount = 5.99;
+    } elseif ($price == 3) {
+        $amount = 9.99;
+    }
+    
+
+    // $gateway = new \Braintree\Gateway;
+    $status = $gateway->transaction()->sale([
+	'amount' => 10.00,
+	'paymentMethodNonce' => $nonce,
+	'options' => [
+        'submitForSettlement' => True
+	]
+    ]);
+
+    return response()->json($status);
+}
+
 protected $dates = [
     'starts_at',
     'ends_at',
