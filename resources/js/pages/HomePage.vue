@@ -101,13 +101,13 @@
 
         <div class=" mt-4 mb-5 position-relative text-center" v-show="sortList">
             
-                <button class="mr-2 btn search-btn m-2" :class="orderBtn == 1 ? 'color-btn' : '' " @click="sortB('review'); orderBtn=1">recensione cre</button>
+                <button class="mr-2 btn search-btn m-2 p-1" :class="orderBtn == 1 ? 'color-btn' : '' " @click="sortB('review'); orderBtn=1">Recensioni <i class="fas fa-sort-amount-up"></i> </button>
            
-                <button class="mr-2 btn search-btn m-2" :class="orderBtn == 2 ? 'color-btn' : '' " @click="sortA('review'); orderBtn=2">recensione decre</button>
+                <button class="mr-2 btn search-btn m-2 p-1" :class="orderBtn == 2 ? 'color-btn' : '' " @click="sortA('review'); orderBtn=2">recensione  <i class="fas fa-sort-amount-up-alt"></i> </button>
             
-                <button class="mr-2 btn search-btn m-2" :class="orderBtn == 3 ? 'color-btn' : '' " @click="sortB('avg'); orderBtn=3">voto cre</button>
+                <button class="mr-2 btn search-btn m-2 p-1" :class="orderBtn == 3 ? 'color-btn' : '' " @click="sortB('avg'); orderBtn=3">voto <i class="fas fa-sort-amount-up"></i> </button>
             
-                <button class="mr-2 btn search-btn m-2" :class="orderBtn == 4 ? 'color-btn' : '' " @click="sortA('avg'); orderBtn=4">voto decre</button>
+                <button class="mr-2 btn search-btn m-2 p-1" :class="orderBtn == 4 ? 'color-btn' : '' " @click="sortA('avg'); orderBtn=4">voto <i class="fas fa-sort-amount-up-alt"></i> </button>
            
                 <button class="btn reset" @click="sortReset('id'); orderBtn=0"><i class="fa-solid fa-x"></i></button>
             
