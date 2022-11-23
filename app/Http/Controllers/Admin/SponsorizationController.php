@@ -94,7 +94,7 @@ public function store(){
         return redirect()->back()->with('status', 'errore');
     }else{
         $userSponsorization->starts_at = Carbon::now();
-        $userSponsorization->ends_at = $currentDateTime->addMinute($sponsorizations->duration);
+        $userSponsorization->ends_at = $currentDateTime->addHours($sponsorizations->duration);
         $userSponsorization->fill($data);
 
 
