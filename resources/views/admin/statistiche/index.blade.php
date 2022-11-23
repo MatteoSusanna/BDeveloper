@@ -28,7 +28,7 @@
         label: 'Recensioni & Messaggi',
         backgroundColor: ['#ff8906', '#0f0e17'],
         borderColor: 'rgb(255, 99, 132)',
-        data: [myInputReview, myInputMessage, 30],
+        data: [myInputReview, myInputMessage],
       }]
     };
   
