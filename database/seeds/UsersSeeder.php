@@ -251,7 +251,7 @@ class UsersSeeder extends Seeder
             $NewDeveloper->password = $developer['password'];
             $NewDeveloper->curriculum = $developer['curriculum'];
             $NewDeveloper->phone = $developer['phone'];
-            $contents = new File(__DIR__ . '/../../public/img/imgCover/' . rand(1, 20) . '.jpg');
+            $contents = new File(__DIR__ . '/../../public/imgCover/' . rand(1, 20) . '.jpg');
             $NewDeveloper->cover = Storage::put('uploads', $contents);
             $NewDeveloper->hourly_wage = $developer['hourly_wage'];
             $NewDeveloper->Slug=Str::slug($developer['name']  . '-' . $developer['lastname'], '-');
