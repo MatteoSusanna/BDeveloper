@@ -1,14 +1,18 @@
 <template>
-    <div class="mb-5">
-        
+    
+    <div class="mb-5">        
+            <div>
+                <a href="">freccia</a>
+            </div>
+        <!-- Sezione Sviluppatori sponsorizzati-->
         <div  v-if="sponsorizations.length > 0">
+
             <h1 class="text-center">Profili in evidenza</h1>
+
             <div class="sponsored_container">
-                
                 <!-- card sviluppatori sponsorizzati-->
                 <div class="d-flex">
                     <div class=" mt-4 p-3 card profile-card" v-for="(developer, index) in sponsorizations" :key="index">
-    
                         <div class="m-auto img-container rounded-circle">
                             <img :src="developer.cover" class="img-fluid" >
                         </div>
@@ -33,17 +37,18 @@
                             <div class="d-flex flex-wrap">
                                 <h5 class="box mr-2" v-for="(skill, index) in developer.skill" :key="index">{{skill.name}}</h5>
                             </div>
+
                             <router-link class="btn btn-show" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
-
+                        
                         </div>
-
-
                     </div>
                 </div>
-        </div>
+            </div>
         </div>
 
 
+
+        <!-- **INIZIO Sezione Filtra per** -->
         <div class="d-flex align-items-center justify-content-center filter-btn mt-2" :class="filterList == false ? 'mb-3':''"  v-on:click="filterList = !filterList">
             <h4 class="mt-2">Filtra per </h4>
             <i class="fa-solid fa-circle-chevron-up ml-1" :class="filterList == true? 'filter-arrow': ''"></i>
@@ -51,49 +56,55 @@
         
         <div class="d-flex-column mt-4 mb-5 position-relative" v-show="filterList">
 
+
             <div class="d-flex justify-content-center">
+                
+                <!-- filtraggio specializzazioni -->
                 <h4 class="mr-3 align-self-center">Specializzazione:</h4>
                 <div class="input-group-prepend">
-                    <!-- filtraggio specializzazioni -->
-                    
                     <button type="button" class="btn search-btn m-2" v-for="(spec, index) in SelectedSpecializations" :key="index" 
-                    @click="filter(spec.name); btnSpec = index" :class="(btnSpec == index)?'color-btn':''">
-                    {{spec.name}}
-                </button>
-                
+                        @click="filter(spec.name); btnSpec = index" :class="(btnSpec == index)?'color-btn':''">
+                        {{spec.name}}
+                    </button>
                 </div>
+
             </div>
 
             <div class="d-flex justify-content-center align-items-center">
-                <h4 class="mt-2 mr-3">Media voto:</h4>
+                
                 <!-- filtraggio per media voto -->
+                <h4 class="mt-2 mr-3">Media voto:</h4>
                 <div class="input-group-prepend">
-                    
                     <button type="button" class="btn search-btn m-2" :class="(btnVote == n)? 'color-btn': ''" v-for="n in 5" :key="n" 
-                    @click="filterVote(n); btnVote = n">
-                    {{n}}
-                </button>
-                
-            </div>
+                        @click="filterVote(n); btnVote = n">
+                        {{n}}
+                    </button>
+                </div>
             
-            <h4 class="mt-2 mx-3">Numero recensioni:</h4>
-            <!-- filtraggio numero recensioni -->            
-            <div class="input-group-prepend">
-                
-                <button type="button" class="btn search-btn m-2" :class="(btnRev == numero)? 'color-btn': ''" v-for="(numero, index) in numRecFilter" :key="index" 
-                @click="filterNum(numero); btnRev = numero">
-                Maggiore di {{numero}}
-                </button>
-            </div>
-                <!-- tasto reset -->
-                <button type="button" class="btn reset" @click="getAllDeveloper(); btnSpec = 0.1"><i class="fa-solid fa-x"></i></button>
-            </div>
 
-            <div>
+                <!-- filtraggio numero recensioni -->            
+                <h4 class="mt-2 mx-3">Numero recensioni:</h4>
+                <div class="input-group-prepend">
+                    <button type="button" class="btn search-btn m-2" :class="(btnRev == numero)? 'color-btn': ''" v-for="(numero, index) in numRecFilter" :key="index" 
+                        @click="filterNum(numero); btnRev = numero">
+                        Maggiore di {{numero}}
+                    </button>
+                </div>
+
+
+                <!-- tasto reset -->
+                <div>
+                    <button type="button" class="btn reset" @click="getAllDeveloper(); btnSpec = 0.1"><i class="fa-solid fa-x"></i></button>
+                </div>
+
             </div>
             
         </div>
-        
+        <!-- **FINE Sezione Filtra per** -->
+
+
+
+        <!-- **INIZIO Ordina Filtra per** -->
         <div class="d-flex align-items-center justify-content-center filter-btn mt-2" :class="sortList == false ? 'mb-5':''"  v-on:click="sortList = !sortList">
             <h4 class="mt-2">Ordina per </h4>
             <i class="fa-solid fa-circle-chevron-up ml-1" :class="sortList == true? 'filter-arrow': ''"></i>
@@ -112,7 +123,11 @@
                 <button class="btn reset" @click="sortReset('id'); orderBtn=0"><i class="fa-solid fa-x"></i></button>
             
         </div>
+        <!-- **FINE Ordina Filtra per** -->
 
+
+
+        <!-- **INIZIO Sezione Spinner** -->
 
         <!--Spinner di caricamento post-->
         <div class="d-flex justify-content-center" v-if="spinner">
@@ -125,10 +140,15 @@
         <h2 v-if="provaFiltraggio.length > 0" class="text-center my-4">Risultati trovati {{provaFiltraggio.length}}</h2>
         <h2 v-else class="text-center my-4">Nessun risultato trovato</h2>
 
+        <!-- **FINE Sezione Spinner** -->
+
+
+
+        <!-- **INIZIO Sezione Sviluppatori** -->
         <div class="d-flex flex-wrap" >
             
             <!-- card sviluppatori -->
-            <div class="p-3 card profile-card" v-for="(developer, index) in provaFiltraggio" :key="index" :class="{'d-none': developer.review.length < selectNum}" >
+            <div class="p-3 card profile-card container" v-for="(developer, index) in provaFiltraggio" :key="index" :class="{'d-none': developer.review.length < selectNum}" >
                 <div class="m-auto img-container rounded-circle">
                     <img :src="developer.cover" class="img-fluid" >
                 </div>
@@ -157,11 +177,12 @@
                 </div>
 
                 <router-link class="btn btn-show mb-0" :to="{name: 'profile-details', params: {slug: developer.slug}}" title="Maggiori dettagli">Vedi Profilo</router-link>
-
+                
             </div>
         </div>
-        
-    </div>
+        <!-- **FINE Sezione Sviluppatori** -->
+
+</div>
 
 </template>
 
