@@ -256,8 +256,10 @@ class UsersSeeder extends Seeder
             $NewDeveloper->hourly_wage = $developer['hourly_wage'];
             $NewDeveloper->Slug=Str::slug($developer['name']  . '-' . $developer['lastname'], '-');
             $NewDeveloper->save();
-            $NewDeveloper->specialization()->attach($faker->numberBetween(1, 8));
-            $NewDeveloper->skill()->attach($faker->numberBetween(1, 6));
+            $NewDeveloper->specialization()->attach($faker->numberBetween(1, 4));
+            $NewDeveloper->specialization()->attach($faker->numberBetween(5, 8));
+            $NewDeveloper->skill()->attach($faker->numberBetween(1, 3));
+            $NewDeveloper->skill()->attach($faker->numberBetween(4, 6));
             $NewDeveloper->skill()->attach($faker->numberBetween(7, 12));
             
             for ($i = 0; $i < rand(1, 2000); $i++) {
