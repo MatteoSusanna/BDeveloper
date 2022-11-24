@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid my_header mb-3">
+    <div class="container-fluid my_header">
 
         <div class="container d-flex justify-content-between align-items-center">
           <div>
@@ -43,7 +43,7 @@ export default {
 <style lang="scss">
   .my_header{
     background-color: #141913;
-    box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;
+    border-bottom: 1px solid white;
     width: 100%;
 
     

@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="my_jumbo"> <!-- mettere opacity non mi ricordo come si fa!!!!! -->
+        <div class="my_jumbo mb-5"> <!-- mettere opacity non mi ricordo come si fa!!!!! -->
             <div class="op">
                 <div class="my_title">
-                    <h1 class="display-4"> {BC} <span>ode</span></h1>
+                    <h1 class="display-3"> {BC} <span>ode</span></h1>
                     <p class="lead">Il Primo sito dove puoi cercare, contattare e recensire qualsiasi sviluppatore per ogni tua esigenza!</p>
                     <hr class="my_hr">
-                    <h2>E' semplice!</h2>
+                    <h2 class="display-4">E' semplice!</h2>
                     <p class="lead">Cerchi lo Sviluppatore più adatto alle tue esigenze, Lo contatti, E IL CODICE È FATTO!</p>
                     
                 </div>
@@ -36,10 +36,10 @@ export default {
 .my_jumbo{
     position: relative;
     background-color: #000000;
-    height: 50vh;
-}
+    box-shadow: 0.5rem 0.25rem 0.25rem #2d362c;
+    height: 500px;
 
-.my_jumbo:before{
+    &:before{
     background-image:url('../../../public/img/jumbo.gif') ;
     background-size: cover;
     content: ' ';
@@ -53,18 +53,27 @@ export default {
     background-repeat: no-repeat;
     background-position: 50% 0;
     background-size: cover;
-}
-
-.my_title{
-    position: relative;
+    }
+    .my_title{
+    position: absolute;
     color: white;
     text-shadow: 2px 2px #000000;
     padding: 30px;
+    top: 50%;
+    transform: translate(0,-50%);
     h1{
      color: rgb(94, 228, 28);  
      span{
         color: white;
      } 
     }
+    p{
+        font-size: 30px;
+    }
 }
+}
+
+
+
+
 </style>
