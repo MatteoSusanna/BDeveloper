@@ -5,10 +5,13 @@
             <div class="my_title">
                 <h1 class="display-4"> {BC} <span>ode</span></h1>
                 <hr class="my_hr_footer">
-                <div class="d-flex justify-content-center my_link">
-                    <div>
-                        <span class="display-4">I nostri social</span>
-                        <ul class="my_ul">
+
+                <div class="my_link ">
+
+                        <div class="text-center">
+                            <span class="display-4 text-center">I nostri social</span>
+                        </div>
+                        <ul class="d-flex p-0 justify-content-center">
                             <li>
                                 <a href=""><i class="fa-brands fa-twitter fa-2x mr-2"></i></a>
                             </li>
@@ -25,7 +28,7 @@
                                 <a href=""><i class="fa-solid fa-hippo fa-2x mr-2"></i></a>
                             </li>
                         </ul>
-                    </div>
+                    
                 </div>
                 <p class="text-white text-center">Copyrights - 2022 BDeveloper by Simone - Matteo - Francesco - Giacomo . All rights reserved</p> 
             </div>
